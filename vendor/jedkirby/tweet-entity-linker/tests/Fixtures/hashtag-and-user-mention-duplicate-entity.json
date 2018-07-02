@@ -1,0 +1,27 @@
+{
+    "text": "This tweet hashtags #jedkirby and also mentions @jedkirby",
+    "entities": {
+        "urls": [],
+        "hashtags": [
+            {
+                "text": "jedkirby",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ],
+        "user_mentions": [
+            {
+                "screen_name": "jedkirby",
+                "name": "James Kirby",
+                "id": 12345,
+                "id_str": "12345",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "text": "Click this https://t.co/qeSnkprYiP to go to my portfolio, or https://t.co/Ed4omjYs to go elsewhere.",
+    "entities": {
+        "urls": [
+            {
+                "display_url": "jedkirby.com",
+                "expanded_url": "https://jedkirby.com",
+                "url": "https://t.co/qeSnkprYiP",
+                "indices": [
+                    0,
+                    0
+                ]
+            },
+            {
+                "display_url": "google.co.uk",
+                "expanded_url": "https://www.google.co.uk/about",
+                "url": "https://t.co/Ed4omjYs",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ],
+        "hashtags": [],
+        "user_mentions": []
+    }
+}

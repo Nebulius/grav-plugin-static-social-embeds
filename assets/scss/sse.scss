@@ -1,0 +1,7 @@
+$family-sans-serif: "Fira Sans", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-tweet: "Helvetica Neue", "Helvetica", "Fira Sans", "Arial", sans-serif;
+
+.static-social-embed {
+    @import 'sse/reset';
+    @import 'sse/twitter';
+}

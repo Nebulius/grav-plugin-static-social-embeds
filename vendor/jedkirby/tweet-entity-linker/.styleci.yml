@@ -1,0 +1,11 @@
+preset: symfony
+enabled:
+  - short_array_syntax
+  - concat_with_spaces
+  - alpha_ordered_imports
+disabled:
+  - phpdoc_align
+  - concat_without_spaces
+finder:
+  name:
+    - "*.php"

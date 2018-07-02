@@ -1,1 +1,16 @@
 enabled: true
+
+use_built_in_css: true
+use_built_in_js: true
+
+theme: light
+
+downloaded_content:
+  images: true
+  videos: true
+
+twitter:
+  consumer_key: null
+  consumer_secret: null
+  access_token: null
+  access_token_secret: null

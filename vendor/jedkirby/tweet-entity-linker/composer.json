@@ -1,0 +1,38 @@
+{
+    "name": "jedkirby/tweet-entity-linker",
+    "description": "Convert Twitter API Tweet entities such as URLs, Hashtags and User Mentions into their respective HTML entities.",
+    "keywords": [
+        "twitter",
+        "tweet",
+        "hashtag",
+        "entity",
+        "convert",
+        "linkify"
+    ],
+    "license": "MIT",
+    "homepage": "https://jedkirby.com",
+    "authors": [
+        {
+            "name": "James Kirby",
+            "email": "me@jedkirby.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "satooshi/php-coveralls": "^1.0",
+        "jedkirby/php-cs": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jedkirby\\TweetEntityLinker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jedkirby\\TweetEntityLinker\\Tests\\": "tests/"
+        }
+    }
+}

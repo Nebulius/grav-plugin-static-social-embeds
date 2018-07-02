@@ -1,0 +1,391 @@
+$twitter-blue: #1da1f2;
+$twitter-white: #fff;
+$twitter-dark: #1b2836;
+
+$twitter-font-size-small: 14px;
+$twitter-font-size-medium: 18px;
+$twitter-font-size-large: 27px;
+
+$twitter-tweet-line-height: 38px;
+
+$twitter-light-background: $twitter-white;
+$twitter-light-text: #14171a;
+$twitter-light-text-gray: #657786;
+$twitter-light-link: $twitter-blue;
+$twitter-light-border: #e6ecf0;
+$twitter-light-border-hover: #aab8c2;
+$twitter-light-icons: $twitter-light-text-gray;
+$twitter-light-icon-reply-hover: $twitter-blue;
+$twitter-light-icon-retweet-hover: #17bf63;
+$twitter-light-icon-like-hover: #e0245e;
+$twitter-light-icon-send-hover: $twitter-blue;
+
+$twitter-dark-background: $twitter-dark;
+$twitter-dark-text: #fff;
+$twitter-dark-text-gray: #8899a6;
+$twitter-dark-link: $twitter-blue;
+$twitter-dark-border: #141d26;
+$twitter-dark-border-hover: #aab8c2;
+$twitter-dark-icons: $twitter-dark-text-gray;
+$twitter-dark-icon-reply-hover: $twitter-blue;
+$twitter-dark-icon-retweet-hover: #17bf63;
+$twitter-dark-icon-like-hover: #e0245e;
+$twitter-dark-icon-send-hover: $twitter-dark-link;
+
+&.sse-tweet {
+    margin: auto;
+    padding: 0;
+
+    width: 75%;
+    max-width: 800px;
+
+    border: solid 1px $twitter-light-border;
+    border-radius: 4px;
+
+    font-family: $family-sans-serif;
+
+    background-color: $twitter-light-background;
+
+    .sse-verified svg {
+        .sse-verified-badge {
+            fill: $twitter-blue;
+        }
+        .sse-verified-check {
+            fill: $twitter-white;
+        }
+    }
+
+    header {
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        padding: 1.4rem 2rem 1rem;
+
+        background: $twitter-light-background none;
+
+        .sse-tweet-author-avatar {
+            width: 48px;
+            height: 48px;
+
+            overflow: hidden;
+            text-align: center;
+
+            color: $twitter-light-text;
+
+            img {
+                border-radius: 426921px;
+            }
+        }
+
+        .sse-tweet-author-name {
+            flex-grow: 2;
+
+            padding-left: 1rem;
+
+            .sse-tweet-author-display-name {
+                font-size: $twitter-font-size-medium;
+
+                a {
+                    color: $twitter-light-text;
+                    font-weight: bold;
+                }
+
+                .sse-verified {
+                    position: relative;
+                    top: .1rem;
+                    left: .2rem;
+                }
+            }
+
+            .sse-tweet-author-handle {
+                font-size: $twitter-font-size-small;
+
+                a {
+                    color: $twitter-light-text-gray;
+                }
+            }
+        }
+
+        .sse-tweet-twitter-icon {
+            align-self: start;
+            color: $twitter-blue;
+        }
+    }
+
+    figure {
+        width: 100%;
+
+        margin: .8rem 0;
+
+        a:not(:first-child) {
+            display: none;
+        }
+    }
+
+    p.sse-tweet-content {
+        margin: 0;
+        padding: 0 2rem .8rem;
+
+        text-align: left;
+
+        font-family: $family-tweet;
+        font-size: $twitter-font-size-large;
+        color: $twitter-light-text;
+
+        line-height: $twitter-tweet-line-height;
+
+        a {
+            color: $twitter-light-link;
+
+            &:hover {
+                color: darken($twitter-light-link, 16%);
+            }
+        }
+
+        .sse-twitter-handle-at, .sse-twitter-hashtag-hash {
+            color: lighten($twitter-light-link, 12%);
+        }
+    }
+
+    .sse-quoted-tweet {
+        margin: 0 2rem .8rem;
+        padding: 0;
+
+        a {
+            display: flex;
+            flex-direction: row;
+
+            border: 1px solid $twitter-light-border;
+            border-radius: 4px;
+
+            &:hover {
+                border-color: $twitter-light-border-hover;
+            }
+
+            figure.sse-quoted-tweet-image {
+                width: 16rem;
+
+                margin: 0 0 .8rem .8rem;
+
+                img {
+                    width: 100%;
+                }
+
+                & + .sse-quoted-tweet-content {
+                    header, p {
+                        padding-left: .8rem;
+                    }
+                }
+            }
+
+            header {
+                height: auto;
+
+                padding-top: .5rem;
+                padding-left: .9rem;
+                padding-bottom: 0;
+
+                font-size: $twitter-font-size-medium;
+
+                .sse-quoted-tweet-author-display-name {
+                    display: inline-block;
+                    margin-right: .4rem;
+
+                    color: $twitter-light-text;
+                    font-weight: bold;
+                }
+
+                .sse-verified + .sse-quoted-tweet-author-handle {
+                    display: inline-block;
+                    padding-left: .8rem;
+                }
+
+                .sse-quoted-tweet-author-handle {
+                    color: $twitter-light-text-gray;
+                }
+
+                .sse-verified {
+                    position: relative;
+                    top: .1rem;
+                    left: .2rem;
+                }
+            }
+
+            p {
+                padding-left: .8rem;
+
+                &.sse-quoted-tweet-content {
+                    padding-bottom: .9rem;
+
+                    font-size: $twitter-font-size-medium;
+                    line-height: $twitter-tweet-line-height / 1.5;
+                }
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: baseline;
+
+        margin: 0 2rem .6rem;
+
+        p.sse-tweet-date {
+            margin: 0;
+            padding: 0;
+
+            font-family: $family-tweet;
+            font-size: $twitter-font-size-medium;
+
+            &, a, a:hover {
+                color: $twitter-light-text-gray;
+            }
+
+            .sse-tweet-source {
+                display: inline-block;
+                padding-right: 1.4rem;
+
+                font-size: 0.9em;
+                color: lighten($twitter-light-text-gray, 16%);
+            }
+        }
+
+        aside.sse-tweet-stats {
+            flex: 2;
+
+            margin: 0;
+            padding: 0;
+
+            ul {
+                padding: 0;
+
+                li {
+                    display: inline-block;
+                    width: 6rem;
+
+                    text-align: left;
+                    font-size: $twitter-font-size-medium;
+
+                    list-style-type: none;
+
+                    &:before, &:after {
+                        display: none;
+                        content: none;
+                    }
+
+                    a {
+                        color: lighten($twitter-light-text-gray, 16%);
+
+                        .stat {
+                            position: relative;
+                            top: -.12em;
+
+                            font-size: .8em;
+                        }
+
+                        &.link-reply:hover {
+                            color: $twitter-light-icon-reply-hover;
+                        }
+                        &.link-retweet:hover {
+                            color: $twitter-light-icon-retweet-hover;
+                        }
+                        &.link-like:hover {
+                            color: $twitter-light-icon-like-hover;
+                        }
+                        &.link-send:hover {
+                            color: $twitter-light-icon-send-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // For tweets quoting others, the last link is a link to the quoted tweet
+    &.has-quoted-tweet p.sse-tweet-content a:last-of-type {
+        display: none;
+    }
+
+    // Dark theme
+    &.sse-theme-dark {
+        border-color: $twitter-dark-border;
+        background-color: $twitter-dark-background;
+
+        .sse-verified svg {
+            .sse-verified-badge {
+                fill: white;
+            }
+            .sse-verified-check {
+                fill: $twitter-dark-background;
+            }
+        }
+
+        header {
+            background-color: $twitter-dark-background;
+
+            .sse-tweet-author-avatar {
+                color: $twitter-dark-text;
+            }
+
+            .sse-tweet-author-name {
+                .sse-tweet-author-display-name a {
+                    color: $twitter-dark-text;
+                }
+                .sse-tweet-author-handle a {
+                    color: $twitter-light-text-gray;
+                }
+            }
+        }
+
+        p.sse-tweet-content {
+            color: $twitter-dark-text;
+
+            a {
+                color: $twitter-dark-link;
+
+                &:hover {
+                    color: lighten($twitter-dark-link, 16%);
+                }
+            }
+
+            .sse-twitter-handle-at, .sse-twitter-hashtag-hash {
+                color: lighten($twitter-dark-link, 8%);
+            }
+        }
+
+        .sse-quoted-tweet a {
+            border-color: $twitter-dark-border;
+
+            &:hover {
+                border-color: $twitter-dark-border-hover;
+            }
+
+            .sse-quoted-tweet-author-display-name {
+                color: $twitter-dark-text;
+            }
+            .sse-quoted-tweet-author-handle {
+                color: $twitter-dark-text-gray;
+            }
+        }
+
+        footer {
+            p.sse-tweet-date {
+                &, a, a:hover {
+                    color: $twitter-dark-text-gray;
+                }
+                .sse-tweet-source {
+                    color: lighten($twitter-dark-text-gray, 8%);
+                }
+            }
+
+            aside.sse-tweet-stats ul li a {
+                color: lighten($twitter-dark-text-gray, 16%);
+            }
+        }
+    }
+}

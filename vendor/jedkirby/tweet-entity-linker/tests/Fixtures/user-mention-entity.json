@@ -1,0 +1,29 @@
+{
+    "text": "This tweet is for @jedkirby, and it also targets @google too.",
+    "entities": {
+        "urls": [],
+        "hashtags": [],
+        "user_mentions": [
+            {
+                "screen_name": "jedkirby",
+                "name": "James Kirby",
+                "id": 12345,
+                "id_str": "12345",
+                "indices": [
+                    0,
+                    0
+                ]
+            },
+            {
+                "screen_name": "google",
+                "name": "Google",
+                "id": 6789,
+                "id_str": "6789",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ]
+    }
+}

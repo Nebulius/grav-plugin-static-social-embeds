@@ -1,1 +1,7 @@
 .idea
+
+.sass-cache
+*.css.map
+
+
+# vendors directory commited because Grav don't install composer dependencies

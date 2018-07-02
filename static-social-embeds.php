@@ -2,7 +2,7 @@
 namespace Grav\Plugin;
 
 use Grav\Common\Plugin;
-use RocketTheme\Toolbox\Event\Event;
+
 
 /**
  * Class StaticSocialEmbedsPlugin
@@ -22,6 +22,9 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public static function getSubscribedEvents()
     {
+        require_once __DIR__ . '/vendor/autoload.php';
+        require_once __DIR__ . '/classes/SSEShortcode.php';
+
         return [
             'onPluginsInitialized' => ['onPluginsInitialized', 0]
         ];
@@ -39,19 +42,36 @@ class StaticSocialEmbedsPlugin extends Plugin
 
         // Enable the main event we are interested in
         $this->enable([
-            'onPageContentRaw' => ['onPageContentRaw', 0]
+            'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+            'onAssetsInitialized' => ['onAssetsInitialized', 0]
         ]);
     }
 
     /**
-     * Do some work for this event, full details of events can be found
-     * on the learn site: http://learn.getgrav.org/plugins/event-hooks
-     *
-     * @param Event $e
+     * Add current directory to twig lookup paths.
      */
-    public function onPageContentRaw(Event $e)
+    public function onTwigTemplatePaths()
     {
-        // Get a variable from the plugin configuration
-        // $text = $this->grav['config']->get('plugins.static-social-embeds.text_var');
+        $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
+    }
+
+    /**
+     * Adds assets.
+     */
+    public function onAssetsInitialized()
+    {
+        if ($this->config->get('plugins.static-social-embeds.use_built_in_css', false))
+        {
+            $this->grav['assets']->add('plugin://static-social-embeds/assets/css-compiled/sse.min.css', 4);
+        }
+    }
+
+    /**
+     * Registers shortcodes
+     */
+    public function onShortcodeHandlers()
+    {
+        $this->grav['shortcode']->registerAllShortcodes(__DIR__.'/shortcodes');
     }
 }

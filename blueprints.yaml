@@ -13,6 +13,9 @@ bugs: https://github.com/Nebulius/grav-plugin-static-social-embeds/issues
 docs: https://github.com/Nebulius/grav-plugin-static-social-embeds/blob/develop/README.md
 license: MIT
 
+dependencies:
+  - shortcode-core
+
 form:
   validation: strict
   fields:
@@ -26,3 +29,95 @@ form:
         0: Disabled
       validate:
         type: bool
+    use_built_in_css:
+      type: toggle
+      label: Use the built-in CSS
+      help: If disabled, you or your theme will have to supply CSS for this plugin. You can check out the built-in CSS for inspiration.
+      highlight: 1
+      default: 1
+      options:
+        1: Yes
+        0: No
+      validate:
+        type: bool
+    use_built_in_js:
+      type: toggle
+      label: Use the built-in JS
+      help: If disabled, you or your theme will have to supply JS for this plugin. You can check out the built-in JS for inspiration.
+      highlight: 1
+      default: 1
+      options:
+        1: Yes
+        0: No
+      validate:
+        type: bool
+    theme:
+      type: toggle
+      label: Theme
+      help: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.
+      highlight: light
+      default: light
+      options:
+        light: Light
+        dark: Dark
+    downloaded_content.images:
+      type: toggle
+      label: Download images locally?
+      help: |
+        If true, images from tweets/toots/instagram posts/etc. will be downloaded and served from your site instead of
+        the social network (including avatars). With that, the independence is complete but it requires more disk space.
+      highlight: 1
+      default: 1
+      options:
+        1: Yes
+        0: No
+      validate:
+        type: bool
+    downloaded_content.videos:
+      type: toggle
+      label: Download videos & GIFs locally?
+      help: |
+        If true, videos and GIFs from tweets/toots/instagram posts/etc. will be downloaded and served from your site instead of
+        the social network (including avatars). With that, the independence is complete but it requires more disk space.
+      highlight: 1
+      default: 1
+      options:
+        1: Yes
+        0: No
+      validate:
+        type: bool
+    section_twitter:
+      type: section
+      title: Twitter
+      underline: true
+      fields:
+        twitter_help:
+          type: spacer
+          text: |
+            To use Twitter embeds, you'll need to register an application.<br />
+            Go to <a href="https://apps.twitter.com/app/new">the Twitter Apps page</a> to create an application.
+            You don't need to provide a callback URL (we never use that).
+            Then, click the <strong>Keys and access tokens</strong> tab and at the bottom of the page, click
+            <strong>Create my Access Token</strong>.
+            Finally, copy the credentials here.
+        twitter_columns:
+          type: columns
+          fields:
+            twitter_column_1:
+              type: column
+              fields:
+                twitter.consumer_key:
+                  type: password
+                  label: Consumer Key (API Key)
+                twitter.consumer_secret:
+                  type: password
+                  label: Consumer Secret (API Secret)
+            twitter_column_2:
+              type: column
+              fields:
+                twitter.access_token:
+                  type: password
+                  label: Access Token
+                twitter.access_token_secret:
+                  type: password
+                  label: Access Token Secret

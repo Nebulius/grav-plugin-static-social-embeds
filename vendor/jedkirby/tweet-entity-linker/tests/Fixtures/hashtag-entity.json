@@ -1,0 +1,23 @@
+{
+    "text": "This tweet has a specific #Hashtag within it, and #Another one.",
+    "entities": {
+        "urls": [],
+        "hashtags": [
+            {
+                "text": "Hashtag",
+                "indices": [
+                    0,
+                    0
+                ]
+            },
+            {
+                "text": "Another",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ],
+        "user_mentions": []
+    }
+}

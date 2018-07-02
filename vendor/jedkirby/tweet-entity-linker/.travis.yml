@@ -1,0 +1,17 @@
+language: php
+php:
+  - 5.6
+  - 7.0
+  - hhvm
+  - nightly
+
+install:
+  - composer install --no-interaction
+  - composer dump-autoload --optimize
+
+script:
+  - mkdir -p build/logs
+  - php vendor/bin/phpunit -c phpunit.xml.dist
+
+after_script:
+  - travis_retry php vendor/bin/coveralls -v

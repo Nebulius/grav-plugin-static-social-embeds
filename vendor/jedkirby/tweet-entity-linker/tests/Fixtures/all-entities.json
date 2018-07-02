@@ -1,0 +1,63 @@
+{
+    "text": "This tweet has it all, it has got the links https://t.co/qeSnkprYiP and https://t.co/Ed4omjYs, it has the hashtags #Hashtag and #Another, and finally the user mentions for @jedkirby and @google.",
+    "entities": {
+        "urls": [
+            {
+                "display_url": "jedkirby.com",
+                "expanded_url": "https://jedkirby.com",
+                "url": "https://t.co/qeSnkprYiP",
+                "indices": [
+                    0,
+                    0
+                ]
+            },
+            {
+                "display_url": "google.co.uk",
+                "expanded_url": "https://www.google.co.uk/about",
+                "url": "https://t.co/Ed4omjYs",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ],
+        "hashtags": [
+            {
+                "text": "Hashtag",
+                "indices": [
+                    0,
+                    0
+                ]
+            },
+            {
+                "text": "Another",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ],
+        "user_mentions": [
+            {
+                "screen_name": "jedkirby",
+                "name": "James Kirby",
+                "id": 12345,
+                "id_str": "12345",
+                "indices": [
+                    0,
+                    0
+                ]
+            },
+            {
+                "screen_name": "google",
+                "name": "Google",
+                "id": 6789,
+                "id_str": "6789",
+                "indices": [
+                    0,
+                    0
+                ]
+            }
+        ]
+    }
+}
