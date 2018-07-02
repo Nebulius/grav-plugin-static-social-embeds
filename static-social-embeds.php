@@ -61,9 +61,14 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public function onAssetsInitialized()
     {
-        if ($this->config->get('plugins.static-social-embeds.use_built_in_css', false))
+        if ($this->config->get('plugins.static-social-embeds.use_built_in_css', true))
         {
             $this->grav['assets']->add('plugin://static-social-embeds/assets/css-compiled/sse.min.css', 4);
+        }
+
+        if ($this->config->get('plugins.static-social-embeds.use_built_in_js', true))
+        {
+            $this->grav['assets']->add('plugin://static-social-embeds/assets/js/sse.js', 4);
         }
     }
 

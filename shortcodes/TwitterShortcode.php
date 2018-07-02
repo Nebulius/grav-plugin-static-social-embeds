@@ -41,7 +41,11 @@ class TwitterShortcode extends SSEShortcode
 
         $tweet_data = $this->callTwitter('https://api.twitter.com/1.1/statuses/show/' . $tweet_id . '.json?tweet_mode=extended');
 
-        error_log(json_encode($tweet_data));
+        // Request failed?
+        if (isset($tweet_data['errors']))
+        {
+            return array_merge($tweet_data, ['url' => $url]);
+        }
 
         $data = $this->processTweet($tweet_data);
 
@@ -55,6 +59,8 @@ class TwitterShortcode extends SSEShortcode
 
     private function processTweet($tweet_data)
     {
+        $tweet_raw = $tweet_data['full_text'];
+
         $tweet_html = Tweet::make(
             $tweet_data['full_text'],
             $tweet_data['entities']['urls'],
@@ -66,6 +72,13 @@ class TwitterShortcode extends SSEShortcode
         $tweet_html = str_replace('@<a', '<span class="sse-twitter-handle-at">@</span><a', $tweet_html);
         $tweet_html = str_replace('#<a', '<span class="sse-twitter-hashtag-hash">#</span><a', $tweet_html);
 
+        // If there are images, an unlinkified link remains
+        if (isset($tweet_data['extended_entities']) && isset($tweet_data['extended_entities']['media']))
+        {
+            $tweet_raw = $this->removeLastTCOLink($tweet_raw);
+            $tweet_html = $this->removeLastTCOLink($tweet_html);
+        }
+
         $processed_tweet = [
             'author' => [
                 'name'         => $tweet_data['user']['screen_name'],
@@ -76,7 +89,7 @@ class TwitterShortcode extends SSEShortcode
                 'protected'    => $tweet_data['user']['protected']
             ],
             'tweet' => [
-                'raw'    => $tweet_data['full_text'],
+                'raw'    => $tweet_raw,
                 'html'   => $tweet_html,
                 'link'   => 'https://twitter.com/' . $tweet_data['user']['screen_name'] . '/status/' . $tweet_data['id_str'],
                 'date'   => strtotime($tweet_data['created_at']),
@@ -88,10 +101,10 @@ class TwitterShortcode extends SSEShortcode
             ]
         ];
 
-        if (isset($tweet_data['entities']) && isset($tweet_data['entities']['media']))
+        if (isset($tweet_data['extended_entities']) && isset($tweet_data['extended_entities']['media']))
         {
             $processed_tweet['tweet']['medias'] = [];
-            foreach ($tweet_data['entities']['media'] as $media)
+            foreach ($tweet_data['extended_entities']['media'] as $media)
             {
                 $processed_media = [
                     'src'       => $media['media_url_https'],
@@ -127,6 +140,11 @@ class TwitterShortcode extends SSEShortcode
         }
 
         return $processed_tweet;
+    }
+
+    private function removeLastTCOLink($tweet_content)
+    {
+        return preg_replace('/https:\/\/t\.co\/([a-zA-Z0-9]{9,16})$/', '', $tweet_content);
     }
 
     private function buildBaseInfo($method, $endpoint, $params)

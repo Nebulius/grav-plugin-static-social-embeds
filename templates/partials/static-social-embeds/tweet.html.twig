@@ -1,109 +1,135 @@
 <article class="static-social-embed sse-theme-{{ sse_theme }} sse-tweet{% if quoted_tweet %} has-quoted-tweet{% endif %}">
-    <header>
-        <div class="sse-tweet-author-avatar">
-            <a href="{{ author.link }}">
-                <img src="{{ author.avatar }}" alt="{{ author.name }}" />
-            </a>
-        </div>
-        <div class="sse-tweet-author-name">
-            <div class="sse-tweet-author-display-name">
-                <a href="{{ author.link }}">
-                    {{- author.display_name -}}
-                    {%- if author.verified %}
-                        <span class="sse-verified" title="Verified account">
-                            {% include 'partials/static-social-embeds/verified.svg.twig' %}
-                        </span>
-                    {% endif -%}
-                </a>
-            </div>
-            <div class="sse-tweet-author-handle">
-                <a href="{{ author.link }}">
-                    {{- '@' ~ author.name -}}
-                </a>
-            </div>
-        </div>
-        <div class="sse-tweet-twitter-icon">
-            <span class="fab fa-twitter"></span>
-        </div>
-    </header>
-
-    <p class="sse-tweet-content">
-        {{- tweet.html|raw|nl2br -}}
-    </p>
-
-    {% if tweet.medias %}
-        <figure>
-            {% for media in tweet.medias %}
-                <a href="{{ media.link }}" target="_blank">
-                    <img src="{{ media.src }}" alt="" />
-                </a>
+    {% if errors %}
+        <p class="sse-tweet-content">
+            Unable to render tweet. <a href="{{ url }}">(Click to view on Twitter.)</a><br />
+            {% for error in errors %}
+                {{ error.code }}: {{ error.message }}<br />
             {% endfor %}
-        </figure>
-    {% endif %}
-
-    {% if quoted_tweet %}
-        <article class="sse-quoted-tweet">
-            <a href="{{ quoted_tweet.tweet.link }}" target="_blank">
-                {% if quoted_tweet.tweet.medias %}
-                    <figure class="sse-quoted-tweet-image">
-                        <img src="{{ quoted_tweet.tweet.medias[0].src }}" alt="" />
-                    </figure>
-                {% endif %}
-                <div class="sse-quoted-tweet-content">
-                    <header>
-                        <span class="sse-quoted-tweet-author-display-name">
-                            {{- quoted_tweet.author.display_name -}}
-                        </span>
-                        {%- if quoted_tweet.author.verified %}
+        </p>
+    {% else %}
+        <header>
+            <div class="sse-tweet-author-avatar">
+                <a href="{{ author.link }}">
+                    <img src="{{ author.avatar }}" alt="{{ author.name }}" />
+                </a>
+            </div>
+            <div class="sse-tweet-author-name">
+                <div class="sse-tweet-author-display-name">
+                    <a href="{{ author.link }}">
+                        {{- author.display_name -}}
+                        {%- if author.verified %}
                             <span class="sse-verified" title="Verified account">
                                 {% include 'partials/static-social-embeds/verified.svg.twig' %}
                             </span>
                         {% endif -%}
-                        <span class="sse-quoted-tweet-author-handle">
-                            {{- '@' ~ quoted_tweet.author.name -}}
-                        </span>
-                    </header>
-                    <p class="sse-tweet-content sse-quoted-tweet-content">
-                        {{- quoted_tweet.tweet.raw|raw -}}
-                    </p>
+                    </a>
                 </div>
-            </a>
-        </article>
-    {% endif %}
+                <div class="sse-tweet-author-handle">
+                    <a href="{{ author.link }}">
+                        {{- '@' ~ author.name -}}
+                    </a>
+                </div>
+            </div>
+            <div class="sse-tweet-twitter-icon">
+                <span class="fab fa-twitter"></span>
+            </div>
+        </header>
 
-    <footer>
-        <p class="sse-tweet-date">
-            <span class="fas fa-feather-alt sse-tweet-source" title="Via {{ tweet.source|striptags }}"></span>
-            <time datetime="{{ tweet.date|date('c') }}"><a href="{{ tweet.link }}">{{ tweet.date|date('d/m/Y H:i'|t) }}</a></time>
+        <p class="sse-tweet-content">
+            {{- tweet.html|raw|nl2br -}}
         </p>
 
-        <aside class="sse-tweet-stats">
-            <ul>
-                <li>
-                    <a href="{{ tweet.link }}" target="_blank" class="link-reply">
-                        <span class="icon"><span class="fas fa-reply" aria-hidden="true"></span></span>
-                        <span class="sr-only">Reply</span>
+        {% if tweet.medias %}
+            <figure>
+                {% set medias_count = tweet.medias|length %}
+                {% for media in tweet.medias %}
+                    <div class="sse-status-image{% if loop.first %} is-active{% endif %}">
+                        <img src="{{ media.src }}" alt="" />
+                        {% if medias_count > 1 %}
+                        <aside class="sse-status-image-progress-dots">
+                            {% set media_index = loop.index %}
+                            {% for i in 1..medias_count %}
+                                <span class="sse-status-image-progress-dot{% if media_index == i %} is-active{% endif %}"></span>
+                            {% endfor %}
+                        </aside>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% if medias_count > 1 %}
+                    <a href="#" rel="prev" class="sse-status-image-handle-prev">
+                        <span class="fas fa-chevron-left"></span>
                     </a>
-                </li>
-                <li>
-                    <a href="{{ tweet.link }}" target="_blank" class="link-retweet">
-                        <span class="icon"><span class="fas fa-retweet"></span></span>
-                        <span class="stat">{{ tweet.stats.retweets|number_format }}<span class="sr-only"> retweets</span></span>
+                    <a href="#" rel="next" class="sse-status-image-handle-next">
+                        <span class="fas fa-chevron-right"></span>
                     </a>
-                </li>
-                <li>
-                    <a href="{{ tweet.link }}" target="_blank" class="link-like">
-                        <span class="icon"><span class="far fa-heart"></span></span>
-                        <span class="stat">{{ tweet.stats.likes|number_format }}<span class="sr-only"> likes</span></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ tweet.link }}" target="_blank" class="link-send">
-                        <span class="icon"><span class="far fa-envelope"></span></span>
-                        <span class="sr-only">Send</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
-    </footer>
+                {% endif %}
+            </figure>
+        {% endif %}
+
+        {% if quoted_tweet %}
+            <article class="sse-quoted-tweet">
+                <a href="{{ quoted_tweet.tweet.link }}" target="_blank">
+                    {% if quoted_tweet.tweet.medias %}
+                        <figure class="sse-quoted-tweet-image">
+                            <img src="{{ quoted_tweet.tweet.medias[0].src }}" alt="" />
+                        </figure>
+                    {% endif %}
+                    <div class="sse-quoted-tweet-content">
+                        <header>
+                            <span class="sse-quoted-tweet-author-display-name">
+                                {{- quoted_tweet.author.display_name -}}
+                            </span>
+                            {%- if quoted_tweet.author.verified %}
+                                <span class="sse-verified" title="Verified account">
+                                    {% include 'partials/static-social-embeds/verified.svg.twig' %}
+                                </span>
+                            {% endif -%}
+                            <span class="sse-quoted-tweet-author-handle">
+                                {{- '@' ~ quoted_tweet.author.name -}}
+                            </span>
+                        </header>
+                        <p class="sse-tweet-content sse-quoted-tweet-content">
+                            {{- quoted_tweet.tweet.raw|raw -}}
+                        </p>
+                    </div>
+                </a>
+            </article>
+        {% endif %}
+
+        <footer>
+            <p class="sse-tweet-date">
+                <span class="fas fa-feather-alt sse-tweet-source" title="Via {{ tweet.source|striptags }}"></span>
+                <time datetime="{{ tweet.date|date('c') }}"><a href="{{ tweet.link }}">{{ tweet.date|date('d/m/Y H:i'|t) }}</a></time>
+            </p>
+
+            <aside class="sse-tweet-stats">
+                <ul>
+                    <li>
+                        <a href="{{ tweet.link }}" target="_blank" class="link-reply">
+                            <span class="icon"><span class="fas fa-reply" aria-hidden="true"></span></span>
+                            <span class="sr-only">Reply</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ tweet.link }}" target="_blank" class="link-retweet">
+                            <span class="icon"><span class="fas fa-retweet"></span></span>
+                            <span class="stat">{{ tweet.stats.retweets|number_format }}<span class="sr-only"> retweets</span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ tweet.link }}" target="_blank" class="link-like">
+                            <span class="icon"><span class="far fa-heart"></span></span>
+                            <span class="stat">{{ tweet.stats.likes|number_format }}<span class="sr-only"> likes</span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ tweet.link }}" target="_blank" class="link-send">
+                            <span class="icon"><span class="far fa-envelope"></span></span>
+                            <span class="sr-only">Send</span>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+        </footer>
+    {% endif %}
 </article>
