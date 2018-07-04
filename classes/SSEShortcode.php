@@ -64,4 +64,22 @@ abstract class SSEShortcode extends Shortcode
             );
         });
     }
+
+    protected function formatMilliseconds($milliseconds)
+    {
+        $seconds = round($milliseconds / 1000) % 60;
+        $minutes = floor($seconds / 60) % 60;
+        $hours = floor($minutes / 60);
+
+        if ($hours > 0)
+        {
+            $time = sprintf('%u:%02u:%02u', $hours, $minutes, $seconds);
+        }
+        else
+        {
+            $time = sprintf('%02u:%02u', $minutes, $seconds);
+        }
+
+        return rtrim($time, '0');
+    }
 }

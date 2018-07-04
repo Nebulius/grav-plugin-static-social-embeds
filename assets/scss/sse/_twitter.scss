@@ -36,7 +36,7 @@ $twitter-dark-icon-send-hover: $twitter-dark-link;
     margin: auto;
     padding: 0;
 
-    width: 75%;
+    width: 66%;
     max-width: 800px;
 
     border: solid 1px $twitter-light-border;
@@ -131,10 +131,27 @@ $twitter-dark-icon-send-hover: $twitter-dark-link;
                 height: 100%;
             }
 
+            &.sse-status-image-video, &.sse-status-image-animated-gif {
+                cursor: pointer;
+            }
+
             img {
                 display: block;
                 width: 100%;
                 height: 100%;
+
+                &.is-hidden {
+                    display: none;
+                }
+            }
+
+            video {
+                display: none;
+                width: 100%;
+
+                &.is-active {
+                    display: block;
+                }
             }
 
             .sse-status-image-progress-dots {
@@ -156,6 +173,51 @@ $twitter-dark-icon-send-hover: $twitter-dark-link;
                     transition: background-color .1s ease-in-out;
 
                     // Color at the bottom of the figure block, on figure's hover.
+                }
+            }
+
+            .sse-status-image-handle-play {
+                position: absolute;
+                top: calc(50% - 2rem);
+                right: calc(50% - 2rem);
+
+                display: flex;
+                align-items: center;
+
+                width: 4rem;
+                height: 4rem;
+
+                background-color: $twitter-blue;
+                border: solid 5px $twitter-white;
+
+                border-radius: 426921px;
+
+                span {
+                    padding-left: calc(50% - 0.36em);
+                    color: white;
+                }
+
+                &.is-hidden {
+                    display: none;
+                }
+            }
+
+            .sse-status-image-badge {
+                position: absolute;
+                bottom: 1rem;
+                left: 1rem;
+
+                padding: .1rem .8rem;
+
+                border-radius: 4px;
+
+                background-color: rgba(black, .8);
+                color: white;
+
+                font-size: 1rem;
+
+                &.is-hidden {
+                    display: none;
                 }
             }
         }

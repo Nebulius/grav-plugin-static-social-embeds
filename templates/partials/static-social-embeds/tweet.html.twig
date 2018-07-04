@@ -43,8 +43,24 @@
             <figure>
                 {% set medias_count = tweet.medias|length %}
                 {% for media in tweet.medias %}
-                    <div class="sse-status-image{% if loop.first %} is-active{% endif %}">
+                    <div class="sse-status-image sse-status-image-{{ media.type|replace('_', '-') }}{% if loop.first %} is-active{% endif %}">
+                        {% if media.type == 'video' or media.type == 'animated_gif' %}
+                            <a href="#" class="sse-status-image-handle-play">
+                                <span class="fas fa-play"></span>
+                            </a>
+                        {% endif %}
                         <img src="{{ media.src }}" alt="" />
+                        {% if media.type == 'video' or media.type == 'animated_gif' %}
+                            <video {% if media.type == 'video' %}controls{% else %}loop muted{% endif %} class="sse-status-image-inline-{{ media.type|replace('_', '-') }}">
+                                {% for type, variant in media.video.variants %}
+                                    <source src="{{ variant.src }}" type="{{ type }}" />
+                                {% endfor %}
+                                Your browser does not support videos.
+                            </video>
+                            <span class="sse-status-image-badge">
+                                {%- if media.type == 'video' %}{{ media.video.duration_human }}{% else %}GIF{% endif -%}
+                            </span>
+                        {% endif %}
                         {% if medias_count > 1 %}
                         <aside class="sse-status-image-progress-dots">
                             {% set media_index = loop.index %}
@@ -71,7 +87,7 @@
                 <a href="{{ quoted_tweet.tweet.link }}" target="_blank">
                     {% if quoted_tweet.tweet.medias %}
                         <figure class="sse-quoted-tweet-image">
-                            <img src="{{ quoted_tweet.tweet.medias[0].src }}" alt="" />
+                            <img src="{{ quoted_tweet.tweet.medias[0].src_small }}" alt="" />
                         </figure>
                     {% endif %}
                     <div class="sse-quoted-tweet-content">

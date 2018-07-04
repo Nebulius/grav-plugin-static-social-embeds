@@ -3,6 +3,7 @@ namespace Grav\Plugin\Shortcodes;
 
 use Jedkirby\TweetEntityLinker\Tweet;
 
+
 class TwitterShortcode extends SSEShortcode
 {
 
@@ -37,7 +38,7 @@ class TwitterShortcode extends SSEShortcode
             $tweet_id = $match[2];
         }
 
-        if (!$tweet_id) return [];
+        if (!$tweet_id) return ['errors' => [['code' => 0, 'message' => 'Not a tweet']], 'url' => $url];
 
         $tweet_data = $this->callTwitter('https://api.twitter.com/1.1/statuses/show/' . $tweet_id . '.json?tweet_mode=extended');
 
@@ -51,13 +52,13 @@ class TwitterShortcode extends SSEShortcode
 
         if (isset($tweet_data['quoted_status']))
         {
-            $data['quoted_tweet'] = $this->processTweet($tweet_data['quoted_status']);
+            $data['quoted_tweet'] = $this->processTweet($tweet_data['quoted_status'], true);
         }
 
         return $data;
     }
 
-    private function processTweet($tweet_data)
+    private function processTweet($tweet_data, $is_quoted_tweet = false)
     {
         $tweet_raw = $tweet_data['full_text'];
 
@@ -72,7 +73,7 @@ class TwitterShortcode extends SSEShortcode
         $tweet_html = str_replace('@<a', '<span class="sse-twitter-handle-at">@</span><a', $tweet_html);
         $tweet_html = str_replace('#<a', '<span class="sse-twitter-hashtag-hash">#</span><a', $tweet_html);
 
-        // If there are images, an unlinkified link remains
+        // If there are images, an un-linkified link remains
         if (isset($tweet_data['extended_entities']) && isset($tweet_data['extended_entities']['media']))
         {
             $tweet_raw = $this->removeLastTCOLink($tweet_raw);
@@ -118,14 +119,31 @@ class TwitterShortcode extends SSEShortcode
                     $processed_media['src_small'] .= ':small';
                 }
 
-                if (isset($media['video_info']))
+                if (isset($media['video_info']) && !$is_quoted_tweet)
                 {
+                    // for each variant we keep the highest bitrate
+                    $video_variants = [];
+
+                    foreach ($media['video_info']['variants'] as $variant)
+                    {
+                        if (!isset($video_variants[$variant['content_type']]) || !isset($variant['bitrate']) || $variant['bitrate'] >= $video_variants[$variant['content_type']]['bitrate'])
+                        {
+                            $video_variants[$variant['content_type']] = [
+                                'src'          => $variant['url'],
+                                'bitrate'      => isset($variant['bitrate']) ? $variant['bitrate'] : 0
+                            ];
+                        }
+                    }
+
                     $processed_media['video'] = [
-                        'src'          => $media['video_info']['variants'][0]['url'],
-                        'content_type' => $media['video_info']['variants'][0]['content_type'],
-                        'aspect_ratio' => $media['video_info']['aspect_ratio']
+                        'aspect_ratio'   => $media['video_info']['aspect_ratio'],
+                        'duration'       => isset($media['video_info']['duration_millis']) ? $media['video_info']['duration_millis'] : 0,
+                        'duration_human' => isset($media['video_info']['duration_millis']) ? $this->formatMilliseconds($media['video_info']['duration_millis']) : '',
+                        'variants'       => $video_variants
                     ];
                 }
+
+                error_log("\n\nMEDIA: \n" . json_encode($processed_media));
 
                 $processed_tweet['tweet']['medias'][] = $processed_media;
             }

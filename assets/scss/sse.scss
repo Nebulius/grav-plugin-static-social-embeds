@@ -4,6 +4,6 @@ $family-tweet: "Helvetica Neue", "Helvetica", "Fira Sans", "Arial", sans-serif;
 @import 'sse/mixins';
 
 .static-social-embed {
-    @import 'sse/reset';
+    @import 'sse/minireset';
     @import 'sse/twitter';
 }
