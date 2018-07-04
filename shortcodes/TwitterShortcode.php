@@ -40,7 +40,7 @@ class TwitterShortcode extends SSEShortcode
 
         if (!$tweet_id) return ['errors' => [['code' => 0, 'message' => 'Not a tweet']], 'url' => $url];
 
-        $tweet_data = $this->callTwitter('https://api.twitter.com/1.1/statuses/show/' . $tweet_id . '.json?tweet_mode=extended');
+        $tweet_data = $this->callTwitter('https://api.twitter.com/1.1/statuses/show/' . $tweet_id . '.json?tweet_mode=extended&include_ext_alt_text=true');
 
         // Request failed?
         if (isset($tweet_data['errors']))
@@ -111,6 +111,7 @@ class TwitterShortcode extends SSEShortcode
                     'src'       => $this->fetchImage($media['media_url_https']),
                     'src_small' => $media['media_url_https'],
                     'link'      => $media['expanded_url'],
+                    'alt'       => $media['ext_alt_text'],
                     'type'      => $media['type']
                 ];
 

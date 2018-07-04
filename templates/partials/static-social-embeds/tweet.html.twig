@@ -49,7 +49,7 @@
                                 <span class="fas fa-play"></span>
                             </a>
                         {% endif %}
-                        <img src="{{ media.src }}" alt="" />
+                        <img src="{{ media.src }}" alt="{{ media.alt }}" title="{{ media.alt }}" />
                         {% if media.type == 'video' or media.type == 'animated_gif' %}
                             <video {% if media.type == 'video' %}controls{% else %}loop muted{% endif %} class="sse-status-image-inline-{{ media.type|replace('_', '-') }}">
                                 {% for type, variant in media.video.variants %}
