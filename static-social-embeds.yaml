@@ -1,7 +1,7 @@
 enabled: true
 
-use_built_in_css: true
-use_built_in_js: true
+built_in_css: true
+built_in_js: true
 
 theme: light
 

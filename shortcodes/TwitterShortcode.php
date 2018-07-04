@@ -85,7 +85,7 @@ class TwitterShortcode extends SSEShortcode
                 'name'         => $tweet_data['user']['screen_name'],
                 'display_name' => $tweet_data['user']['name'],
                 'link'         => 'https://twitter.com/' . $tweet_data['user']['screen_name'],
-                'avatar'       => $tweet_data['user']['profile_image_url_https'],
+                'avatar'       => $this->fetchImage($tweet_data['user']['profile_image_url_https']),
                 'verified'     => $tweet_data['user']['verified'],
                 'protected'    => $tweet_data['user']['protected']
             ],
@@ -108,7 +108,7 @@ class TwitterShortcode extends SSEShortcode
             foreach ($tweet_data['extended_entities']['media'] as $media)
             {
                 $processed_media = [
-                    'src'       => $media['media_url_https'],
+                    'src'       => $this->fetchImage($media['media_url_https']),
                     'src_small' => $media['media_url_https'],
                     'link'      => $media['expanded_url'],
                     'type'      => $media['type']
@@ -118,6 +118,8 @@ class TwitterShortcode extends SSEShortcode
                 {
                     $processed_media['src_small'] .= ':small';
                 }
+
+                $processed_media['src_small'] = $this->fetchImage($processed_media['src_small']);
 
                 if (isset($media['video_info']) && !$is_quoted_tweet)
                 {
@@ -133,6 +135,12 @@ class TwitterShortcode extends SSEShortcode
                                 'bitrate'      => isset($variant['bitrate']) ? $variant['bitrate'] : 0
                             ];
                         }
+                    }
+
+                    // Only fetch actually selected video files
+                    foreach ($video_variants as $content_type => $variant)
+                    {
+                        $video_variants[$content_type]['src'] = $this->fetchVideo($variant['src']);
                     }
 
                     $processed_media['video'] = [

@@ -29,7 +29,7 @@ form:
         0: Disabled
       validate:
         type: bool
-    use_built_in_css:
+    built_in_css:
       type: toggle
       label: Use the built-in CSS
       help: If disabled, you or your theme will have to supply CSS for this plugin. You can check out the built-in CSS for inspiration.
@@ -40,7 +40,7 @@ form:
         0: No
       validate:
         type: bool
-    use_built_in_js:
+    built_in_js:
       type: toggle
       label: Use the built-in JS
       help: If disabled, you or your theme will have to supply JS for this plugin. You can check out the built-in JS for inspiration.
