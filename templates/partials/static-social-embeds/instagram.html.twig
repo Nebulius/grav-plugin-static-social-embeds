@@ -15,7 +15,7 @@
                     <img src="{{ author.avatar }}" alt="{{ author.name }}" />
                 </a>
             </div>
-            <div class="sse-status-author-name">
+            <div class="sse-status-author-name{% if location %} has-location{% endif %}">
                 <div class="sse-status-author-display-name">
                     <a href="{{ author.link }}" title="{{ author.display_name }}">
                         {{- author.name -}}

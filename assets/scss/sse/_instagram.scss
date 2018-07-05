@@ -16,6 +16,7 @@
         }
 
         .sse-status-author-name {
+            padding-left: .7rem;
             line-height: 1.2;
 
             .sse-status-author-display-name {
@@ -29,6 +30,11 @@
                         transform: scale(.8);
                     }
                 }
+            }
+
+            &:not(.has-location) {
+                position: relative;
+                top: -0.1rem;
             }
         }
 
