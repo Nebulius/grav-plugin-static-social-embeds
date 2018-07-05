@@ -220,6 +220,10 @@
 
         aside.sse-status-instagram-show-profile a {
             border-bottom-color: $instagram-dark-gray;
+
+            &:hover {
+                color: lighten($instagram-blue, 8%);
+            }
         }
 
         aside.sse-status-instagram-likes {
@@ -241,8 +245,12 @@
                 }
             }
 
-            a:hover {
-                color: lighten($instagram-blue, 16%);
+            a {
+                color: $instagram-blue;
+
+                &:hover {
+                    color: lighten($instagram-blue,8%);
+                }
             }
         }
 
