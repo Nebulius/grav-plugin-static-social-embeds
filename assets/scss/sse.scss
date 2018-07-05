@@ -49,6 +49,28 @@ $mastodon-dark-text-gray: #606984;
 
 $mastodon-sensitive-content-blur-radius: 128px;
 
+$instagram-white: #fff;
+$instagram-black: #000;
+$instagram-blue: #3897f0;
+$instagram-dark: #262626;
+$instagram-gray: #999999;
+$instagram-gray-2: #8899a6;
+$instagram-light-gray: #eeeeee;
+$instagram-light-gray-2: #efefef;
+$instagram-dark-gray: #141d26;
+$instagram-red: #ce4854;
+
+$instagram-padding: 12px;
+$instagram-content-padding: $instagram-padding - 2px;
+$instagram-small-padding: $instagram-padding / 2;
+
+$instagram-font-size-normal: 14px;
+$instagram-font-size-large: 24px;
+
+$instagram-font-weight-bold: 600;
+
+$instagram-line-height: 18px;
+
 @import 'sse/mixins';
 
 .static-social-embed {
