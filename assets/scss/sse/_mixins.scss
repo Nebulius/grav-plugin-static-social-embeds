@@ -5,3 +5,21 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+@mixin mobile {
+    @media screen and (max-width: 768px) {
+        @content
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: 769px) and (max-width: 1280px) {
+        @content
+    }
+}
+
+@mixin small-desktop {
+    @media screen and (min-width: 1281px) and (max-width: 1472px) {
+        @content
+    }
+}

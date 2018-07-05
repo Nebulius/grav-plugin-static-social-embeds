@@ -122,26 +122,26 @@
 
             <aside class="sse-status-stats">
                 <ul>
-                    <li>
-                        <a href="{{ tweet.link }}" target="_blank" class="link-reply">
+                    <li class="link-reply">
+                        <a href="{{ tweet.link }}" target="_blank">
                             <span class="icon"><span class="fas fa-reply" aria-hidden="true"></span></span>
                             <span class="sr-only">Reply</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ tweet.link }}" target="_blank" class="link-retweet">
+                    <li class="link-retweet">
+                        <a href="{{ tweet.link }}" target="_blank">
                             <span class="icon"><span class="fas fa-retweet"></span></span>
                             <span class="stat">{{ tweet.stats.retweets|number_format }}<span class="sr-only"> retweets</span></span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ tweet.link }}" target="_blank" class="link-like">
+                    <li class="link-like">
+                        <a href="{{ tweet.link }}" target="_blank">
                             <span class="icon"><span class="far fa-heart"></span></span>
                             <span class="stat">{{ tweet.stats.likes|number_format }}<span class="sr-only"> likes</span></span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ tweet.link }}" target="_blank" class="link-send">
+                    <li class="link-send">
+                        <a href="{{ tweet.link }}" target="_blank">
                             <span class="icon"><span class="far fa-envelope"></span></span>
                             <span class="sr-only">Send</span>
                         </a>

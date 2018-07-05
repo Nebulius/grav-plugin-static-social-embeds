@@ -15,6 +15,12 @@
             font-size: $mastodon-font-size-medium;
             color: $mastodon-link;
 
+            .sse-mastodon-follow-text {
+                @include mobile {
+                    display: none;
+                }
+            }
+
             &:hover {
                 border-color: $twitter-light-border-hover;
             }
@@ -25,6 +31,10 @@
 
                 position: relative;
                 top: .1rem;
+
+                @include mobile {
+                    padding-right: 0;
+                }
             }
         }
     }
@@ -188,6 +198,12 @@
                     left: -.74rem;
 
                     color: $twitter-light-text-gray;
+                }
+
+                &.sse-mastodon-stats-application {
+                    @include mobile {
+                        display: none;
+                    }
                 }
             }
         }

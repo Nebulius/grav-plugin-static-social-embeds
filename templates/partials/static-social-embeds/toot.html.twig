@@ -34,7 +34,10 @@
             </div>
             <div class="sse-status-network-icon">
                 <a href="web+mastodon://follow?uri={{ account.fully_qualified_name }}" title="Follow {{ account.username }} on Mastodon">
-                    <span class="fab fa-mastodon"></span> Follow
+                    <span class="fab fa-mastodon"></span>
+                    <span class="sse-mastodon-follow-text">
+                        Follow
+                    </span>
                 </a>
             </div>
         </header>
@@ -98,8 +101,10 @@
 
         <footer>
             <ul class="sse-mastodon-stats">
-                <li><time datetime="{{ created_at|date('c') }}"><a href="{{ url }}">{{ created_at|date('d/m/Y H:i'|t) }}</a></time></li>
-                <li title="{{ visibility|capitalize }} toot">
+                <li class="sse-mastodon-stats-date">
+                    <time datetime="{{ created_at|date('c') }}"><a href="{{ url }}">{{ created_at|date('d/m/Y H:i'|t) }}</a></time>
+                </li>
+                <li title="{{ visibility|capitalize }} toot" class="sse-mastodon-stats-visibility">
                     {%- set visibility_icons = {
                         'public': 'fas fa-globe-africa',
                         'unlisted': 'fas fa-unlock',
@@ -108,9 +113,19 @@
                     } -%}
                     <span class="{{ visibility_icons[visibility] }}"></span>
                 </li>
-                <li>{% if application.website %}<a href="{{ application.website }}">{{ application.name }}</a>{% else %}{{ application.name }}{% endif %}</li>
-                <li aria-label="{{ reblogs_count }} reblogs"><span class="fas fa-retweet" aria-hidden="true"></span> {{ reblogs_count }}</li>
-                <li aria-label="{{ favourites_count }} favourites"><span class="fas fa-heart" aria-hidden="true"></span> {{ favourites_count }}</li>
+                <li class="sse-mastodon-stats-application">
+                    {%- if application.website -%}
+                        <a href="{{ application.website }}">{{ application.name }}</a>
+                    {%- else -%}
+                        {{- application.name -}}
+                    {%- endif -%}
+                </li>
+                <li aria-label="{{ reblogs_count }} reblogs" class="sse-mastodon-stats-reblogs">
+                    <span class="fas fa-retweet" aria-hidden="true"></span> {{ reblogs_count -}}
+                </li>
+                <li aria-label="{{ favourites_count }} favourites" class="sse-mastodon-stats-favourites">
+                    <span class="fas fa-heart" aria-hidden="true"></span> {{ favourites_count -}}
+                </li>
             </ul>
         </footer>
     {% endif %}

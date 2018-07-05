@@ -12,6 +12,15 @@
 
     background-color: $twitter-light-background;
 
+    @include mobile {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    @include tablet {
+        width: 84%;
+    }
+
     .sse-verified svg {
         .sse-verified-badge {
             fill: $twitter-blue;
@@ -259,6 +268,10 @@
 
         line-height: $twitter-tweet-line-height;
 
+        @include mobile {
+            font-size: $twitter-font-size-large * .9;
+        }
+
         a {
             color: $twitter-light-link;
 
@@ -283,6 +296,10 @@
             border: 1px solid $twitter-light-border;
             border-radius: 4px;
 
+            @include mobile {
+                flex-direction: column-reverse;
+            }
+
             &:hover {
                 border-color: $twitter-light-border-hover;
             }
@@ -291,6 +308,11 @@
                 width: 16rem;
 
                 margin: 0 0 .8rem .8rem;
+
+                @include mobile {
+                    margin: 0;
+                    width: 100%;
+                }
 
                 img {
                     width: 100%;
@@ -311,6 +333,11 @@
                 padding-bottom: 0;
 
                 font-size: $twitter-font-size-medium;
+
+                @include mobile {
+                    padding-bottom: .5rem;
+                    font-size: $twitter-font-size-medium * .9;
+                }
 
                 .sse-quoted-tweet-author-display-name {
                     display: inline-block;
@@ -373,6 +400,10 @@
 
                 font-size: 0.9em;
                 color: lighten($twitter-light-text-gray, 16%);
+
+                @include mobile {
+                    display: none;
+                }
             }
         }
 
@@ -394,6 +425,21 @@
 
                     list-style-type: none;
 
+                    @include mobile {
+                        width: auto;
+                        padding-right: .4rem;
+                    }
+
+                    @include tablet {
+                        width: auto;
+                        padding-right: 1.2rem;
+                    }
+
+                    @include small-desktop {
+                        width: auto;
+                        padding-right: 2rem;
+                    }
+
                     &:before, &:after {
                         display: none;
                         content: none;
@@ -408,19 +454,25 @@
 
                             font-size: .8em;
                         }
+                    }
 
-                        &.link-reply:hover {
-                            color: $twitter-light-icon-reply-hover;
+                    &.link-reply, &.link-send {
+                        @include mobile {
+                            display: none;
                         }
-                        &.link-retweet:hover {
-                            color: $twitter-light-icon-retweet-hover;
-                        }
-                        &.link-like:hover {
-                            color: $twitter-light-icon-like-hover;
-                        }
-                        &.link-send:hover {
-                            color: $twitter-light-icon-send-hover;
-                        }
+                    }
+
+                    &.link-reply a:hover {
+                        color: $twitter-light-icon-reply-hover;
+                    }
+                    &.link-retweet a:hover {
+                        color: $twitter-light-icon-retweet-hover;
+                    }
+                    &.link-like a:hover {
+                        color: $twitter-light-icon-like-hover;
+                    }
+                    &.link-send a:hover {
+                        color: $twitter-light-icon-send-hover;
                     }
                 }
             }
