@@ -1,0 +1,234 @@
+&.sse-status.sse-toot {
+    header {
+        .sse-status-author-avatar img {
+            border-radius: 8px;
+        }
+
+        .sse-status-network-icon a {
+            display: block;
+
+            border: solid 1px $twitter-light-border;
+            border-radius: 4px;
+
+            padding: .4rem 1rem;
+
+            font-size: $mastodon-font-size-medium;
+            color: $mastodon-link;
+
+            &:hover {
+                border-color: $twitter-light-border-hover;
+            }
+
+            .fa-mastodon {
+                display: inline-block;
+                padding-right: .4rem;
+
+                position: relative;
+                top: .1rem;
+            }
+        }
+    }
+
+    .sse-status-content {
+        font-size: $mastodon-font-size-large;
+
+        p {
+            padding: 0;
+
+            text-align: left;
+
+            font-family: $family-tweet;
+            color: $twitter-light-text;
+
+            line-height: $twitter-tweet-line-height;
+
+            a {
+                color: $mastodon-link;
+
+                &:hover {
+                    color: darken($mastodon-link, 16%);
+                }
+            }
+
+            span.invisible {
+                display: none;
+            }
+
+            .sse-mastodon-custom-emoji {
+                position: relative;
+                top: .1rem;
+
+                height: $mastodon-font-size-medium;
+            }
+        }
+
+        &.sse-spoiler-text {
+            .sse-spoiler-text-toggle-handle {
+                display: inline-block;
+                margin-left: 1rem;
+                padding: 0 1rem;
+                vertical-align: middle;
+
+                border: 0;
+                border-radius: 2px;
+
+                background: darken($mastodon-dark-text-gray, 21%);
+                color: $twitter-white;
+
+                font-size: $mastodon-font-size-smaller;
+                font-weight: 700;
+                line-height: 1.6rem;
+                text-transform: uppercase;
+
+                cursor: pointer;
+
+                @include unselectable;
+            }
+        }
+
+        &.is-hidden {
+            display: none;
+        }
+    }
+
+    figure.sse-has-sensitive-content {
+        cursor: pointer;
+
+        .sse-status-image-sensitive-toggle {
+            display: none;
+        }
+
+        &.is-blurred .sse-status-image {
+            overflow: hidden;
+
+            img, video, .sse-status-image-handle-play, .sse-status-image-badge {
+                filter: blur($mastodon-sensitive-content-blur-radius);
+            }
+
+            .sse-status-image-sensitive-toggle {
+                position: absolute;
+                top: 32%;
+
+                width: 100%;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                text-align: center;
+                font-size: $mastodon-font-size-larger;
+                font-weight: 300;
+
+                color: $twitter-white;
+
+                z-index: 10000;
+
+                strong {
+                    display: block;
+
+                    font-weight: 300;
+                    font-size: $mastodon-font-size-huge;
+
+                    color: $twitter-white;
+                }
+
+                &.is-hidden {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    footer {
+        flex-direction: row;
+
+        padding-bottom: .8rem;
+
+        font-size: $mastodon-font-size-small;
+
+        ul.sse-mastodon-stats {
+            padding: 0;
+
+            li {
+                display: inline-block;
+                position: relative;
+
+                &, a, a:hover {
+                    color: $twitter-light-text-gray;
+                }
+
+                .fas, .far {
+                    display: inline-block;
+                    padding-right: .2rem;
+
+                    font-size: $mastodon-font-size-smaller;
+                }
+
+                &:not(:first-child) {
+                    margin-left: 1rem;
+                }
+
+                &:before {
+                    display: none;
+                    content: '';
+                }
+                &:not(:first-child):before {
+                    display: inline-block;
+                    content: '⋅';
+
+                    position: absolute;
+                    top: 0;
+                    left: -.74rem;
+
+                    color: $twitter-light-text-gray;
+                }
+            }
+        }
+    }
+
+    figure + footer {
+        padding-bottom: .3rem;
+    }
+
+    &.sse-theme-dark {
+        border-color: $mastodon-dark-border;
+        background-color: $mastodon-dark-background;
+
+        header {
+            background-color: $mastodon-dark-background;
+
+            .sse-status-author-name .sse-status-author-handle a {
+                color: $mastodon-dark-text-gray;
+            }
+
+            .sse-status-network-icon a {
+                border-color: $mastodon-dark-border;
+
+                &:hover {
+                    border-color: lighten($mastodon-dark-border, 12%);
+                }
+            }
+        }
+
+        .sse-status-content p {
+            color: $twitter-dark-text;
+
+            a:hover {
+                color: darken($mastodon-link, 8%);
+            }
+
+            &.sse-spoiler-text .sse-spoiler-text-toggle-handle {
+                background: $mastodon-dark-text-gray;
+                color: $mastodon-dark-background;
+            }
+        }
+
+        footer {
+            ul.sse-mastodon-stats li {
+                &, a, a:hover, &:not(:first-child):before {
+                    color: $twitter-dark-text-gray;
+                }
+            }
+        }
+    }
+}

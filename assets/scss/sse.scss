@@ -1,9 +1,60 @@
 $family-sans-serif: "Fira Sans", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $family-tweet: "Helvetica Neue", "Helvetica", "Fira Sans", "Arial", sans-serif;
 
+$twitter-font-size-small: 14px;
+$twitter-font-size-medium: 18px;
+$twitter-font-size-large: 27px;
+
+$twitter-tweet-line-height: 38px;
+
+$twitter-blue: #1da1f2;
+$twitter-white: #fff;
+$twitter-dark: #1b2836;
+
+$twitter-light-background: $twitter-white;
+$twitter-light-text: #14171a;
+$twitter-light-text-gray: #657786;
+$twitter-light-link: $twitter-blue;
+$twitter-light-border: #e6ecf0;
+$twitter-light-border-hover: #aab8c2;
+$twitter-light-icons: $twitter-light-text-gray;
+$twitter-light-icon-reply-hover: $twitter-blue;
+$twitter-light-icon-retweet-hover: #17bf63;
+$twitter-light-icon-like-hover: #e0245e;
+$twitter-light-icon-send-hover: $twitter-blue;
+
+$twitter-dark-background: $twitter-dark;
+$twitter-dark-text: #fff;
+$twitter-dark-text-gray: #8899a6;
+$twitter-dark-link: $twitter-blue;
+$twitter-dark-border: #141d26;
+$twitter-dark-border-hover: #aab8c2;
+$twitter-dark-icons: $twitter-dark-text-gray;
+$twitter-dark-icon-reply-hover: $twitter-blue;
+$twitter-dark-icon-retweet-hover: #17bf63;
+$twitter-dark-icon-like-hover: #e0245e;
+$twitter-dark-icon-send-hover: $twitter-dark-link;
+
+$mastodon-font-size-smaller: .8rem;
+$mastodon-font-size-small: .9rem;
+$mastodon-font-size-medium: 1.2rem;
+$mastodon-font-size-large: 1.4rem;
+$mastodon-font-size-larger: 1.8rem;
+$mastodon-font-size-huge: 2.1rem;
+
+$mastodon-link: #2b90d9;
+$mastodon-dark-background: #282c37;
+$mastodon-dark-border: #393f4f;
+$mastodon-dark-text-gray: #606984;
+
+$mastodon-sensitive-content-blur-radius: 128px;
+
 @import 'sse/mixins';
 
 .static-social-embed {
     @import 'sse/minireset';
+    @import 'sse/utilities';
+    @import 'sse/errors';
     @import 'sse/twitter';
+    @import 'sse/mastodon';
 }

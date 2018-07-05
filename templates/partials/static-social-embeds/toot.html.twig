@@ -1,0 +1,117 @@
+<article class="static-social-embed sse-theme-{{ sse_theme }} sse-status sse-toot">
+    {% if errors %}
+        <div class="sse-status-error">
+            <p>Unable to render toot. <a href="{{ url }}">(Click to view on Mastodon.)</a></p>
+            <ul>
+                {% for error in errors %}
+                <li>{{ error.code }}: {{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <header>
+            <div class="sse-status-author-avatar">
+                <a href="{{ account.url }}">
+                    <img src="{{ account.avatar }}" alt="{{ account.username }}" />
+                </a>
+            </div>
+            <div class="sse-status-author-name">
+                <div class="sse-status-author-display-name">
+                    <a href="{{ account.url }}">
+                        {{- account.display_name ?: account.username -}}
+                        {%- if account.locked %}
+                            <span class="sse-locked" title="Locked account">
+                                <span class="fas fa-lock"></span>
+                            </span>
+                        {% endif -%}
+                    </a>
+                </div>
+                <div class="sse-status-author-handle">
+                    <a href="{{ account.url }}">
+                        {{- '@' ~ account.fully_qualified_name -}}
+                    </a>
+                </div>
+            </div>
+            <div class="sse-status-network-icon">
+                <a href="web+mastodon://follow?uri={{ account.fully_qualified_name }}" title="Follow {{ account.username }} on Mastodon">
+                    <span class="fab fa-mastodon"></span> Follow
+                </a>
+            </div>
+        </header>
+
+        {% if spoiler_text %}
+            <p class="sse-status-content sse-spoiler-text">
+                {{ spoiler_text }} <button class="sse-spoiler-text-toggle-handle" data-show="Show more" data-hide="Show less">Show more</button>
+            </p>
+        {% endif %}
+
+        <div class="sse-status-content{% if spoiler_text %} sse-status-content-is-hidden{% endif %}">
+            {{- content|raw -}}
+        </div>
+
+        {% if media_attachments %}
+            <figure{% if sensitive %} class="sse-has-sensitive-content is-blurred"{% endif %}>
+                {% set medias_count = media_attachments|length %}
+                {% for media in media_attachments %}
+                    <div class="sse-status-image sse-status-image-{{ media.type != 'gifv' ? media.type|replace('_', '-') : 'animated-gif' }}{% if loop.first %} is-active{% endif %}">
+                        {% if sensitive %}
+                            <a href="#" class="sse-status-image-sensitive-toggle">
+                                <strong>Sensitive content</strong>
+                                <span>Click to toggle display</span>
+                            </a>
+                        {% endif %}
+                        {% if media.type == 'video' or media.type == 'gifv' %}
+                            <a href="#" class="sse-status-image-handle-play">
+                                <span class="fas fa-play"></span>
+                            </a>
+                        {% endif %}
+                        <img src="{{ media.preview_url }}" alt="{{ media.description }}" title="{{ media.description }}" />
+                        {% if media.type == 'video' or media.type == 'gifv' %}
+                            <video {% if media.type == 'video' %}controls{% else %}loop muted{% endif %} class="sse-status-image-inline-{{ media.type|replace('_', '-')|replace('gifv', 'animated-gif') }}">
+                                <source src="{{ media.url }}" type="video/mp4" />
+                                Your browser does not support videos.
+                            </video>
+                            <span class="sse-status-image-badge">
+                                {%- if media.type == 'video' %}{{ media.video.duration_human }}{% else %}GIF{% endif -%}
+                            </span>
+                        {% endif %}
+                        {% if medias_count > 1 %}
+                            <aside class="sse-status-image-progress-dots">
+                                {% set media_index = loop.index %}
+                                {% for i in 1..medias_count %}
+                                    <span class="sse-status-image-progress-dot{% if media_index == i %} is-active{% endif %}"></span>
+                                {% endfor %}
+                            </aside>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% if medias_count > 1 %}
+                    <a href="#" rel="prev" class="sse-status-image-handle-prev">
+                        <span class="fas fa-chevron-left"></span>
+                    </a>
+                    <a href="#" rel="next" class="sse-status-image-handle-next">
+                        <span class="fas fa-chevron-right"></span>
+                    </a>
+                {% endif %}
+            </figure>
+        {% endif %}
+
+        <footer>
+            <ul class="sse-mastodon-stats">
+                <li><time datetime="{{ created_at|date('c') }}"><a href="{{ url }}">{{ created_at|date('d/m/Y H:i'|t) }}</a></time></li>
+                <li title="{{ visibility|capitalize }} toot">
+                    {%- set visibility_icons = {
+                        'public': 'fas fa-globe-africa',
+                        'unlisted': 'fas fa-unlock',
+                        'private': 'fas fa-lock',
+                        'direct': 'fas fa-envelope'
+                    } -%}
+                    <span class="{{ visibility_icons[visibility] }}"></span>
+                </li>
+                <li>{% if application.website %}<a href="{{ application.website }}">{{ application.name }}</a>{% else %}{{ application.name }}{% endif %}</li>
+                <li aria-label="{{ reblogs_count }} reblogs"><span class="fas fa-retweet" aria-hidden="true"></span> {{ reblogs_count }}</li>
+                <li aria-label="{{ favourites_count }} favourites"><span class="fas fa-heart" aria-hidden="true"></span> {{ favourites_count }}</li>
+            </ul>
+        </footer>
+    {% endif %}
+</article>

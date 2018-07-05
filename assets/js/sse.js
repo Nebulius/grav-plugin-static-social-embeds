@@ -145,4 +145,50 @@ document.addEventListener('DOMContentLoaded', function (e)
             handleVideo(getParentWithTagName(e.target, 'DIV'));
         });
     });
+
+    document.querySelectorAll('.sse-status-content-is-hidden').forEach(function(element)
+    {
+        element.classList.add('is-hidden');
+    });
+
+    document.querySelectorAll('.sse-spoiler-text-toggle-handle').forEach(function(button)
+    {
+        button.addEventListener('click', function(e)
+        {
+            let button = e.target;
+            let content = getParentWithTagName(e.target, 'P').nextElementSibling;
+
+            e.preventDefault();
+
+            // Show content
+            if (content.classList.contains('is-hidden'))
+            {
+                content.classList.remove('is-hidden');
+                button.innerHTML = button.dataset.hide;
+            }
+
+            // Hide content
+            else
+            {
+                content.classList.add('is-hidden');
+                button.innerHTML = button.dataset.show;
+            }
+        });
+    });
+
+    document.querySelectorAll('.sse-has-sensitive-content').forEach(function(element)
+    {
+        element.addEventListener('click', function(e)
+        {
+            if (getParentWithClasses(e.target, ['sse-status-image-handle-prev', 'sse-status-image-handle-next']) !== null) return;
+
+            e.preventDefault();
+
+            let figure = getParentWithTagName(e.target, 'figure');
+            if (figure.classList.contains('is-blurred'))
+                figure.classList.remove('is-blurred');
+            else
+                figure.classList.add('is-blurred');
+        });
+    });
 });

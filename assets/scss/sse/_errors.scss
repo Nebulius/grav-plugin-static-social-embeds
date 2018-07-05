@@ -1,0 +1,22 @@
+&.sse-status {
+    .sse-status-error {
+        padding: 1rem 0;
+
+        p, ul li {
+            font-size: 1rem;
+            color: #651412;
+        }
+        a {
+            color: #831a18;
+        }
+    }
+
+    &.sse-theme-dark .sse-status-error {
+        p, ul li {
+            color: #a6201d;
+        }
+        a {
+            color: #982c29;
+        }
+    }
+}

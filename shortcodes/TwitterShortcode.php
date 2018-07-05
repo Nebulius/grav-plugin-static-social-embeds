@@ -152,8 +152,6 @@ class TwitterShortcode extends SSEShortcode
                     ];
                 }
 
-                error_log("\n\nMEDIA: \n" . json_encode($processed_media));
-
                 $processed_tweet['tweet']['medias'][] = $processed_media;
             }
         }
@@ -243,19 +241,19 @@ class TwitterShortcode extends SSEShortcode
         $oauth_signature = base64_encode(hash_hmac('sha1', $base_info, $composite_key, true));
         $oauth['oauth_signature'] = $oauth_signature;
 
-        $header = [$this->buildAuthorizationHeader($oauth), 'Expect:'];
-        $options = [
-            CURLOPT_HTTPHEADER => $header,
-            CURLOPT_HEADER => false,
-            CURLOPT_URL => $url,
+        $ch = curl_init();
+
+        curl_setopt_array($ch, [
+            CURLOPT_HTTPHEADER     => [$this->buildAuthorizationHeader($oauth), 'Expect:'],
+            CURLOPT_HEADER         => false,
+            CURLOPT_URL            => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false
-        ];
+        ]);
 
-        $curl_handle = curl_init();
-        curl_setopt_array($curl_handle, $options);
-        $json = curl_exec($curl_handle);
-        curl_close($curl_handle);
+        $json = curl_exec($ch);
+
+        curl_close($ch);
 
         return json_decode($json, true);
     }
