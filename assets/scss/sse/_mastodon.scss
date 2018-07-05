@@ -50,8 +50,15 @@
                 }
             }
 
-            span.invisible {
-                display: none;
+            .invisible {
+                display: inline-block;
+                position: absolute;
+
+                width: 0;
+                height: 0;
+
+                font-size: 0;
+                line-height: 0;
             }
 
             .sse-mastodon-custom-emoji {
