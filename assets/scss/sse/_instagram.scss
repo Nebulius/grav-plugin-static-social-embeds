@@ -1,0 +1,226 @@
+$instagram-white: #fff;
+$instagram-black: #000;
+$instagram-blue: #3897f0;
+$instagram-dark: #262626;
+$instagram-gray: #999999;
+$instagram-light-gray: #eeeeee;
+$instagram-light-gray-2: #efefef;
+$instagram-red: #ce4854;
+
+$instagram-padding: 12px;
+$instagram-content-padding: $instagram-padding - 2px;
+$instagram-small-padding: $instagram-padding / 2;
+
+$instagram-font-size-normal: 14px;
+$instagram-font-size-large: 24px;
+
+$instagram-font-weight-bold: 600;
+
+$instagram-line-height: 18px;
+
+&.sse-instagram {
+    font-size: $instagram-font-size-normal;
+
+    header {
+        padding: $instagram-content-padding;
+
+        .sse-status-author-avatar {
+            &, a {
+                width: 34px;
+                height: 34px;
+            }
+
+            a {
+                display: inline-block;
+            }
+        }
+
+        .sse-status-author-name {
+            line-height: 1.2;
+
+            .sse-status-author-display-name {
+                font-size: $instagram-font-size-normal;
+
+                .sse-verified {
+                    top: .24rem;
+                    left: 0;
+
+                    svg {
+                        transform: scale(.8);
+                    }
+                }
+            }
+        }
+
+        .sse-status-network-icon {
+            display: flex;
+
+            a {
+                padding: 5px $instagram-padding;
+
+                background-color: $instagram-blue;
+                border-radius: 3px;
+
+                font-size: $instagram-font-size-normal;
+                font-weight: $instagram-font-weight-bold;
+
+                color: $instagram-white;
+                text-decoration: none;
+
+                &:hover {
+                    color: $instagram-white;
+                }
+            }
+        }
+    }
+
+    figure {
+        margin: 0;
+
+        .sse-status-image .sse-status-image-handle-play {
+            background-color: transparent;
+            border: none;
+
+            font-size: 4.4rem;
+            opacity: 0.9;
+        }
+
+        .sse-status-image-handle-next, .sse-status-image-handle-prev {
+            font-size: 1.2em;
+            color: rgba($instagram-blue, .6);
+        }
+    }
+
+    aside.sse-status-instagram-show-profile {
+        padding: 0 $instagram-padding;
+
+        font-size: $instagram-font-size-normal;
+        font-weight: $instagram-font-weight-bold;
+
+        a {
+            display: block;
+            padding: $instagram-padding 0 $instagram-content-padding;
+
+            border-bottom: 1px solid $instagram-light-gray-2;
+
+            color: $instagram-blue;
+
+            &:hover {
+                color: darken($instagram-blue, 8%);
+            }
+        }
+    }
+
+    aside.sse-status-instagram-links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        padding: $instagram-small-padding $instagram-content-padding 0;
+
+        font-size: $instagram-font-size-large;
+
+        a {
+            display: block;
+            color: $instagram-dark;
+
+            &:hover {
+                color: rgba($instagram-dark, .5);
+            }
+
+            &:not(:first-child) {
+                margin-left: $instagram-padding;
+            }
+
+            &.sse-status-instagram-links-comment {
+                flex-grow: 2;
+            }
+
+            &.sse-status-instagram-links-like:hover {
+                color: $instagram-red;
+            }
+        }
+    }
+
+    aside.sse-status-instagram-likes {
+        padding: 0 $instagram-content-padding $instagram-small-padding;
+        font-size: $instagram-font-size-normal;
+        font-weight: $instagram-font-weight-bold;
+
+        a {
+            color: $instagram-dark;
+
+            &:hover {
+                color: $instagram-dark;
+            }
+        }
+    }
+
+    p.sse-status-content {
+        padding: 0 $instagram-content-padding $instagram-small-padding $instagram-content-padding;
+
+        font-size: $instagram-font-size-normal;
+        line-height: $instagram-line-height;
+
+        a {
+            color: $instagram-blue;
+
+            &:hover {
+                color: darken($instagram-blue, 8%);
+            }
+        }
+
+        a.sse-status-instagram-caption-username {
+            color: $instagram-dark;
+            font-weight: $instagram-font-weight-bold;
+
+            &:hover {
+                color: $instagram-dark;
+            }
+        }
+    }
+
+    aside.sse-status-instagram-show-comments {
+        padding: 0 $instagram-content-padding;
+        font-size: $instagram-font-size-normal;
+
+        a {
+            color: $instagram-gray;
+
+            &:hover {
+                color: $instagram-gray;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    footer {
+        flex-direction: row;
+        align-items: center;
+
+        margin: $instagram-content-padding 0 -2px 0;
+        padding: 0 $instagram-content-padding;
+
+        border-top: 1px solid $instagram-light-gray;
+
+        p.sse-status-date {
+            flex-grow: 2;
+            font-size: $instagram-font-size-normal;
+            text-transform: uppercase;
+
+            a {
+                color: $instagram-gray;
+
+                &:hover {
+                    color: $instagram-gray;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        aside.sse-status-instagram-logo a {
+            color: $instagram-black;
+            font-size: $instagram-font-size-large;
+        }
+    }
+}

@@ -1,0 +1,134 @@
+<article class="static-social-embed sse-theme-{{ sse_theme }} sse-status sse-instagram">
+    {% if errors %}
+        <div class="sse-status-error">
+            <p>Unable to render tweet. <a href="{{ url }}">(Click to view on Twitter.)</a></p>
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error.code }}: {{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <header>
+            <div class="sse-status-author-avatar">
+                <a href="{{ author.link }}">
+                    <img src="{{ author.avatar }}" alt="{{ author.name }}" />
+                </a>
+            </div>
+            <div class="sse-status-author-name">
+                <div class="sse-status-author-display-name">
+                    <a href="{{ author.link }}" title="{{ author.display_name }}">
+                        {{- author.name -}}
+                        {%- if author.verified %}
+                            <span class="sse-verified" title="Verified account">
+                                {% include 'partials/static-social-embeds/verified.svg.twig' %}
+                            </span>
+                        {% endif -%}
+                    </a>
+                </div>
+                {% if location %}
+                    <div class="sse-status-author-handle">
+                        {% if location.has_public_page %}
+                            <a href="https://www.instagram.com/explore/locations/{{ location.id }}/{{ location.slug }}/">
+                                {{- location.name -}}
+                            </a>
+                        {% else %}
+                            {{- location.name -}}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="sse-status-network-icon">
+                <a href="{{ author.link }}">View Profile</a>
+            </div>
+        </header>
+
+        {% if medias %}
+            <figure>
+                {% set medias_count = medias|length %}
+                {% for media in medias %}
+                    <div class="sse-status-image sse-status-image-{{ media.type|replace('_', '-') }}{% if loop.first %} is-active{% endif %}">
+                        {% if media.type == 'video' or media.type == 'animated_gif' %}
+                            <a href="#" class="sse-status-image-handle-play">
+                                <span class="fas fa-play"></span>
+                            </a>
+                        {% endif %}
+                        <img src="{{ media.src }}" alt="{{ caption_raw|e('html_attr') }}" />
+                        {% if media.type == 'video' %}
+                            <video controls class="sse-status-image-inline-{{ media.type|replace('_', '-') }}">
+                                <source src="{{ media.src_video }}">
+                                Your browser does not support videos.
+                            </video>
+                            <span class="sse-status-image-badge">
+                                {{ media.views|number_format }} views
+                            </span>
+                        {% endif %}
+                        {% if medias_count > 1 %}
+                            <aside class="sse-status-image-progress-dots">
+                                {% set media_index = loop.index %}
+                                {% for i in 1..medias_count %}
+                                    <span class="sse-status-image-progress-dot{% if media_index == i %} is-active{% endif %}"></span>
+                                {% endfor %}
+                            </aside>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% if medias_count > 1 %}
+                    <a href="#" rel="prev" class="sse-status-image-handle-prev">
+                        <span class="fas fa-chevron-left"></span>
+                    </a>
+                    <a href="#" rel="next" class="sse-status-image-handle-next">
+                        <span class="fas fa-chevron-right"></span>
+                    </a>
+                {% endif %}
+            </figure>
+        {% endif %}
+
+        <aside class="sse-status-instagram-show-profile">
+            <a href="{{ author.link }}">Show profile on Instagram</a>
+        </aside>
+
+        <aside class="sse-status-instagram-links">
+            <a href="{{ link }}" class="sse-status-instagram-links-like" aria-label="{{ stats.likes }} likes; click to go to post and like">
+                <span class="far fa-heart" aria-hidden="true"></span>
+            </a>
+            <a href="{{ link }}" class="sse-status-instagram-links-comment" aria-label="{{ stats.comments }} comments; click to go to post and comment">
+                <span class="far fa-comment fa-flip-horizontal" aria-hidden="true"></span>
+            </a>
+            <a href="{{ link }}" class="sse-status-instagram-links-bookmark" aria-label="Click to go to post and bookmark">
+                <span class="far fa-bookmark" aria-hidden="true"></span>
+            </a>
+        </aside>
+
+        <aside class="sse-status-instagram-likes">
+            <a href="{{ link }}">{{ stats.likes|number_format }} likes</a>
+        </aside>
+
+        <p class="sse-status-content">
+            <a href="{{ author.link }}" class="sse-status-instagram-caption-username">{{ author.name }}</a>
+            {{ caption|raw|nl2br -}}
+        </p>
+
+        {% if stats.comments > 0 %}
+            <aside class="sse-status-instagram-show-comments">
+                <a href="{{ link }}">
+                    show the {{ stats.comments|number_format }} comments
+                </a>
+            </aside>
+        {% endif %}
+
+
+        <footer>
+            <p class="sse-status-date">
+                <time datetime="{{ date|date('c') }}"><a href="{{ link }}">{{ date|date('d/m/Y H:i'|t) }}</a></time>
+            </p>
+
+            <aside class="sse-status-instagram-logo">
+                <a href="{{ link }}">
+                    <span class="fab fa-instagram"></span>
+                </a>
+            </aside>
+        </footer>
+    {% endif %}
+</article>

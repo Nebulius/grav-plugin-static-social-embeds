@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function (e)
         let image = container.querySelector('img');
         let video = container.querySelector('video');
         let badge = container.querySelector('.sse-status-image-badge');
+        let dots  = container.querySelector('.sse-status-image-progress-dots');
         let play_handle = container.querySelector('.sse-status-image-handle-play');
 
         if (!container.dataset.videoActive || container.dataset.videoActive === 'false')
@@ -76,6 +77,8 @@ document.addEventListener('DOMContentLoaded', function (e)
             image.classList.add('is-hidden');
             badge.classList.add('is-hidden');
             play_handle.classList.add('is-hidden');
+
+            if (dots) dots.classList.add('is-hidden');
 
             video.classList.add('is-active');
 
@@ -96,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function (e)
                 badge.classList.remove('is-hidden');
                 play_handle.classList.remove('is-hidden');
 
+                if (dots) dots.classList.remove('is-hidden');
+
                 container.dataset.videoActive = 'false';
             });
         }
@@ -108,6 +113,8 @@ document.addEventListener('DOMContentLoaded', function (e)
             image.classList.remove('is-hidden');
             badge.classList.remove('is-hidden');
             play_handle.classList.remove('is-hidden');
+
+            if (dots) dots.classList.remove('is-hidden');
 
             container.dataset.videoActive = 'false';
         }

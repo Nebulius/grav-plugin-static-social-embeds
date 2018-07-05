@@ -140,6 +140,10 @@
 
                     // Color at the bottom of the figure block, on figure's hover.
                 }
+
+                &.is-hidden {
+                    display: none;
+                }
             }
 
             .sse-status-image-handle-play {
