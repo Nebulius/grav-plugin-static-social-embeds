@@ -87,8 +87,10 @@ abstract class SSEShortcode extends Shortcode
         }
         else
         {
+            // If the call ended in error, we cache for one minute to allow us to retry,
+            // while avoiding rate limits if there are lots of visitors.
             $data = $this->getData($url);
-            $this->cache->save($cache_id, $data);
+            $this->cache->save($cache_id, $data, isset($data['errors']) ? 60 : 0);
             return $data;
         }
     }
