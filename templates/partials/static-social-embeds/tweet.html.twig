@@ -24,6 +24,11 @@
                                 {% include 'partials/static-social-embeds/verified.svg.twig' %}
                             </span>
                         {% endif -%}
+                        {%- if author.protected %}
+                            <span class="sse-locked" title="Protected account">
+                                <span class="fas fa-lock"></span>
+                            </span>
+                        {% endif -%}
                     </a>
                 </div>
                 <div class="sse-status-author-handle">
