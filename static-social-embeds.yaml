@@ -3,14 +3,19 @@ enabled: true
 built_in_css: true
 built_in_js: true
 
-theme: light
-
 downloaded_content:
   images: true
   videos: true
 
 twitter:
+  theme: light
   consumer_key: null
   consumer_secret: null
   access_token: null
   access_token_secret: null
+
+mastodon:
+  theme: light
+
+instagram:
+  theme: light

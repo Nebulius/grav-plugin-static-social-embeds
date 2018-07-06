@@ -103,7 +103,7 @@ abstract class SSEShortcode extends Shortcode
         $this->shortcode->getHandlers()->add($this->getShortcodeName(), function(ShortcodeInterface $sc)
         {
             $template_context = array_merge($this->getDataCached(trim($sc->getBbCode())), [
-                'sse_theme' => $this->config->get('plugins.static-social-embeds.theme')
+                'config' => $this->config->get('plugins.static-social-embeds')
             ]);
 
             return $this->grav['twig']->processTemplate(

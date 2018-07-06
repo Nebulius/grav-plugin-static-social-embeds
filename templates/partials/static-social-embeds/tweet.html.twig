@@ -1,4 +1,4 @@
-<article class="static-social-embed sse-theme-{{ sse_theme }} sse-status{% if quoted_tweet %} has-quoted-tweet{% endif %}">
+<article class="static-social-embed sse-theme-{{ config.twitter.theme }} sse-status{% if quoted_tweet %} has-quoted-tweet{% endif %}">
     {% if errors %}
         <div class="sse-status-error">
             <p>Unable to render tweet. <a href="{{ url }}">(Click to view on Twitter.)</a></p>
