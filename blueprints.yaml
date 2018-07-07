@@ -1,5 +1,5 @@
 name: Static Social Embeds
-version: 0.1.0
+version: 1.0.0
 description: |
   Embeds social status (like tweets, instagram posts, toots, etc.) in articles without using their embed iframe,
   but rather statically without any dependency to the service.
@@ -10,7 +10,7 @@ author:
 homepage: https://github.com/Nebulius/grav-plugin-static-social-embeds
 keywords: grav, plugin, embed, static, twitter, instagram, mastodon, tweet, toot, integration, post
 bugs: https://github.com/Nebulius/grav-plugin-static-social-embeds/issues
-docs: https://github.com/Nebulius/grav-plugin-static-social-embeds/blob/develop/README.md
+docs: https://github.com/Nebulius/grav-plugin-static-social-embeds/blob/master/README.md
 license: MIT
 
 dependencies:

@@ -1,12 +1,21 @@
 enabled: true
 
+# The plugin ships its own JS and CSS to run the static embeds.
+# If you want to provide your own, feel free to disable them.
 built_in_css: true
 built_in_js: true
 
+# The plugin can download images, videos, and GIFs, to ensure a
+# complete independence from the social networks, at the cost of
+# some disk space.
 downloaded_content:
   images: true
   videos: true
 
+# Options for Twitter: embed theme (with the default CSS, matches the
+# light & dark Twitter themes) and API credentials required to load
+# tweets (an explanation on how to create an application is available
+# below).
 twitter:
   theme: light
   consumer_key: null
@@ -14,8 +23,13 @@ twitter:
   access_token: null
   access_token_secret: null
 
+# Options for Mastodon: embed theme (with the default CSS, matches the
+# light & dark Mastodon themes).
 mastodon:
   theme: light
 
+# Options for Instagram: embed theme (with the default CSS, the light theme
+# matches Instagram, and the dark one was created from the light one and
+# some inspiration from Twitter own dark theme).
 instagram:
   theme: light

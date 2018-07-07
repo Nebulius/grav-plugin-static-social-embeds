@@ -1,5 +1,8 @@
-# v0.1.0
-##  06/30/2018
+# v1.0.0
+##  07/07/2018
 
 1. [](#new)
-    * ChangeLog started...
+    * First version
+    * Support for Twitter, Mastodon and Instagram, with light or dark embeds, using simple shortcodes.
+    * Support for texts, images, videos, GIF, multiple medias, Mastodon's CW.
+    * Images and videos can be downloaded locally for enhanced independence.
