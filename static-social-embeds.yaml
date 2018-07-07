@@ -5,6 +5,10 @@ enabled: true
 built_in_css: true
 built_in_js: true
 
+# If your theme does not provide Font Awesome 5, required for
+# the default embeds to work, check this.
+include_font_awesome_5: true
+
 # The plugin can download images, videos, and GIFs, to ensure a
 # complete independence from the social networks, at the cost of
 # some disk space.

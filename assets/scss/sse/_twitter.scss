@@ -87,6 +87,7 @@
 
         .sse-status-network-icon {
             align-self: start;
+            font-size: 1.8rem;
             color: $twitter-blue;
         }
     }
@@ -307,7 +308,7 @@
             figure.sse-quoted-tweet-image {
                 width: 16rem;
 
-                margin: 0 0 .8rem .8rem;
+                margin: .8rem 0 .8rem .8rem;
 
                 @include mobile {
                     margin: 0;
@@ -316,6 +317,7 @@
 
                 img {
                     width: 100%;
+                    position: initial;
                 }
 
                 & + .sse-quoted-tweet-content {

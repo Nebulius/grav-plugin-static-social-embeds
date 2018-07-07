@@ -58,9 +58,14 @@ PLUGIN_SSE:
       BUILT_IN_CSS:
         LABEL: Utiliser le CSS intégré&nbsp;?
         HELP: Si désactivé, votre thème devra fournir le CSS nécessaire. Vous pouvez consulter le CSS inclu pour inspiration.
-      BUILT_IN_js:
+      BUILT_IN_JS:
         LABEL: Utiliser le Javascript intégré&nbsp;?
         HELP: Si désactivé, votre thème devra fournir le javascript nécessaire. Vous pouvez consulter le javascript inclu pour inspiration.
+      INCLUDE_FONT_AWESOME_5:
+        LABEL: Inclure Font Awesome 5&nbsp;?
+        HELP: |
+         Les intégrations par défaut dépendent de Font Awesome version 5.1.0 ou plus récent.
+         Désactivez cette option si votre thème fournit Font Awesome 5.1.0+, ou si vous utilisez des gabaris personnalisées et que vous n'en avez pas besoin.
     DOWNLOADS:
       TITLE: Options de téléchargement
       HELP_1: |

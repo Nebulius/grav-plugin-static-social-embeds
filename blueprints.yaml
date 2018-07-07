@@ -1,5 +1,5 @@
 name: Static Social Embeds
-version: 1.0.0
+version: 1.0.1
 description: |
   Embeds social status (like tweets, instagram posts, toots, etc.) in articles without using their embed iframe,
   but rather statically without any dependency to the service.
@@ -47,8 +47,19 @@ form:
             type: bool
         built_in_js:
           type: toggle
-          label: PLUGIN_SSE.ADMIN.MAIN.BUILT_IN_js.LABEL
+          label: PLUGIN_SSE.ADMIN.MAIN.BUILT_IN_JS.LABEL
           help: PLUGIN_SSE.ADMIN.MAIN.BUILT_IN_JS.HELP
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
+          validate:
+            type: bool
+        include_font_awesome_5:
+          type: toggle
+          label: PLUGIN_SSE.ADMIN.MAIN.INCLUDE_FONT_AWESOME_5.LABEL
+          help: PLUGIN_SSE.ADMIN.MAIN.INCLUDE_FONT_AWESOME_5.HELP
           highlight: 1
           default: 1
           options:

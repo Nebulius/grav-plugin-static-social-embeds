@@ -61,6 +61,11 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public function onAssetsInitialized()
     {
+        if ($this->config->get('plugins.static-social-embeds.include_font_awesome_5', true))
+        {
+            $this->grav['assets']->add('https://use.fontawesome.com/releases/v5.1.0/css/all.css');
+        }
+
         if ($this->config->get('plugins.static-social-embeds.use_built_in_css', true))
         {
             $this->grav['assets']->add('plugin://static-social-embeds/assets/css-compiled/sse.min.css', 4);

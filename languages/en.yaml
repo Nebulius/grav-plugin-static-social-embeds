@@ -56,11 +56,14 @@ PLUGIN_SSE:
       TITLE: Main Settings
       ENABLED: Plugin status
       BUILT_IN_CSS:
-        LABEL: Use the built-in CSS
+        LABEL: Use the built-in CSS?
         HELP: If disabled, you or your theme will have to supply CSS for this plugin. You can check out the built-in CSS for inspiration.
-      BUILT_IN_js:
-        LABEL: Use the built-in JS
+      BUILT_IN_JS:
+        LABEL: Use the built-in JS?
         HELP: If disabled, you or your theme will have to supply JS for this plugin. You can check out the built-in JS for inspiration.
+      INCLUDE_FONT_AWESOME_5:
+        LABEL: Include Font Awesome 5?
+        HELP: Default embeds require Font Awesome 5.1.0 or newer. Disable this option if your theme provides Font Awesome 5.1.0+ or if you use custom embeds and don't need that.
     DOWNLOADS:
       TITLE: Download Options
       HELP_1: |
