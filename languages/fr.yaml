@@ -36,7 +36,7 @@ PLUGIN_SSE:
     REBLOGS: $rbls boosts
     FAVOURITES: $favs favoris
   INSTAGRAM:
-    CANNOT_RENDER: Impossible d'afficher le post.
+    CANNOT_RENDER: Impossible d'afficher la publication.
     VIEW_ON_INSTAGRAM: (Cliquez pour le voir sur Instagram.)
     VERIFIED_ACCOUNT: Compte certifié
     VIEW_PROFILE: Voir le profil
@@ -46,9 +46,9 @@ PLUGIN_SSE:
     SHOW_COMMENTS: afficher les $comments commentaires
     SHOW_COMMENT: afficher le commentaire
     BUTTONS_ACCESSIBILITY:
-      LIKES: $likes mentions j'aime ; cliquez pour vous rendre sur le post et laisser une mention j'aime
-      COMMENTS: $comments commentaires ; cliquez pour vous rendre sur le post et commenter
-      BOOKMARK: Cliquez pour vous rendre sur le post et l'ajouter à vos marques pages
+      LIKES: $likes mentions j'aime ; cliquez pour vous rendre sur la publication et laisser une mention j'aime
+      COMMENTS: $comments commentaires ; cliquez pour vous rendre sur la publication et commenter
+      BOOKMARK: Cliquez pour vous rendre sur la publication et l'ajouter à vos marques pages
   ADMIN:
     LIGHT: Clair
     DARK: Sombre
