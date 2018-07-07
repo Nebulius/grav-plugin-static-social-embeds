@@ -1,7 +1,7 @@
 <article class="static-social-embed sse-theme-{{ config.mastodon.theme }} sse-status sse-toot">
     {% if errors %}
         <div class="sse-status-error">
-            <p>Unable to render toot. <a href="{{ url }}">(Click to view on Mastodon.)</a></p>
+            <p>{{ 'PLUGIN_SSE.MASTODON.CANNOT_RENDER'|t }} <a href="{{ url }}">{{ 'PLUGIN_SSE.MASTODON.VIEW_ON_MASTODON'|t }}</a></p>
             <ul>
                 {% for error in errors %}
                 <li>{{ error.code }}: {{ error.message }}</li>
@@ -10,7 +10,7 @@
         </div>
     {% else %}
         <header>
-            <div class="sse-status-author-avatar">
+            <div class="sse-status-author-avatar" aria-hidden="true">
                 <a href="{{ account.url }}">
                     <img src="{{ account.avatar }}" alt="{{ account.username }}" />
                 </a>
@@ -20,8 +20,8 @@
                     <a href="{{ account.url }}">
                         {{- account.display_name ?: account.username -}}
                         {%- if account.locked %}
-                            <span class="sse-locked" title="Locked account">
-                                <span class="fas fa-lock"></span>
+                            <span class="sse-locked" title="{{ 'PLUGIN_SSE.MASTODON.LOCKED_ACCOUNT'|t }}">
+                                <span class="fas fa-lock" aria-hidden="true"></span>
                             </span>
                         {% endif -%}
                     </a>
@@ -33,10 +33,10 @@
                 </div>
             </div>
             <div class="sse-status-network-icon">
-                <a href="web+mastodon://follow?uri={{ account.fully_qualified_name }}" title="Follow {{ account.username }} on Mastodon">
+                <a href="web+mastodon://follow?uri={{ account.fully_qualified_name }}" title="{{ 'PLUGIN_SSE.MASTODON.FOLLOW_ON_MASTODON'|t|replace({'$username': account.username}) }}">
                     <span class="fab fa-mastodon"></span>
                     <span class="sse-mastodon-follow-text">
-                        Follow
+                        {{ 'PLUGIN_SSE.MASTODON.FOLLOW'|t }}
                     </span>
                 </a>
             </div>
@@ -44,7 +44,7 @@
 
         {% if spoiler_text %}
             <p class="sse-status-content sse-spoiler-text">
-                {{ spoiler_text }} <button class="sse-spoiler-text-toggle-handle" data-show="Show more" data-hide="Show less">Show more</button>
+                {{ spoiler_text }} <button class="sse-spoiler-text-toggle-handle" data-show="{{ 'PLUGIN_SSE.MASTODON.SHOW_MORE'|t }}" data-hide="{{ 'PLUGIN_SSE.MASTODON.SHOW_LESS'|t }}" aria-haspopup="true">{{ 'PLUGIN_SSE.MASTODON.SHOW_MORE'|t }}</button>
             </p>
         {% endif %}
 
@@ -56,15 +56,16 @@
             <figure{% if sensitive %} class="sse-has-sensitive-content is-blurred"{% endif %}>
                 {% set medias_count = media_attachments|length %}
                 {% for media in media_attachments %}
-                    <div class="sse-status-image sse-status-image-{{ media.type != 'gifv' ? media.type|replace('_', '-') : 'animated-gif' }}{% if loop.first %} is-active{% endif %}">
+                    <div class="sse-status-image sse-status-image-{{ media.type != 'gifv' ? media.type|replace('_', '-') : 'animated-gif' }}{% if loop.first %} is-active{% endif %}"
+                         aria-label="{{ 'PLUGIN_SSE.EMBEDS.MEDIA_X_OF_Y'|t|replace({'$i': loop.index, '$count': medias_count}) }}">
                         {% if sensitive %}
                             <a href="#" class="sse-status-image-sensitive-toggle">
-                                <strong>Sensitive content</strong>
-                                <span>Click to toggle display</span>
+                                <strong>{{ 'PLUGIN_SSE.MASTODON.SENSITIVE_CONTENT.TITLE'|t }}</strong>
+                                <span>{{ 'PLUGIN_SSE.MASTODON.SENSITIVE_CONTENT.TOGGLE'|t }}</span>
                             </a>
                         {% endif %}
                         {% if media.type == 'video' or media.type == 'gifv' %}
-                            <a href="#" class="sse-status-image-handle-play">
+                            <a href="#" class="sse-status-image-handle-play" aria-label="{{ 'PLUGIN_SSE.EMBEDS.PLAY_MEDIA'|t }}">
                                 <span class="fas fa-play"></span>
                             </a>
                         {% endif %}
@@ -72,14 +73,14 @@
                         {% if media.type == 'video' or media.type == 'gifv' %}
                             <video {% if media.type == 'video' %}controls{% else %}loop muted{% endif %} class="sse-status-image-inline-{{ media.type|replace('_', '-')|replace('gifv', 'animated-gif') }}">
                                 <source src="{{ media.url }}" type="video/mp4" />
-                                Your browser does not support videos.
+                                {{ 'PLUGIN_SSE.EMBEDS.VIDEOS_NOT_SUPPORTED'|t }}
                             </video>
                             <span class="sse-status-image-badge">
-                                {%- if media.type == 'video' %}{{ media.video.duration_human }}{% else %}GIF{% endif -%}
+                                {%- if media.type == 'video' %}{{ media.video.duration_human }}{% else %}{{ 'PLUGIN_SSE.EMBEDS.GIF'|t }}{% endif -%}
                             </span>
                         {% endif %}
                         {% if medias_count > 1 %}
-                            <aside class="sse-status-image-progress-dots">
+                            <aside class="sse-status-image-progress-dots" aria-hidden="true">
                                 {% set media_index = loop.index %}
                                 {% for i in 1..medias_count %}
                                     <span class="sse-status-image-progress-dot{% if media_index == i %} is-active{% endif %}"></span>
@@ -89,10 +90,10 @@
                     </div>
                 {% endfor %}
                 {% if medias_count > 1 %}
-                    <a href="#" rel="prev" class="sse-status-image-handle-prev">
+                    <a href="#" rel="prev" class="sse-status-image-handle-prev" aria-label="{{ 'PLUGIN_SSE.EMBEDS.PREV_MEDIA'|t }}">
                         <span class="fas fa-chevron-left"></span>
                     </a>
-                    <a href="#" rel="next" class="sse-status-image-handle-next">
+                    <a href="#" rel="next" class="sse-status-image-handle-next" aria-label="{{ 'PLUGIN_SSE.EMBEDS.NEXT_MEDIA'|t }}">
                         <span class="fas fa-chevron-right"></span>
                     </a>
                 {% endif %}
@@ -102,9 +103,9 @@
         <footer>
             <ul class="sse-mastodon-stats">
                 <li class="sse-mastodon-stats-date">
-                    <time datetime="{{ created_at|date('c') }}"><a href="{{ url }}">{{ created_at|date('d/m/Y H:i'|t) }}</a></time>
+                    <time datetime="{{ created_at|date('c') }}"><a href="{{ url }}">{{ created_at|date('PLUGIN_SSE.EMBEDS.DATE_FORMAT'|t) }}</a></time>
                 </li>
-                <li title="{{ visibility|capitalize }} toot" class="sse-mastodon-stats-visibility">
+                <li title="{{ ('PLUGIN_SSE.MASTODON.VISIBILITIES.' ~ visibility|upper)|t }}" class="sse-mastodon-stats-visibility">
                     {%- set visibility_icons = {
                         'public': 'fas fa-globe-africa',
                         'unlisted': 'fas fa-unlock',
@@ -120,10 +121,10 @@
                         {{- application.name -}}
                     {%- endif -%}
                 </li>
-                <li aria-label="{{ reblogs_count }} reblogs" class="sse-mastodon-stats-reblogs">
+                <li aria-label="{{ 'PLUGIN_SSE.MASTODON.REBLOGS'|t|replace({'$rbls': reblogs_count}) }}" class="sse-mastodon-stats-reblogs">
                     <span class="fas fa-retweet" aria-hidden="true"></span> {{ reblogs_count -}}
                 </li>
-                <li aria-label="{{ favourites_count }} favourites" class="sse-mastodon-stats-favourites">
+                <li aria-label="{{ 'PLUGIN_SSE.MASTODON.FAVOURITES'|t|replace({'$favs': favourites_count}) }}" class="sse-mastodon-stats-favourites">
                     <span class="fas fa-heart" aria-hidden="true"></span> {{ favourites_count -}}
                 </li>
             </ul>

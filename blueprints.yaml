@@ -3,7 +3,7 @@ version: 0.1.0
 description: |
   Embeds social status (like tweets, instagram posts, toots, etc.) in articles without using their embed iframe,
   but rather statically without any dependency to the service.
-icon: cloud
+icon: newspaper-o
 author:
   name: Amaury Carrade
   email: amaury@carrade.eu
@@ -21,44 +21,44 @@ form:
   fields:
     section_main:
       type: section
-      title: Main settings
+      title: PLUGIN_SSE.ADMIN.MAIN.TITLE
       underline: true
       fields:
         enabled:
           type: toggle
-          label: Plugin status
+          label: PLUGIN_SSE.ADMIN.MAIN.ENABLED
           highlight: 1
           default: 0
           options:
-            1: Enabled
-            0: Disabled
+            1: PLUGIN_ADMIN.ENABLED
+            0: PLUGIN_ADMIN.DISABLED
           validate:
             type: bool
         built_in_css:
           type: toggle
-          label: Use the built-in CSS
-          help: If disabled, you or your theme will have to supply CSS for this plugin. You can check out the built-in CSS for inspiration.
+          label: PLUGIN_SSE.ADMIN.MAIN.BUILT_IN_CSS.LABEL
+          help: PLUGIN_SSE.ADMIN.MAIN.BUILT_IN_CSS.HELP
           highlight: 1
           default: 1
           options:
-            1: Yes
-            0: No
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
           validate:
             type: bool
         built_in_js:
           type: toggle
-          label: Use the built-in JS
-          help: If disabled, you or your theme will have to supply JS for this plugin. You can check out the built-in JS for inspiration.
+          label: PLUGIN_SSE.ADMIN.MAIN.BUILT_IN_js.LABEL
+          help: PLUGIN_SSE.ADMIN.MAIN.BUILT_IN_JS.HELP
           highlight: 1
           default: 1
           options:
-            1: Yes
-            0: No
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
           validate:
             type: bool
     section_downloads:
       type: section
-      title: Download options
+      title: PLUGIN_SSE.ADMIN.DOWNLOADS.TITLE
       underline: true
       fields:
         downloaded_content_helps:
@@ -69,57 +69,36 @@ form:
               fields:
                 downloaded_content_help_c1:
                   type: spacer
-                  text: |
-                    If theses options are enabled, images and/or videos from tweets/toots/instagram posts/etc. will be downloaded
-                    and served from your site instead of the social network (including avatars). With that, the independence is
-                    complete but it requires more disk space (about 3 Mio per image, 15 to 50 Mio per video, and almost nothing for
-                    avatars).<br /><br />
-
-                    <em>If this is disabled, Firefox users will not see images by default, as Firefox blocks images and videos loaded
-                    from other domains for privacy reasons. They will have to disable the privacy protection by clicking the shield
-                    in their address bar.</em>
+                  text: PLUGIN_SSE.ADMIN.DOWNLOADS.HELP_1
             downloaded_content_helps_c2:
               type: column
               fields:
                 downloaded_content_help:
                   type: spacer
-                  text: |
-                    Embeds data is (always) stored in <code>cache/static-social-embeds/</code>.<br />
-                    You can delete this folder at any time: the content will be re-downloaded on-demand.<br /><br />
-
-                    Images and videos are downloaded (if enabled) to <code>images/static-social-embeds/</code>.<br />
-                    <strong>Never delete this folder without deleting the embeds data cache directory too.</strong>
-                    If medias are downloaded, stored embed data references directly the local files, so deleting them without
-                    deleting the cache will break all images.
+                  text: PLUGIN_SSE.ADMIN.DOWNLOADS.HELP_2
         downloaded_content.images:
           type: toggle
-          label: Download images locally?
-          help: |
-            If true, images from tweets/toots/instagram posts/etc. will be downloaded and served from your site instead of
-            the social network (including avatars). With that, the independence is complete but it requires more disk space.
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
           highlight: 1
           default: 1
           options:
-            1: Yes
-            0: No
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
           validate:
             type: bool
         downloaded_content.videos:
           type: toggle
-          label: Download videos & GIFs locally?
-          help: |
-            If true, videos and GIFs from tweets/toots/instagram posts/etc. will be downloaded and served from your site instead of
-            the social network (including avatars). With that, the independence is complete but it requires more disk space.
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
           highlight: 1
           default: 1
           options:
-            1: Yes
-            0: No
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
           validate:
             type: bool
     section_twitter:
       type: section
-      title: Twitter
+      title: PLUGIN_SSE.ADMIN.TWITTER.TITLE
       underline: true
       fields:
         twitter_columns:
@@ -130,85 +109,69 @@ form:
               fields:
                 twitter_help:
                   type: spacer
-                  text: |
-                    Embed tweets from <a href="https://twitter.com">Twitter</a> in articles using <code>[tweet="tweetURL"]</code>
-                    with blanks lines before and after.<br /><br />
-                    <strong>Warning:</strong> as tweets are retrieved using your account permissions, <strong>you can embed
-                    tweets from private accounts</strong> as long as you follow them; because the tweets are requested once and
-                    stored locally, they will be kept even if you lose access to the private account. <strong>Don't abuse this
-                    feature</strong> and before embedding a private tweet, be sure that the author allows you to do so.
+                  text: PLUGIN_SSE.ADMIN.TWITTER.HELP
                 twitter.theme:
                   type: toggle
-                  label: Twitter theme
-                  help: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.
+                  label: PLUGIN_SSE.ADMIN.TWITTER.THEME.LABEL
+                  help: PLUGIN_SSE.ADMIN.TWITTER.THEME.HELP
                   highlight: light
                   default: light
                   options:
-                    light: Light
-                    dark: Dark
+                    light: PLUGIN_SSE.ADMIN.LIGHT
+                    dark: PLUGIN_SSE.ADMIN.DARK
             twitter_column_2:
               type: column
               fields:
                 twitter_help_app:
                   type: spacer
-                  text: |
-                    <strong>To use Twitter embeds, you'll need to register an application.</strong><br /><br />
-                    Go to <a href="https://apps.twitter.com/app/new">the Twitter Apps page</a> to create an application.
-                    You don't need to provide a callback URL (we never use that).
-                    Then, click the <strong>Keys and access tokens</strong> tab and at the bottom of the page, click
-                    <strong>Create my Access Token</strong>.
-                    Finally, copy the credentials here.
+                  text: PLUGIN_SSE.ADMIN.TWITTER.HELP_APP
                 twitter.consumer_key:
                   type: password
-                  label: Consumer Key (API Key)
+                  label: PLUGIN_SSE.ADMIN.TWITTER.CONSUMER_KEY
+                  help: « Consumer Key (API Key) »
                 twitter.consumer_secret:
                   type: password
-                  label: Consumer Secret (API Secret)
+                  label: PLUGIN_SSE.ADMIN.TWITTER.CONSUMER_SECRET
+                  help: « Consumer Secret (API Secret) »
                 twitter.access_token:
                   type: password
-                  label: Access Token
+                  label: PLUGIN_SSE.ADMIN.TWITTER.ACCESS_TOKEN
+                  help: « Access Token »
                 twitter.access_token_secret:
                   type: password
-                  label: Access Token Secret
+                  label: PLUGIN_SSE.ADMIN.TWITTER.ACCESS_TOKEN_SECRET
+                  help: « Access Token Secret »
     section_mastodon:
       type: section
-      title: Mastodon
+      title: PLUGIN_SSE.ADMIN.MASTODON.TITLE
       underline: true
       fields:
         mastodon_help:
           type: spacer
-          text: |
-            Embed toots from <a href="https://joinmastodon.org">Mastodon</a> in articles using
-            <code>[toot="tootURL"]</code> with blanks lines before and after.<br />
-            As toots are retrieved using non-authenticated requests, you cannot embed private or direct toots (but
-            unlisted and public ones are fine).
+          text: PLUGIN_SSE.ADMIN.MASTODON.HELP
         mastodon.theme:
           type: toggle
-          label: Mastodon theme
-          help: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.
+          label: PLUGIN_SSE.ADMIN.MASTODON.THEME.LABEL
+          help: PLUGIN_SSE.ADMIN.MASTODON.THEME.HELP
           highlight: light
           default: light
           options:
-            light: Light
-            dark: Dark
+            light: PLUGIN_SSE.ADMIN.LIGHT
+            dark: PLUGIN_SSE.ADMIN.DARK
     section_instagram:
       type: section
-      title: Instagram
+      title: PLUGIN_SSE.ADMIN.INSTAGRAM.TITLE
       underline: true
       fields:
         instagram_help:
           type: spacer
-          text: |
-            Embed <a href="https://www.instagram.com">Instagram</a> posts in articles using
-            <code>[instagram="instagramPostURL"]</code> with blanks lines before and after.<br />
-            As posts are retrieved using non-authenticated requests, you cannot embed Instagram posts from private
-            accounts.
+          text: PLUGIN_SSE.ADMIN.INSTAGRAM.HELP
         instagram.theme:
           type: toggle
-          label: Instagram theme
-          help: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.
+          label: PLUGIN_SSE.ADMIN.INSTAGRAM.THEME.LABEL
+          help: PLUGIN_SSE.ADMIN.INSTAGRAM.THEME.HELP
           highlight: light
           default: light
           options:
-            light: Light
-            dark: Dark
+            light: PLUGIN_SSE.ADMIN.LIGHT
+            dark: PLUGIN_SSE.ADMIN.DARK

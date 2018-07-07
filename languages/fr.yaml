@@ -1,0 +1,127 @@
+PLUGIN_SSE:
+  EMBEDS:
+    DATE_FORMAT: d/m/Y H:i
+    PLAY_MEDIA: Cliquez pour lancer la vidéo
+    VIDEOS_NOT_SUPPORTED: Votre navigateur ne semble pas supporter les vidéos.
+    PREV_MEDIA: Média précédent
+    NEXT_MEDIA: Média suivant
+    MEDIA_X_OF_Y: Média $i de $count
+    GIF: GIF
+  TWITTER:
+    CANNOT_RENDER: Impossible d'afficher le tweet.
+    VIEW_ON_TWITTER: (Cliquez pour le voir sur Twitter.)
+    VERIFIED_ACCOUNT: Compte certifié
+    PROTECTED_ACCOUNT: Compte verrouillé
+    VIA: Via $source
+    REPLY: Répondre
+    RETWEETS: $rts retweets
+    LIKES: $likes mentions j'aime
+    SEND: Envoyer le tweet
+  MASTODON:
+    CANNOT_RENDER: Impossible d'afficher le toot.
+    VIEW_ON_MASTODON: (Cliquez pour le voir sur Mastodon.)
+    LOCKED_ACCOUNT: Compte verrouillé
+    FOLLOW_ON_MASTODON: Suivre $username dans la fédération
+    FOLLOW: Suivre
+    SHOW_MORE: Déplier
+    SHOW_LESS: Replier
+    SENSITIVE_CONTENT:
+      TITLE: Contenu sensible
+      TOGGLE: Cliquez pour afficher
+    VISIBILITIES:
+      PUBLIC: Toot public
+      UNLISTED: Toot non listé
+      PRIVATE: Toot privé
+      DIRECT: Message direct
+    REBLOGS: $rbls boosts
+    FAVOURITES: $favs favoris
+  INSTAGRAM:
+    CANNOT_RENDER: Impossible d'afficher le post.
+    VIEW_ON_INSTAGRAM: (Cliquez pour le voir sur Instagram.)
+    VERIFIED_ACCOUNT: Compte certifié
+    VIEW_PROFILE: Voir le profil
+    SHOW_PROFILE_ON_INSTAGRAM: Afficher le profil sur Instagram
+    VIEWS: $views vues
+    LIKES: $likes mentions j'aime
+    SHOW_COMMENTS: afficher les $comments commentaires
+    SHOW_COMMENT: afficher le commentaire
+    BUTTONS_ACCESSIBILITY:
+      LIKES: $likes mentions j'aime ; cliquez pour vous rendre sur le post et laisser une mention j'aime
+      COMMENTS: $comments commentaires ; cliquez pour vous rendre sur le post et commenter
+      BOOKMARK: Cliquez pour vous rendre sur le post et l'ajouter à vos marques pages
+  ADMIN:
+    LIGHT: Clair
+    DARK: Sombre
+    MAIN:
+      TITLE: Réglages généraux
+      ENABLED: État du plugin
+      BUILT_IN_CSS:
+        LABEL: Utiliser le CSS intégré&nbsp;?
+        HELP: Si désactivé, votre thème devra fournir le CSS nécessaire. Vous pouvez consulter le CSS inclu pour inspiration.
+      BUILT_IN_js:
+        LABEL: Utiliser le Javascript intégré&nbsp;?
+        HELP: Si désactivé, votre thème devra fournir le javascript nécessaire. Vous pouvez consulter le javascript inclu pour inspiration.
+    DOWNLOADS:
+      TITLE: Options de téléchargement
+      HELP_1: |
+        Si ces options sont activées, les images et/ou les vidéos des tweets, toots, posts Instagram, etc., seront
+        téléchargées et diffusées via votre site au lieu du réseau social (ceci incluant les avatars). Cela maximise
+        l'indépendance aux services, mais nécessite un peu plus d'espace disque (compter 3 Mio par image, de 15 à 50 Mio
+        par vidéo, et quasiment rien pour les avatars).<br /><br />
+
+        <em>En cas de désactivation, les utilisateurs de Firefox ne verront pas les images par défaut, car Firefox
+        bloque le chargement des contenus depuis d'autres domaines pour des raisons de protection de la vie privée. Iels
+        devront alors désactiver la protection en cliquant sur le bouclier dans leur barre d'adresse.</em>
+      HELP_2: |
+        Les données des posts sont (toujours) mises en cache dans le dossier <code>cache/static-social-embeds/</code>.<br />
+        Vous pouvez supprimer ce dossier quand vous le voulez&nbsp;: les données sont re-téléchargées à la demande.<br /><br />
+
+        Les images et les vidéos sont téléchargées (si activé) vers <code>images/static-social-embeds/</code>.<br />
+        <strong>Ne supprimez jamais ce dossier sans supprimer également le dossier de cache des posts.</strong>
+        Si des médias sont téléchargés, les données stockées en cache référencent directement les fichiers locaux&nbsp;: supprimer
+        ces derniers cassera tous les liens vers des médias.
+      IMAGES: Télécharger les images localement&nbsp;?
+      VIDEOS: Télécharger les vidéos et les GIFs localement&nbsp;?
+    TWITTER:
+      TITLE: Twitter
+      HELP: |
+        Incluez des tweets depuis <a href="https://twitter.com">Twitter</a> dans vos articles en écrivant
+        <code>[tweet="URL du tweet"]</code> entouré de lignes blanches de part et d'autre.<br /><br />
+        <strong>Attention&nbsp;:</strong> vu que les tweets sont récupérés en utilisant les permissions de votre compte,
+        <strong>vous pouvez inclure des tweets de comptes verrouillés</strong> tant que vous les suivez ; comme les
+        tweets ne sont récupérés qu'une fois puis stockés localement, ils resterons tels quels même si vous perdez
+        l'accès au compte. <strong>N'abusez pas de cette fonctionnalité</strong>, et avant d'inclure sur votre site
+        un tweet d'un compte privé, assurez-vous d'avoir l'accord de son auteur.
+      HELP_APP: |
+         <strong>Pour inclure des tweets, vous devez créer une application Twitter.</strong><br /><br />
+         Rendez-vous sur <a href="https://apps.twitter.com/app/new">la page de création d'applications de Twitter</a>
+         pour en créer une. Vous n'avez pas besoin de spécifier une URL de retour (<em>callback URL</em>) — nous n'utilisons
+         pas cela. Ensuite, cliquez sur l'onglet <strong>Keys and access tokens</strong> et, en bas de la page, cliquez sur
+         <strong>Create my Access Token</strong>. Finalement, copiez les identifiants ci-dessous.
+      THEME:
+        LABEL: Thème des tweets
+        HELP: Le thème des tweets intégrés. Cette option n'est garantie que si le CSS intégré est utilisé.
+      CONSUMER_KEY: Clef du client (clef d'API)
+      CONSUMER_SECRET: Secret du client (secret d'API)
+      ACCESS_TOKEN: Jeton d'accès
+      ACCESS_TOKEN_SECRET: Clef de sécurité du jeton d'accès
+    MASTODON:
+      TITLE: Mastodon
+      HELP: |
+        Intégrez des toots (ou des pouètes, si vous préférez) depuis <a href="https://joinmastodon.org">Mastodon</a>
+        dans vos articles en écrivant <code>[toot="URL du toot"]</code> entouré de lignes blanches de part et d'autre.<br />
+        Les toots étant récupérés via une requête non-authentifiée, vous ne pouvez pas inclure de toots privés ou directs&nbsp;;
+        cela dit, les toots non-listés (ou publics, bien sûr) fonctionneront très bien.
+      THEME:
+        LABEL: Thème des toots
+        HELP: Le thème des toots intégrés. Cette option n'est garantie que si le CSS intégré est utilisé.
+    INSTAGRAM:
+      TITLE: Instagram
+      HELP: |
+        Intégrez des publications d'<a href="https://www.instagram.com">Instagram</a> dans vos articles en écrivant
+        <code>[instagram="URL du post Instagram"]</code> entouré de lignes blanches de part et d'autre.<br />
+        Les posts étant récupérés via une requête non-authentifiée, vous ne pouvez pas inclure des posts Instagram
+        extraits de comptes privés.
+      THEME:
+        LABEL: Thème des publications Instagram
+        HELP: Le thème des publications intégrées. Cette option n'est garantie que si le CSS intégré est utilisé.

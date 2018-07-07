@@ -1,0 +1,135 @@
+PLUGIN_SSE:
+  EMBEDS:
+    DATE_FORMAT: d/m/Y H:i
+    PLAY_MEDIA: Click to play media
+    VIDEOS_NOT_SUPPORTED: Your browser does not support videos.
+    PREV_MEDIA: Previous media
+    NEXT_MEDIA: Next media
+    MEDIA_X_OF_Y: Media $i of $count
+    GIF: GIF
+  TWITTER:
+    CANNOT_RENDER: Unable to render tweet.
+    VIEW_ON_TWITTER: (Click to view on Twitter.)
+    VERIFIED_ACCOUNT: Verified account
+    PROTECTED_ACCOUNT: Protected account
+    VIA: Via $source
+    REPLY: Reply
+    RETWEETS: $rts retweets
+    LIKES: $likes likes
+    SEND: Send tweet
+  MASTODON:
+    CANNOT_RENDER: Unable to render toot.
+    VIEW_ON_MASTODON: (Click to view on Mastodon.)
+    LOCKED_ACCOUNT: Locked account
+    FOLLOW_ON_MASTODON: Follow $username on the Fediverse
+    FOLLOW: Follow
+    SHOW_MORE: Show more
+    SHOW_LESS: Show less
+    SENSITIVE_CONTENT:
+      TITLE: Sensitive content
+      TOGGLE: Click to toggle display
+    VISIBILITIES:
+      PUBLIC: Public toot
+      UNLISTED: Unlisted toot
+      PRIVATE: Private toot
+      DIRECT: Direct message
+    REBLOGS: $rbls reblogs
+    FAVOURITES: $favs favourites
+  INSTAGRAM:
+    CANNOT_RENDER: Unable to render post
+    VIEW_ON_INSTAGRAM: (Click to view on Instagram.)
+    VERIFIED_ACCOUNT: Verified account
+    VIEW_PROFILE: View Profile
+    SHOW_PROFILE_ON_INSTAGRAM: Show profile on Instagram
+    VIEWS: $views views
+    LIKES: $likes likes
+    SHOW_COMMENTS: show the $comments comments
+    SHOW_COMMENT: show the only comment
+    BUTTONS_ACCESSIBILITY:
+      LIKES: $likes likes; click to go to post and like
+      COMMENTS: $comments comments; click to go to post and comment
+      BOOKMARK: Click to go to post and bookmark
+  ADMIN:
+    LIGHT: Light
+    DARK: Dark
+    MAIN:
+      TITLE: Main Settings
+      ENABLED: Plugin status
+      BUILT_IN_CSS:
+        LABEL: Use the built-in CSS
+        HELP: If disabled, you or your theme will have to supply CSS for this plugin. You can check out the built-in CSS for inspiration.
+      BUILT_IN_js:
+        LABEL: Use the built-in JS
+        HELP: If disabled, you or your theme will have to supply JS for this plugin. You can check out the built-in JS for inspiration.
+    DOWNLOADS:
+      TITLE: Download Options
+      HELP_1: |
+        If theses options are enabled, images and/or videos from tweets/toots/instagram posts/etc. will be downloaded
+        and served from your site instead of the social network (including avatars). With that, the independence is
+        complete but it requires more disk space (about 3 MiB per image, 15 to 50 MiB per video, and almost nothing for
+        avatars).<br /><br />
+
+        <em>If this is disabled, Firefox users will not see images by default, as Firefox blocks images and videos loaded
+        from other domains for privacy reasons. They will have to disable the privacy protection by clicking the shield
+        in their address bar.</em>
+      HELP_2: |
+        Embeds data is (always) stored in <code>cache/static-social-embeds/</code>.<br />
+        You can delete this folder at any time: the content will be re-downloaded on-demand.<br /><br />
+
+        Images and videos are downloaded (if enabled) to <code>images/static-social-embeds/</code>.<br />
+        <strong>Never delete this folder without deleting the embeds data cache directory too.</strong>
+        If medias are downloaded, stored embed data references directly the local files, so deleting them without
+        deleting the cache will break all images.
+      IMAGES:
+        LABEL: Download images locally?
+        HELP: |
+          If true, images from tweets/toots/instagram posts/etc. will be downloaded and served from your site instead of
+          the social network (including avatars). With that, the independence is complete but it requires more disk space.
+      VIDEOS:
+        LABEL: Download videos & GIFs locally?
+        HELP: |
+          If true, videos and GIFs from tweets/toots/instagram posts/etc. will be downloaded and served from your site instead of
+          the social network. With that, the independence is complete but it requires more disk space.
+    TWITTER:
+      TITLE: Twitter
+      HELP: |
+        Embed tweets from <a href="https://twitter.com">Twitter</a> in articles using <code>[tweet="tweetURL"]</code>
+        with blanks lines before and after.<br /><br />
+        <strong>Warning:</strong> as tweets are retrieved using your account permissions, <strong>you can embed
+        tweets from private accounts</strong> as long as you follow them; because the tweets are requested once and
+        stored locally, they will be kept even if you lose access to the private account. <strong>Don't abuse this
+        feature</strong> and before embedding a private tweet, be sure that the author allows you to do so.
+      HELP_APP: |
+         <strong>To use Twitter embeds, you'll need to register an application.</strong><br /><br />
+         Go to <a href="https://apps.twitter.com/app/new">the Twitter Apps page</a> to create an application.
+         You don't need to provide a callback URL (we never use that).
+         Then, click the <strong>Keys and access tokens</strong> tab and at the bottom of the page, click
+         <strong>Create my Access Token</strong>.
+         Finally, copy the credentials here.
+      THEME:
+        LABEL: Twitter theme
+        HELP: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.
+      CONSUMER_KEY: Consumer Key (API Key)
+      CONSUMER_SECRET: Consumer Secret (API Secret)
+      ACCESS_TOKEN: Access Token
+      ACCESS_TOKEN_SECRET: Access Token Secret
+    MASTODON:
+      TITLE: Mastodon
+      HELP: |
+        Embed toots from <a href="https://joinmastodon.org">Mastodon</a> in articles using
+        <code>[toot="tootURL"]</code> with blanks lines before and after.<br />
+        As toots are retrieved using non-authenticated requests, you cannot embed private or direct toots (but
+        unlisted and public ones are fine).
+      THEME:
+        LABEL: Mastodon theme
+        HELP: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.
+    INSTAGRAM:
+      TITLE: Instagram
+      HELP: |
+        Embed <a href="https://www.instagram.com">Instagram</a> posts in articles using
+        <code>[instagram="instagramPostURL"]</code> with blanks lines before and after.<br />
+        As posts are retrieved using non-authenticated requests, you cannot embed Instagram posts from private
+        accounts.
+      THEME:
+        LABEL: Instagram theme
+        HELP: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.

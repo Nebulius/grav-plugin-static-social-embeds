@@ -1,7 +1,7 @@
 <article class="static-social-embed sse-theme-{{ config.twitter.theme }} sse-status{% if quoted_tweet %} has-quoted-tweet{% endif %}">
     {% if errors %}
         <div class="sse-status-error">
-            <p>Unable to render tweet. <a href="{{ url }}">(Click to view on Twitter.)</a></p>
+            <p>{{ 'PLUGIN_SSE.TWITTER.CANNOT_RENDER'|t }} <a href="{{ url }}">{{ 'PLUGIN_SSE.TWITTER.VIEW_ON_TWITTER'|t }}</a></p>
             <ul>
                 {% for error in errors %}
                     <li>{{ error.code }}: {{ error.message }}</li>
@@ -10,7 +10,7 @@
         </div>
     {% else %}
         <header>
-            <div class="sse-status-author-avatar">
+            <div class="sse-status-author-avatar" aria-hidden="true">
                 <a href="{{ author.link }}">
                     <img src="{{ author.avatar }}" alt="{{ author.name }}" />
                 </a>
@@ -20,13 +20,13 @@
                     <a href="{{ author.link }}">
                         {{- author.display_name -}}
                         {%- if author.verified %}
-                            <span class="sse-verified" title="Verified account">
+                            <span class="sse-verified" title="{{ 'PLUGIN_SSE.TWITTER.VERIFIED_ACCOUNT'|t }}">
                                 {% include 'partials/static-social-embeds/verified.svg.twig' %}
                             </span>
                         {% endif -%}
                         {%- if author.protected %}
-                            <span class="sse-locked" title="Protected account">
-                                <span class="fas fa-lock"></span>
+                            <span class="sse-locked" title="{{ 'PLUGIN_SSE.TWITTER.PROTECTED_ACCOUNT'|t }}">
+                                <span class="fas fa-lock" aria-hidden="true"></span>
                             </span>
                         {% endif -%}
                     </a>
@@ -37,7 +37,7 @@
                     </a>
                 </div>
             </div>
-            <div class="sse-status-network-icon">
+            <div class="sse-status-network-icon" aria-hidden="true">
                 <span class="fab fa-twitter"></span>
             </div>
         </header>
@@ -50,10 +50,11 @@
             <figure>
                 {% set medias_count = tweet.medias|length %}
                 {% for media in tweet.medias %}
-                    <div class="sse-status-image sse-status-image-{{ media.type|replace('_', '-') }}{% if loop.first %} is-active{% endif %}">
+                    <div class="sse-status-image sse-status-image-{{ media.type|replace('_', '-') }}{% if loop.first %} is-active{% endif %}"
+                         aria-label="{{ 'PLUGIN_SSE.EMBEDS.MEDIA_X_OF_Y'|t|replace({'$i': loop.index, '$count': medias_count}) }}">
                         {% if media.type == 'video' or media.type == 'animated_gif' %}
-                            <a href="#" class="sse-status-image-handle-play">
-                                <span class="fas fa-play"></span>
+                            <a href="#" class="sse-status-image-handle-play" aria-label="{{ 'PLUGIN_SSE.EMBEDS.PLAY_MEDIA'|t }}">
+                                <span class="fas fa-play" aria-hidden="true"></span>
                             </a>
                         {% endif %}
                         <img src="{{ media.src }}" alt="{{ media.alt }}" title="{{ media.alt }}" />
@@ -62,14 +63,14 @@
                                 {% for type, variant in media.video.variants %}
                                     <source src="{{ variant.src }}" type="{{ type }}" />
                                 {% endfor %}
-                                Your browser does not support videos.
+                                {{ 'PLUGIN_SSE.EMBEDS.VIDEOS_NOT_SUPPORTED'|t }}
                             </video>
                             <span class="sse-status-image-badge">
-                                {%- if media.type == 'video' %}{{ media.video.duration_human }}{% else %}GIF{% endif -%}
+                                {%- if media.type == 'video' %}{{ media.video.duration_human }}{% else %}{{ 'PLUGIN_SSE.EMBEDS.GIF'|t }}{% endif -%}
                             </span>
                         {% endif %}
                         {% if medias_count > 1 %}
-                        <aside class="sse-status-image-progress-dots">
+                        <aside class="sse-status-image-progress-dots" aria-hidden="true">
                             {% set media_index = loop.index %}
                             {% for i in 1..medias_count %}
                                 <span class="sse-status-image-progress-dot{% if media_index == i %} is-active{% endif %}"></span>
@@ -79,11 +80,11 @@
                     </div>
                 {% endfor %}
                 {% if medias_count > 1 %}
-                    <a href="#" rel="prev" class="sse-status-image-handle-prev">
-                        <span class="fas fa-chevron-left"></span>
+                    <a href="#" rel="prev" class="sse-status-image-handle-prev" aria-label="{{ 'PLUGIN_SSE.EMBEDS.PREV_MEDIA'|t }}">
+                        <span class="fas fa-chevron-left" aria-hidden="true"></span>
                     </a>
-                    <a href="#" rel="next" class="sse-status-image-handle-next">
-                        <span class="fas fa-chevron-right"></span>
+                    <a href="#" rel="next" class="sse-status-image-handle-next" aria-label="{{ 'PLUGIN_SSE.EMBEDS.NEXT_MEDIA'|t }}">
+                        <span class="fas fa-chevron-right" aria-hidden="true"></span>
                     </a>
                 {% endif %}
             </figure>
@@ -91,10 +92,10 @@
 
         {% if quoted_tweet %}
             <article class="sse-quoted-tweet">
-                <a href="{{ quoted_tweet.tweet.link }}" target="_blank">
+                <a href="{{ quoted_tweet.tweet.link }}">
                     {% if quoted_tweet.tweet.medias %}
                         <figure class="sse-quoted-tweet-image">
-                            <img src="{{ quoted_tweet.tweet.medias[0].src_small }}" alt="" />
+                            <img src="{{ quoted_tweet.tweet.medias[0].src_small }}" alt="{{ quoted_tweet.tweet.medias[0].alt }}" />
                         </figure>
                     {% endif %}
                     <div class="sse-quoted-tweet-content">
@@ -103,8 +104,13 @@
                                 {{- quoted_tweet.author.display_name -}}
                             </span>
                             {%- if quoted_tweet.author.verified %}
-                                <span class="sse-verified" title="Verified account">
+                                <span class="sse-verified" title="{{ 'PLUGIN_SSE.TWITTER.VERIFIED_ACCOUNT'|t }}">
                                     {% include 'partials/static-social-embeds/verified.svg.twig' %}
+                                </span>
+                            {% endif -%}
+                            {%- if author.protected %}
+                                <span class="sse-locked" title="{{ 'PLUGIN_SSE.TWITTER.PROTECTED_ACCOUNT'|t }}">
+                                    <span class="fas fa-lock" aria-hidden="true"></span>
                                 </span>
                             {% endif -%}
                             <span class="sse-quoted-tweet-author-handle">
@@ -121,34 +127,36 @@
 
         <footer>
             <p class="sse-status-date">
-                <span class="fas fa-feather-alt sse-status-source" title="Via {{ tweet.source|striptags }}"></span>
-                <time datetime="{{ tweet.date|date('c') }}"><a href="{{ tweet.link }}">{{ tweet.date|date('d/m/Y H:i'|t) }}</a></time>
+                <span class="fas fa-feather-alt sse-status-source" title="{{ 'PLUGIN_SSE.TWITTER.VIA'|t|replace({'$source': tweet.source|striptags}) }}"></span>
+                <time datetime="{{ tweet.date|date('c') }}"><a href="{{ tweet.link }}">{{ tweet.date|date('PLUGIN_SSE.EMBEDS.DATE_FORMAT'|t) }}</a></time>
             </p>
 
             <aside class="sse-status-stats">
                 <ul>
                     <li class="link-reply">
-                        <a href="{{ tweet.link }}" target="_blank">
-                            <span class="icon"><span class="fas fa-reply" aria-hidden="true"></span></span>
-                            <span class="sr-only">Reply</span>
+                        <a href="{{ tweet.link }}">
+                            <span class="icon" aria-hidden="true"><span class="fas fa-reply"></span></span>
+                            <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.REPLY'|t }}</span>
                         </a>
                     </li>
                     <li class="link-retweet">
-                        <a href="{{ tweet.link }}" target="_blank">
-                            <span class="icon"><span class="fas fa-retweet"></span></span>
-                            <span class="stat">{{ tweet.stats.retweets|number_format }}<span class="sr-only"> retweets</span></span>
+                        <a href="{{ tweet.link }}">
+                            <span class="icon" aria-hidden="true"><span class="fas fa-retweet"></span></span>
+                            <span class="stat" aria-hidden="true">{{ tweet.stats.retweets|number_format }}</span>
+                            <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.RETWEETS'|t|replace({'$rts': tweet.stats.retweets}) }}</span>
                         </a>
                     </li>
                     <li class="link-like">
-                        <a href="{{ tweet.link }}" target="_blank">
-                            <span class="icon"><span class="far fa-heart"></span></span>
-                            <span class="stat">{{ tweet.stats.likes|number_format }}<span class="sr-only"> likes</span></span>
+                        <a href="{{ tweet.link }}">
+                            <span class="icon" aria-hidden="true"><span class="far fa-heart"></span></span>
+                            <span class="stat" aria-hidden="true">{{ tweet.stats.likes|number_format }}</span>
+                            <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.LIKES'|t|replace({'$likes': tweet.stats.likes}) }}</span>
                         </a>
                     </li>
                     <li class="link-send">
-                        <a href="{{ tweet.link }}" target="_blank">
-                            <span class="icon"><span class="far fa-envelope"></span></span>
-                            <span class="sr-only">Send</span>
+                        <a href="{{ tweet.link }}">
+                            <span class="icon" aria-hidden="true"><span class="far fa-envelope"></span></span>
+                            <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.SEND'|t }}</span>
                         </a>
                     </li>
                 </ul>
