@@ -1,3 +1,12 @@
+#v1.1.0
+## 11-07-2018
+
+1. [](#new)
+    * Added [Pleroma](https://pleroma.social) support (using the `toot` shortcode).
+
+1. [](#bugfix)
+    * Fixed some Mastodon URLs badly parsed.
+
 # v1.0.1
 ## 07-07-2018
 

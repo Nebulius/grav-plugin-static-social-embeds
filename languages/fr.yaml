@@ -31,10 +31,20 @@ PLUGIN_SSE:
     VISIBILITIES:
       PUBLIC: Toot public
       UNLISTED: Toot non listé
-      PRIVATE: Toot privé
+      PRIVATE: Toot privé, à destination de vos abonné⋅e⋅s uniquement
       DIRECT: Message direct
     REBLOGS: $rbls boosts
     FAVOURITES: $favs favoris
+  PLEROMA:
+    CANNOT_RENDER: Impossible d'afficher le statut.
+    VIEW_ON_MASTODON: (Cliquez pour le voir sur Pleroma.)
+    REBLOGS: $rbls partages
+    FAVOURITES: $favs mentions j'aime
+    VISIBILITIES:
+      PUBLIC: Statut public
+      UNLISTED: Statut non listé
+      PRIVATE: Statut à destination de vos abonné⋅e⋅s uniquement
+      DIRECT: Message direct
   INSTAGRAM:
     CANNOT_RENDER: Impossible d'afficher la publication.
     VIEW_ON_INSTAGRAM: (Cliquez pour le voir sur Instagram.)

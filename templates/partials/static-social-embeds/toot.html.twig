@@ -1,7 +1,7 @@
 <article class="static-social-embed sse-theme-{{ config.mastodon.theme }} sse-status sse-toot">
     {% if errors %}
         <div class="sse-status-error">
-            <p>{{ 'PLUGIN_SSE.MASTODON.CANNOT_RENDER'|t }} <a href="{{ url }}">{{ 'PLUGIN_SSE.MASTODON.VIEW_ON_MASTODON'|t }}</a></p>
+            <p>{{ ('PLUGIN_SSE.' ~ federation_software|upper ~ '.CANNOT_RENDER')|t }} <a href="{{ url }}">{{ ('PLUGIN_SSE.' ~ federation_software|upper ~ '.VIEW_ON_MASTODON')|t }}</a></p>
             <ul>
                 {% for error in errors %}
                 <li>{{ error.code }}: {{ error.message }}</li>
@@ -105,7 +105,7 @@
                 <li class="sse-mastodon-stats-date">
                     <time datetime="{{ created_at|date('c') }}"><a href="{{ url }}">{{ created_at|date('PLUGIN_SSE.EMBEDS.DATE_FORMAT'|t) }}</a></time>
                 </li>
-                <li title="{{ ('PLUGIN_SSE.MASTODON.VISIBILITIES.' ~ visibility|upper)|t }}" class="sse-mastodon-stats-visibility">
+                <li title="{{ ('PLUGIN_SSE.' ~ federation_software|upper ~ '.VISIBILITIES.' ~ visibility|upper)|t }}" class="sse-mastodon-stats-visibility">
                     {%- set visibility_icons = {
                         'public': 'fas fa-globe-africa',
                         'unlisted': 'fas fa-unlock',
@@ -121,10 +121,10 @@
                         {{- application.name -}}
                     {%- endif -%}
                 </li>
-                <li aria-label="{{ 'PLUGIN_SSE.MASTODON.REBLOGS'|t|replace({'$rbls': reblogs_count}) }}" class="sse-mastodon-stats-reblogs">
+                <li title="{{ ('PLUGIN_SSE.' ~ federation_software|upper ~ '.REBLOGS')|t|replace({'$rbls': reblogs_count}) }}" class="sse-mastodon-stats-reblogs">
                     <span class="fas fa-retweet" aria-hidden="true"></span> {{ reblogs_count -}}
                 </li>
-                <li aria-label="{{ 'PLUGIN_SSE.MASTODON.FAVOURITES'|t|replace({'$favs': favourites_count}) }}" class="sse-mastodon-stats-favourites">
+                <li title="{{ ('PLUGIN_SSE.' ~ federation_software|upper ~ '.FAVOURITES')|t|replace({'$favs': favourites_count}) }}" class="sse-mastodon-stats-favourites">
                     <span class="fas fa-heart" aria-hidden="true"></span> {{ favourites_count -}}
                 </li>
             </ul>

@@ -36,6 +36,30 @@ class MastodonShortcode extends SSEShortcode
      */
     protected function getData($url)
     {
+        // First, we fetch the final URL after redirections.
+        // Typically, Pleroma features objects links that will redirect to URLs with the status ID we need to
+        // call the API.
+
+        $ch = curl_init();
+
+        curl_setopt_array($ch, [
+            CURLOPT_URL            => $url,
+            CURLOPT_HEADER         => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS      => 256,
+            CURLOPT_TIMEOUT        => 3600,
+
+            // Required because Pleroma only redirects if we accept HTML content (else, we get an ActivityPub XML).
+            CURLOPT_HTTPHEADER     => [
+                'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+            ]
+        ]);
+
+        curl_exec($ch);
+
+        $url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
         $purl = parse_url($url);
 
         if ($purl === false)
@@ -47,8 +71,14 @@ class MastodonShortcode extends SSEShortcode
 
         // From: https://mamot.fr/@ploum/100244825435451499
         // To:   https://mamot.fr/api/v1/statuses/100244825435451499
+        // - or -
+        // From: https://weeaboo.space/notice/908080
+        // To:   https://weeaboo.space/api/v1/statuses/908080
+        // - or -
+        // From: https://mstdn.jp/users/Alumi/statuses/100355954289843928
+        // To:   https://mstdn.jp/api/v1/statuses/100355954289843928
         $api_endpoint = $purl['scheme'] . '://' . $purl['host'] . (isset($purl['port']) && $purl['port'] != 80 ? ':' . $purl['port'] : '');
-        $api_endpoint .= '/api/v1/statuses/' . $path_parts[2];
+        $api_endpoint .= '/api/v1/statuses/' . end($path_parts);
 
         $ch = curl_init();
 
@@ -75,6 +105,17 @@ class MastodonShortcode extends SSEShortcode
 
         $toot['account']['avatar'] = $this->fetchImage($toot['account']['avatar']);
         $toot['account']['fully_qualified_name'] = $toot['account']['username'] . '@' . $purl['host'] . (isset($purl['port']) && $purl['port'] != 80 ? ':' . $purl['port'] : '');
+
+        // Oh and Pleroma does not add <p> tags.
+
+        if (strpos($toot['content'], '<p>') !== 0)
+        {
+            $toot['content'] = '<p>' . $toot['content'] . '</p>';
+        }
+
+        // While we're at it, let's store which federation this is from
+
+        $toot['federation_software'] = strpos($toot['uri'], 'objects') !== false ? 'pleroma' : 'mastodon';
 
         // Process & store medias
 

@@ -35,6 +35,16 @@ PLUGIN_SSE:
       DIRECT: Direct message
     REBLOGS: $rbls reblogs
     FAVOURITES: $favs favourites
+  PLEROMA:
+    CANNOT_RENDER: Unable to render post.
+    VIEW_ON_MASTODON: (Click to view on Pleroma.)
+    REBLOGS: $rbls repeats
+    FAVOURITES: $favs likes
+    VISIBILITIES:
+      PUBLIC: Public post
+      UNLISTED: Unlisted post
+      PRIVATE: Private post
+      DIRECT: Direct message
   INSTAGRAM:
     CANNOT_RENDER: Unable to render post
     VIEW_ON_INSTAGRAM: (Click to view on Instagram.)
@@ -119,12 +129,13 @@ PLUGIN_SSE:
     MASTODON:
       TITLE: Mastodon
       HELP: |
-        Embed toots from <a href="https://joinmastodon.org">Mastodon</a> in articles using
-        <code>[toot="tootURL"]</code> with blanks lines before and after.<br />
+        Embed toots from <a href="https://joinmastodon.org">Mastodon</a> or posts from
+        <a href="https://pleroma.social/">Pleroma</a> in articles using <code>[toot="tootURL"]</code> with blanks lines
+        before and after.<br />
         As toots are retrieved using non-authenticated requests, you cannot embed private or direct toots (but
         unlisted and public ones are fine).
       THEME:
-        LABEL: Mastodon theme
+        LABEL: Mastodon/Pleroma theme
         HELP: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.
     INSTAGRAM:
       TITLE: Instagram

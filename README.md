@@ -2,6 +2,12 @@
 
 The **Static Social Embeds** Plugin is for [Grav CMS](http://github.com/getgrav/grav). It embeds social status (like tweets, instagram posts, toots, etc.) in articles without using their embed iframe, but rather statically without any dependency to the service.
 
+The following networks are supported ([see below](#usage) for details):
+
+- [Twitter](https://twitter.com);
+- [Mastodon](https://joinmastodon.org) and [Pleroma](https://pleroma.social);
+- [Instagram](https://www.instagram.com).
+
 ## Installation
 
 Installing the Static Social Embeds plugin can be done in one of two ways. The GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
@@ -31,6 +37,8 @@ If you use the admin plugin, you can install directly through the admin plugin b
 ## Configuration
 
 Before configuring this plugin, you should copy the `user/plugins/static-social-embeds/static-social-embeds.yaml` to `user/config/plugins/static-social-embeds.yaml` and only edit that copy.
+
+Note that if you use the admin plugin, a file with your configuration, and named static-social-embeds.yaml will be saved in the `user/config/plugins/` folder once the configuration is saved in the admin.
 
 Here is the default configuration and a short explanation of available options. Extensive explanations are available in the admin page of the plugin.
 
@@ -86,17 +94,15 @@ To use Twitter embeds, you'll need to register an application. This is done in a
 2. Then, click the **Keys and access tokens** tab and at the bottom of the page, click **Create my Access Token**.
 3. Finally, copy the credentials in the configuration file (or in the admin).
 
-Note that if you use the admin plugin, a file with your configuration, and named static-social-embeds.yaml will be saved in the `user/config/plugins/` folder once the configuration is saved in the admin.
-
 ### Customization
 
 If you want to customize the embeds' HTML code, you can override the `partials/static-social-embeds` templates. The template name is the same as the shortcode name (see below), e.g. `toot.html.twig` for Mastodon embeds template. Templates context vary for different social networks; checkout built-in templates or shortcode classes to know which variables you can use.
 
 ## Usage
 
-The plugin supports static embeds for Twitter, Mastodon and Instagram posts. It tries to match original embeds styles, so it's close to the real embeds, wut without any request to the social networks: independence!
+The plugin supports static embeds for Twitter, Mastodon (including Pleroma) and Instagram posts. It tries to match original embeds styles, so it's close to the real embeds, but without any request to the social networks: independence!
 
-Three shortcodes are declared to embed status: `tweet`, `toot` and `instagram`, for respectively Twitter, Mastodon and Instagram. They accept one parameter: the status URL to embed. Use them in your articles like this:
+Three shortcodes are declared to embed status: `tweet`, `toot` and `instagram`, for respectively Twitter, Mastodon/Pleroma, and Instagram. They accept one parameter: the status URL to embed. Use them in your articles like this:
 
 ```markdown
 [tweet="https://twitter.com/INSVideos/status/1013375197984980992"]
@@ -110,7 +116,7 @@ The following shortcodes will be rendered as below (for light and dark themes, w
 
 ![](assets/docs/embeds-preview.png)
 
-Texts, images (single or multiples), videos (single or multiples), GIFs, are supported for all networks above. Mastodon toots supports CW and sensitive images.
+Texts, images (single or multiples), videos (single or multiples), GIFs, are supported for all networks above. Mastodon/Pleroma toots supports CW and sensitive images, account privacy badges, and instances' custom emojis. Twitter and Instagram supports verified and protected accounts badges.  
 
 Extensive caching is used to retrieve data and medias only once per embed. The first page load may be slow (especially if there are a lot of embeds in the page), but subsequent calls will be lightning-fast, as all data will be read from the cache, without any request to the social networks (no tracking, yay!). This also means that if an embed status is deleted, it will be kept on your site if the cache is not deleted. Custom locations are used for the cache files.
 
@@ -121,7 +127,7 @@ The plugin is translated in English and French.
 
 ## Technical considerations regarding Instagram
 
-While Twitter and Mastodon data are retrieved using their respective API, there is no way to do that with Instagram (or there is, but deprecated and soon-to-be-removed in december 2018). We scrap an internal JSON embed in the post pages to retrieve data (thanks to [RSSBridge](https://github.com/RSS-Bridge/rss-bridge/blob/master/bridges/InstagramBridge.php) for the tip). As it isn't official, it may break anytime.
+While Twitter and Mastodon/Pleroma data are retrieved using their respective API, there is no way to do that with Instagram (or there is, but deprecated and soon-to-be-removed in december 2018). We scrap an internal JSON embed in the post pages to retrieve data (thanks to [RSSBridge](https://github.com/RSS-Bridge/rss-bridge/blob/master/bridges/InstagramBridge.php) for the tip). As it isn't official, it may break anytime.
 
 Data is cached without expiration, so as long as you don't delete the cache, existing embeds will never break. New ones will. Feel free to open an issue if such problem occurs (but this is pretty stable for a few years now and I hope it will remains as such).
 
@@ -132,5 +138,5 @@ Data is cached without expiration, so as long as you don't delete the cache, exi
 ## To Do
 
 - [ ] Support for Twitter pools.
-- [ ] Support for Pleroma (should be simple as it's compatible with the Mastodon API) and maybe other networks (by request).
+- [ ] Support for other networks (by request).
 - [ ] Maybe option to proxy medias, allowing not to store them but still serve them from the website's domain.
