@@ -9,31 +9,48 @@ built_in_js: true
 # the default embeds to work, check this.
 include_font_awesome_5: true
 
+
+# Options for all networks
+#
+# -- theme --
+# The embed theme: with the default CSS, matches the light & dark
+# themes for the related network, except for Instagram (which does not
+# have a dark theme), where the dark theme colours are inspired by Twitter.
+#
+# -- downloaded_content --
 # The plugin can download images, videos, and GIFs, to ensure a
 # complete independence from the social networks, at the cost of
-# some disk space.
-downloaded_content:
-  images: true
-  videos: true
+# some disk space. This includes avatars and custom emojis (if any).
 
-# Options for Twitter: embed theme (with the default CSS, matches the
-# light & dark Twitter themes) and API credentials required to load
-# tweets (an explanation on how to create an application is available
-# below).
+
 twitter:
   theme: light
+
+  # Please not that if false, Firefox will block Twitter images from loading by default (for privacy reasons).
+  download_content:
+    images: true
+    videos: true
+
+  # API credentials required to load tweets.
   consumer_key: null
   consumer_secret: null
   access_token: null
   access_token_secret: null
 
-# Options for Mastodon: embed theme (with the default CSS, matches the
-# light & dark Mastodon themes).
+
 mastodon:
   theme: light
 
-# Options for Instagram: embed theme (with the default CSS, the light theme
-# matches Instagram, and the dark one was created from the light one and
-# some inspiration from Twitter own dark theme).
+  download_content:
+    images: true
+    videos: true
+
+
 instagram:
   theme: light
+
+  # Please not that if false, Firefox will block Instagram images from loading by default (for privacy reasons).
+  # Please also note that as Instagram's images CDN URLs may expire, you should keep that to true if possible.
+  download_content:
+    images: true
+    videos: true

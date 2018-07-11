@@ -13,20 +13,26 @@ abstract class SSEShortcode extends Shortcode
     const CACHE_PREFIX = 'sse';
     const TEMPLATES_DIRECTORY = 'partials/static-social-embeds/';
 
+    /**
+     * @var string The shortcode name, as returned by getShortcodeName().
+     * @see SSEShortcode::getShortcodeName()
+     */
+    private $shortcode_name;
+
     /** @var string The cache directory for API data  */
-    protected $cache_dir;
+    private $cache_dir;
 
     /** @var string The cache directory for downloaded images/videos */
-    protected $images_dir;
+    private $images_dir;
 
     /** @var string The public path to the cache directory for downloaded images/videos */
-    protected $images_path;
+    private $images_path;
 
     /** @var string The temporary directory for downloaded medias */
-    protected $tmp_dir;
+    private $tmp_dir;
 
     /** @var FilesystemCache The cache driver for API data */
-    protected $cache;
+    private $cache;
 
 
     /**
@@ -35,6 +41,8 @@ abstract class SSEShortcode extends Shortcode
     public function __construct()
     {
         parent::__construct();
+
+        $this->shortcode_name = $this->getShortcodeName();
 
         /** @var $locator ResourceLocatorInterface */
         $locator = $this->grav['locator'];
@@ -79,7 +87,7 @@ abstract class SSEShortcode extends Shortcode
     private function getDataCached($url)
     {
         /** @var $cache Cache */
-        $cache_id = self::CACHE_PREFIX . '-' . $this->getShortcodeName() . '-' . $url;
+        $cache_id = self::CACHE_PREFIX . '-' . $this->shortcode_name . '-' . $url;
 
         if ($this->cache->contains($cache_id))
         {
@@ -100,14 +108,14 @@ abstract class SSEShortcode extends Shortcode
      */
     public function init()
     {
-        $this->shortcode->getHandlers()->add($this->getShortcodeName(), function(ShortcodeInterface $sc)
+        $this->shortcode->getHandlers()->add($this->shortcode_name, function(ShortcodeInterface $sc)
         {
             $template_context = array_merge($this->getDataCached(trim($sc->getBbCode())), [
                 'config' => $this->config->get('plugins.static-social-embeds')
             ]);
 
             return $this->grav['twig']->processTemplate(
-                self::TEMPLATES_DIRECTORY . $this->getShortcodeName() . '.html.twig',
+                self::TEMPLATES_DIRECTORY . $this->shortcode_name . '.html.twig',
                 $template_context
             );
         });
@@ -151,29 +159,31 @@ abstract class SSEShortcode extends Shortcode
 
 
         // Are we allowed to cache images?
-        if ($format == 'image' && !$this->config->get('plugins.static-social-embeds.downloaded_content.images'))
+        if ($format == 'image' && !$this->config->get('plugins.static-social-embeds.' . $this->shortcode_name . '.download_content.images'))
         {
             return $url;
         }
 
         // Or videos?
-        if ($format == 'video' && !$this->config->get('plugins.static-social-embeds.downloaded_content.videos'))
+        if ($format == 'video' && !$this->config->get('plugins.static-social-embeds.' . $this->shortcode_name . '.download_content.videos'))
         {
             return $url;
         }
+
+        $cache_permissions = $this->config->get('system.images.cache_perms', '0755');
 
         $ch = curl_init();
         $tmp_file_path = $this->tmp_dir . '/' . sha1($url) . '.' . $extension;
         $tmp_dir_name = dirname($tmp_file_path);
 
-        if (!is_dir($tmp_dir_name)) mkdir($tmp_dir_name, $this->config->get('system.images.cache_perms', '0755'), true);
+        if (!is_dir($tmp_dir_name)) mkdir($tmp_dir_name, $cache_permissions, true);
 
         $tmp_file = fopen($tmp_file_path, 'w');
 
         curl_setopt_array($ch, [
-            CURLOPT_FILE => $tmp_file,
+            CURLOPT_FILE    => $tmp_file,
             CURLOPT_TIMEOUT => 3600,
-            CURLOPT_URL => $url
+            CURLOPT_URL     => $url
         ]);
 
         curl_exec($ch);
@@ -193,7 +203,7 @@ abstract class SSEShortcode extends Shortcode
         $storage_file_path = '/' . implode('/', $storage_file_path) . '/' . $storage_file_name;
         $storage_file_dir = dirname($this->images_dir . $storage_file_path);
 
-        if (!is_dir($storage_file_dir)) mkdir($storage_file_dir, $this->config->get('system.images.cache_perms', '0755'), true);
+        if (!is_dir($storage_file_dir)) mkdir($storage_file_dir, $cache_permissions, true);
 
         rename($tmp_file_path, $this->images_dir . $storage_file_path);
 

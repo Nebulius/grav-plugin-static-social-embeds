@@ -1,5 +1,5 @@
 name: Static Social Embeds
-version: 1.0.1
+version: 1.1.0
 description: |
   Embeds social status (like tweets, instagram posts, toots, etc.) in articles without using their embed iframe,
   but rather statically without any dependency to the service.
@@ -87,26 +87,6 @@ form:
                 downloaded_content_help:
                   type: spacer
                   text: PLUGIN_SSE.ADMIN.DOWNLOADS.HELP_2
-        downloaded_content.images:
-          type: toggle
-          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
-          highlight: 1
-          default: 1
-          options:
-            1: PLUGIN_ADMIN.YES
-            0: PLUGIN_ADMIN.NO
-          validate:
-            type: bool
-        downloaded_content.videos:
-          type: toggle
-          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
-          highlight: 1
-          default: 1
-          options:
-            1: PLUGIN_ADMIN.YES
-            0: PLUGIN_ADMIN.NO
-          validate:
-            type: bool
     section_twitter:
       type: section
       title: PLUGIN_SSE.ADMIN.TWITTER.TITLE
@@ -130,6 +110,26 @@ form:
                   options:
                     light: PLUGIN_SSE.ADMIN.LIGHT
                     dark: PLUGIN_SSE.ADMIN.DARK
+                twitter.download_content.images:
+                  type: toggle
+                  label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
+                  highlight: 1
+                  default: 1
+                  options:
+                    1: PLUGIN_ADMIN.YES
+                    0: PLUGIN_ADMIN.NO
+                  validate:
+                    type: bool
+                twitter.download_content.videos:
+                  type: toggle
+                  label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
+                  highlight: 1
+                  default: 1
+                  options:
+                    1: PLUGIN_ADMIN.YES
+                    0: PLUGIN_ADMIN.NO
+                  validate:
+                    type: bool
             twitter_column_2:
               type: column
               fields:
@@ -169,6 +169,26 @@ form:
           options:
             light: PLUGIN_SSE.ADMIN.LIGHT
             dark: PLUGIN_SSE.ADMIN.DARK
+        mastodon.download_content.images:
+          type: toggle
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
+          validate:
+            type: bool
+        mastodon.download_content.videos:
+          type: toggle
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
+          validate:
+            type: bool
     section_instagram:
       type: section
       title: PLUGIN_SSE.ADMIN.INSTAGRAM.TITLE
@@ -186,3 +206,23 @@ form:
           options:
             light: PLUGIN_SSE.ADMIN.LIGHT
             dark: PLUGIN_SSE.ADMIN.DARK
+        instagram.download_content.images:
+          type: toggle
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
+          validate:
+            type: bool
+        instagram.download_content.videos:
+          type: toggle
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
+          highlight: 1
+          default: 1
+          options:
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
+          validate:
+            type: bool

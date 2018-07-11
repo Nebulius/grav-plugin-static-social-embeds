@@ -2,10 +2,12 @@
 ## 11-07-2018
 
 1. [](#new)
-    * Added [Pleroma](https://pleroma.social) support (using the `toot` shortcode).
-
+    * Added [Pleroma](https://pleroma.social) support (using the same `toot` shortcode as Mastodon).
+1. [](#improved)
+    * Download options can be configured per-network.
+    * Better explanations regarding Firefox privacy shield and Instagram changing URLs.
 1. [](#bugfix)
-    * Fixed some Mastodon URLs badly parsed.
+    * Fixed some Mastodon URLs wrongly parsed.
 
 # v1.0.1
 ## 07-07-2018

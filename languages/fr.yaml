@@ -85,8 +85,8 @@ PLUGIN_SSE:
         par vidéo, et quasiment rien pour les avatars).<br /><br />
 
         <em>En cas de désactivation, les utilisateurs de Firefox ne verront pas les images par défaut, car Firefox
-        bloque le chargement des contenus depuis d'autres domaines pour des raisons de protection de la vie privée. Iels
-        devront alors désactiver la protection en cliquant sur le bouclier dans leur barre d'adresse.</em>
+        bloque le chargement des contenus depuis les domaines des grands réseaux sociaux pour des raisons de protection
+        de la vie privée. Iels devront alors désactiver la protection en cliquant sur le bouclier dans leur barre d'adresse.</em>
       HELP_2: |
         Les données des posts sont (toujours) mises en cache dans le dossier <code>cache/static-social-embeds/</code>.<br />
         Vous pouvez supprimer ce dossier quand vous le voulez&nbsp;: les données sont re-téléchargées à la demande.<br /><br />
@@ -136,7 +136,10 @@ PLUGIN_SSE:
         Intégrez des publications d'<a href="https://www.instagram.com">Instagram</a> dans vos articles en écrivant
         <code>[instagram="URL du post Instagram"]</code> entouré de lignes blanches de part et d'autre.<br />
         Les posts étant récupérés via une requête non-authentifiée, vous ne pouvez pas inclure des posts Instagram
-        extraits de comptes privés.
+        extraits de comptes privés.<br /><br />
+
+        <em>Les adresses des images et vidéos d'Instagram pouvant varier avec le temps, nous vous recommandons, afin
+        d'être tranquille, d'activer le téléchargement des médias.</em>
       THEME:
         LABEL: Thème des publications Instagram
         HELP: Le thème des publications intégrées. Cette option n'est garantie que si le CSS intégré est utilisé.
