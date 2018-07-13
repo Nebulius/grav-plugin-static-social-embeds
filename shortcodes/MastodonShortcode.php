@@ -11,7 +11,6 @@ namespace Grav\Plugin\Shortcodes;
 
 class MastodonShortcode extends SSEShortcode
 {
-
     /**
      * The shortcode name (e.g. "tweet"), used for the shortcode of course,
      * but also for the template name (in this example, "partials/static-social-embeds/tweet.html.twig").
@@ -21,6 +20,16 @@ class MastodonShortcode extends SSEShortcode
     protected function getShortcodeName()
     {
         return 'toot';
+    }
+
+    /**
+     * The network name (e.g. “twitter”), used to retrieve related configuration.
+     *
+     * @return string The network name
+     */
+    protected function getNetworkName()
+    {
+        return 'mastodon';
     }
 
     /**

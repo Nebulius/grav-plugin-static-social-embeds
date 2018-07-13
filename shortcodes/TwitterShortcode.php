@@ -6,7 +6,6 @@ use Jedkirby\TweetEntityLinker\Tweet;
 
 class TwitterShortcode extends SSEShortcode
 {
-
     /**
      * The shortcode name (e.g. "tweet"), used for the shortcode of course,
      * but also for the template name (in this example, "partials/static-social-embeds/tweet.html.twig").
@@ -15,7 +14,17 @@ class TwitterShortcode extends SSEShortcode
      */
     protected function getShortcodeName()
     {
-        return "tweet";
+        return 'tweet';
+    }
+
+    /**
+     * The network name (e.g. “twitter”), used to retrieve related configuration.
+     *
+     * @return string The network name
+     */
+    protected function getNetworkName()
+    {
+        return 'twitter';
     }
 
     /**

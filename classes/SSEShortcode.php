@@ -19,6 +19,12 @@ abstract class SSEShortcode extends Shortcode
      */
     private $shortcode_name;
 
+    /**
+     * @var string The network name, as returned by getNetworkName().
+     * @see SSEShortcode::getNetworkName()
+     */
+    private $network_name;
+
     /** @var string The cache directory for API data  */
     private $cache_dir;
 
@@ -43,6 +49,7 @@ abstract class SSEShortcode extends Shortcode
         parent::__construct();
 
         $this->shortcode_name = $this->getShortcodeName();
+        $this->network_name   = $this->getNetworkName();
 
         /** @var $locator ResourceLocatorInterface */
         $locator = $this->grav['locator'];
@@ -62,6 +69,14 @@ abstract class SSEShortcode extends Shortcode
      * @return string The shortcode name
      */
     abstract protected function getShortcodeName();
+
+
+    /**
+     * The network name (e.g. “twitter”), used to retrieve related configuration.
+     *
+     * @return string The network name
+     */
+    abstract protected function getNetworkName();
 
     /**
      * From the URL, retrieves and returns data transferred to the template.
@@ -159,24 +174,22 @@ abstract class SSEShortcode extends Shortcode
 
 
         // Are we allowed to cache images?
-        if ($format == 'image' && !$this->config->get('plugins.static-social-embeds.' . $this->shortcode_name . '.download_content.images'))
+        if ($format == 'image' && !$this->config->get('plugins.static-social-embeds.' . $this->network_name . '.download_content.images'))
         {
             return $url;
         }
 
         // Or videos?
-        if ($format == 'video' && !$this->config->get('plugins.static-social-embeds.' . $this->shortcode_name . '.download_content.videos'))
+        if ($format == 'video' && !$this->config->get('plugins.static-social-embeds.' . $this->network_name . '.download_content.videos'))
         {
             return $url;
         }
-
-        $cache_permissions = $this->config->get('system.images.cache_perms', '0755');
 
         $ch = curl_init();
         $tmp_file_path = $this->tmp_dir . '/' . sha1($url) . '.' . $extension;
         $tmp_dir_name = dirname($tmp_file_path);
 
-        if (!is_dir($tmp_dir_name)) mkdir($tmp_dir_name, $cache_permissions, true);
+        if (!is_dir($tmp_dir_name)) mkdir($tmp_dir_name, 0755, true);
 
         $tmp_file = fopen($tmp_file_path, 'w');
 
@@ -203,7 +216,7 @@ abstract class SSEShortcode extends Shortcode
         $storage_file_path = '/' . implode('/', $storage_file_path) . '/' . $storage_file_name;
         $storage_file_dir = dirname($this->images_dir . $storage_file_path);
 
-        if (!is_dir($storage_file_dir)) mkdir($storage_file_dir, $cache_permissions, true);
+        if (!is_dir($storage_file_dir)) mkdir($storage_file_dir, 0755, true);
 
         rename($tmp_file_path, $this->images_dir . $storage_file_path);
 
