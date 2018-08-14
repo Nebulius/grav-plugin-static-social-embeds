@@ -1,3 +1,9 @@
+# v1.1.2
+## 14-08-2018
+
+1. [](#bugfix)
+    * Fixed Instagram posts failing to be retrieved in some cases.
+
 # v1.1.1
 ## 14-08-2018
 

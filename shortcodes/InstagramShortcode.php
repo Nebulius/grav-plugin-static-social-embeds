@@ -48,16 +48,20 @@ class InstagramShortcode extends SSEShortcode
         curl_setopt_array($ch, [
             CURLOPT_TIMEOUT        => 3600,
             CURLOPT_URL            => $url,
+            CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false
         ]);
 
         $raw_instagram_html = curl_exec($ch);
 
+        $error_code = curl_errno($ch);
+        $error = $error_code != 0 ? (': #' . $error_code . ' - ' . curl_error($ch)) : '';
+
         curl_close($ch);
 
         if (!$raw_instagram_html)
-            return ['errors' => [['code' => 0, 'message' => 'Unable to retrieve instagram post']], 'url' => $url];
+            return ['errors' => [['code' => 0, 'message' => 'Unable to retrieve instagram post' . $error]], 'url' => $url];
 
         preg_match('/window\._sharedData = (.*);<\/script>/', $raw_instagram_html, $matches, PREG_OFFSET_CAPTURE, 0);
 
