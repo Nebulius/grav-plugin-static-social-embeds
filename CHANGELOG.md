@@ -1,4 +1,10 @@
-#v1.1.0
+# v1.1.1
+## 14-08-2018
+
+1. [](#bugfix)
+    * Fixed a regression where download options were no longer working since the per-network download options (oh the irony).
+
+# v1.1.0
 ## 11-07-2018
 
 1. [](#new)
