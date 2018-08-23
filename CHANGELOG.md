@@ -1,3 +1,9 @@
+# v1.1.3
+## 23-08-2018
+
+1. [](#bugfix)
+    * Fixed error while embedding non-existant Instagram post.
+
 # v1.1.2
 ## 14-08-2018
 
