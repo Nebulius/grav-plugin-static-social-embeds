@@ -120,7 +120,7 @@ PLUGIN_SSE:
          <strong>Create my Access Token</strong>.
          Finally, copy the credentials here.<br /><br />
          If you do not already have a developer account, <a href="https://developer.twitter.com/en/apply">you will have to apply for one</a>.
-         Twitter will ask you how you plan to use the API. This plugin uses it only read-only and complies with Twitter's Guidelines regarding
+         Twitter will ask you how you plan to use the API. This plugin uses it read-only and complies with Twitter's Guidelines regarding
          tweets integration.
       THEME:
         LABEL: Twitter theme

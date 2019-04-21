@@ -107,11 +107,14 @@ Themes can be `light` or `dark` as for now and for the built-in CSS. If you want
 
 To use Twitter embeds, you'll need to register an application. This is done in a few simple steps.
 
-1. Go to [the Twitter Apps page](https://apps.twitter.com/app/new) to create an application. You don't need to provide a callback URL (we never use that).
+1. Go to [the Twitter Apps page](https://developer.twitter.com/en/apps) to create an application. You don't need to provide a callback URL (we never use that).
 2. Then, click the **Keys and access tokens** tab and at the bottom of the page, click **Create my Access Token**.
 3. Finally, copy the credentials in the configuration file (or in the admin).
 
 If not configured, you'll see an error if you try to embed a tweet, but other embeds will work fine.
+
+If you don't have a developer account, you'll have to [apply for one](https://developer.twitter.com/en/apply). Twitter will ask you how you plan to use the API.
+For reference, this plugin uses it read-only and complies with Twitter's Guidelines regarding tweets integration.
 
 ### Customization
 
