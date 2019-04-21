@@ -95,8 +95,18 @@ PLUGIN_SSE:
         <strong>Ne supprimez jamais ce dossier sans supprimer également le dossier de cache des posts.</strong>
         Si des médias sont téléchargés, les données stockées en cache référencent directement les fichiers locaux&nbsp;: supprimer
         ces derniers cassera tous les liens vers des médias.
-      IMAGES: Télécharger les images localement&nbsp;?
-      VIDEOS: Télécharger les vidéos et les GIFs localement&nbsp;?
+      IMAGES: 
+        LABEL: Télécharger les images localement&nbsp;?
+        HELP: |
+          Si activé, les images des tweets, toots, publications instagram, etc., seront téléchargées et diffsées par votre
+          site en lieu et place du réseau social (incluant les avatars). Avec cette option, l'indépendance est renforcée, mais
+          vous aurez besoin d'un peu plus d'espace disque.
+      VIDEOS:
+        LABEL: Télécharger les vidéos et les GIFs localement&nbsp;?
+        HELP: |
+          Si activé, les vidéos et les GIFs des tweets, toots, publications instagram, etc., seront téléchargées et diffsées par
+          votre site en lieu et place du réseau social. Avec cette option, l'indépendance est renforcée, mais vous aurez besoin
+          d'un peu plus d'espace disque.
     TWITTER:
       TITLE: Twitter
       HELP: |
@@ -109,10 +119,13 @@ PLUGIN_SSE:
         un tweet d'un compte privé, assurez-vous d'avoir l'accord de son auteur.
       HELP_APP: |
          <strong>Pour inclure des tweets, vous devez créer une application Twitter.</strong><br /><br />
-         Rendez-vous sur <a href="https://apps.twitter.com/app/new">la page de création d'applications de Twitter</a>
+         Rendez-vous sur <a href="https://developer.twitter.com/en/apps">la page de création d'applications de Twitter</a>
          pour en créer une. Vous n'avez pas besoin de spécifier une URL de retour (<em>callback URL</em>) — nous n'utilisons
          pas cela. Ensuite, cliquez sur l'onglet <strong>Keys and access tokens</strong> et, en bas de la page, cliquez sur
-         <strong>Create my Access Token</strong>. Finalement, copiez les identifiants ci-dessous.
+         <strong>Create my Access Token</strong>. Finalement, copiez les identifiants ci-dessous.<br /><br />
+         Si vous n'avez pas déjà de compte développeur, <a href="https://developer.twitter.com/en/apply">vous devrez demander l'accès</a>.
+         Twitter vous demandera l'usage que vous comptez faire de l'API. Ce plugin ne l'utilise qu'en lecture seule et respecte les directives
+         de Twitter concernant l'intégration des tweets.
       THEME:
         LABEL: Thème des tweets
         HELP: Le thème des tweets intégrés. Cette option n'est garantie que si le CSS intégré est utilisé.

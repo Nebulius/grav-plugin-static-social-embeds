@@ -118,7 +118,10 @@ PLUGIN_SSE:
          You don't need to provide a callback URL (we never use that).
          Then, click the <strong>Keys and access tokens</strong> tab and at the bottom of the page, click
          <strong>Create my Access Token</strong>.
-         Finally, copy the credentials here.
+         Finally, copy the credentials here.<br /><br />
+         If you do not already have a developer account, <a href="https://developer.twitter.com/en/apply">you will have to apply for one</a>.
+         Twitter will ask you how you plan to use the API. This plugin uses it only read-only and complies with Twitter's Guidelines regarding
+         tweets integration.
       THEME:
         LABEL: Twitter theme
         HELP: The embeds theme. This option is only guaranteed to be followed with the built-in CSS.

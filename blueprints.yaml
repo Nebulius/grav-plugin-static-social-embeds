@@ -112,7 +112,8 @@ form:
                     dark: PLUGIN_SSE.ADMIN.DARK
                 twitter.download_content.images:
                   type: toggle
-                  label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
+                  label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES.LABEL
+                  help: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES.HELP
                   highlight: 1
                   default: 1
                   options:
@@ -122,7 +123,8 @@ form:
                     type: bool
                 twitter.download_content.videos:
                   type: toggle
-                  label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
+                  label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS.LABEL
+                  help: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS.HELP
                   highlight: 1
                   default: 1
                   options:
@@ -171,7 +173,8 @@ form:
             dark: PLUGIN_SSE.ADMIN.DARK
         mastodon.download_content.images:
           type: toggle
-          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES.LABEL
+          help: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES.HELP
           highlight: 1
           default: 1
           options:
@@ -181,7 +184,8 @@ form:
             type: bool
         mastodon.download_content.videos:
           type: toggle
-          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS.LABEL
+          help: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS.HELP
           highlight: 1
           default: 1
           options:
@@ -208,7 +212,8 @@ form:
             dark: PLUGIN_SSE.ADMIN.DARK
         instagram.download_content.images:
           type: toggle
-          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES.LABEL
+          help: PLUGIN_SSE.ADMIN.DOWNLOADS.IMAGES.HELP
           highlight: 1
           default: 1
           options:
@@ -218,7 +223,8 @@ form:
             type: bool
         instagram.download_content.videos:
           type: toggle
-          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS
+          label: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS.LABEL
+          help: PLUGIN_SSE.ADMIN.DOWNLOADS.VIDEOS.HELP
           highlight: 1
           default: 1
           options:
