@@ -1,3 +1,16 @@
+# v1.1.4.1
+## 21-04-2018
+
+1. [](#bugfix)
+    * Fixed plugin admin rendering error in English, because the blueprint referred translation files with an inconsistent format (#1).
+    * Miscellaneous minor fixes and improvements.
+1. [](#improved)
+    * Improved styles and in-flow integration (margins…).
+    * Improved video playing:
+      * the video will stop if the user switches to the next image;
+      * the controls are not under the navigation links.
+    * Updated documentation for new Twitter developer accounts.
+
 # v1.1.3
 ## 23-08-2018
 
