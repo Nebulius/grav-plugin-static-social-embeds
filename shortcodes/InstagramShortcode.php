@@ -48,18 +48,32 @@ class InstagramShortcode extends SSEShortcode
         curl_setopt_array($ch, [
             CURLOPT_TIMEOUT        => 3600,
             CURLOPT_URL            => $url,
+            CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false
         ]);
 
         $raw_instagram_html = curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        $error_code = curl_errno($ch);
+        $error = $error_code != 0 ? (': #' . $error_code . ' - ' . curl_error($ch)) : '';
+
+        if (!$error && $http_code != 200)
+        {
+            $error = ': HTTP ' . $http_code . ($http_code == 404 ? ' - Not Found' : '');
+            $raw_instagram_html = null;
+        }
 
         curl_close($ch);
 
         if (!$raw_instagram_html)
-            return ['errors' => [['code' => 0, 'message' => 'Unable to retrieve instagram post']], 'url' => $url];
+            return ['errors' => [['code' => 0, 'message' => 'Unable to retrieve instagram post' . $error]], 'url' => $url];
 
         preg_match('/window\._sharedData = (.*);<\/script>/', $raw_instagram_html, $matches, PREG_OFFSET_CAPTURE, 0);
+
+        if (!$matches || count($matches) < 2 || count($matches[1]) < 1)
+            return ['errors' => [['code' => 0, 'message' => 'Unable to retrieve instagram post: cannot parse the web page to retrieve data.']], 'url' => $url];
 
         $post = json_decode($matches[1][0], true);
 
@@ -70,7 +84,7 @@ class InstagramShortcode extends SSEShortcode
             || !isset($post['entry_data']['PostPage'][0]['graphql'])
             || !isset($post['entry_data']['PostPage'][0]['graphql']['shortcode_media']))
         {
-            return ['errors' => [['code' => 0, 'message' => 'Unable to retrieve instagram post']], 'url' => $url];
+            return ['errors' => [['code' => 0, 'message' => 'Unable to retrieve instagram post: cannot parse the web page to retrieve data.']], 'url' => $url];
         }
 
         // Instagram Post or Inner Post (as you like)

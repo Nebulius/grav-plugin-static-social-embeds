@@ -1,4 +1,22 @@
-#v1.1.0
+# v1.1.3
+## 23-08-2018
+
+1. [](#bugfix)
+    * Fixed error while embedding non-existant Instagram post.
+
+# v1.1.2
+## 14-08-2018
+
+1. [](#bugfix)
+    * Fixed Instagram posts failing to be retrieved in some cases.
+
+# v1.1.1
+## 14-08-2018
+
+1. [](#bugfix)
+    * Fixed a regression where download options were no longer working since the per-network download options (oh the irony).
+
+# v1.1.0
 ## 11-07-2018
 
 1. [](#new)
