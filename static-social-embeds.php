@@ -1,6 +1,7 @@
 <?php
 namespace Grav\Plugin;
 
+use Grav\Common\Assets;
 use Grav\Common\Plugin;
 
 
@@ -61,19 +62,22 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public function onAssetsInitialized()
     {
+        /** @var $assets Assets */
+        $assets = $this->grav['assets'];
+
         if ($this->config->get('plugins.static-social-embeds.include_font_awesome_5', true))
         {
-            $this->grav['assets']->add('https://use.fontawesome.com/releases/v5.1.0/css/all.css');
+            $assets->add('https://use.fontawesome.com/releases/v5.1.0/css/all.css');
         }
 
-        if ($this->config->get('plugins.static-social-embeds.use_built_in_css', true))
+        if ($this->config->get('plugins.static-social-embeds.built_in_css', true))
         {
-            $this->grav['assets']->add('plugin://static-social-embeds/assets/css-compiled/sse.min.css', 4);
+            $assets->add('plugin://static-social-embeds/assets/css-compiled/sse.min.css', 4);
         }
 
-        if ($this->config->get('plugins.static-social-embeds.use_built_in_js', true))
+        if ($this->config->get('plugins.static-social-embeds.built_in_js', true))
         {
-            $this->grav['assets']->add('plugin://static-social-embeds/assets/js/sse.js', 4);
+            $assets->addJs('plugin://static-social-embeds/assets/js/sse.js', 4, true, 'defer');
         }
     }
 
