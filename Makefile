@@ -1,5 +1,5 @@
 styles:
-	sass -t compressed --sourcemap=auto --unix-newlines assets/scss/sse.scss > assets/css-compiled/sse.min.css
+	sass -s compressed --no-source-map assets/scss/sse.scss > assets/css-compiled/sse.min.css
 
 watch:
-	sass -t compressed --watch assets/scss/sse.scss:assets/css-compiled/sse.min.css
+	sass -s compressed --source-map --watch assets/scss/sse.scss:assets/css-compiled/sse.min.css

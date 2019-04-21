@@ -76,6 +76,10 @@ $instagram-line-height: 18px;
 .static-social-embed {
     @import 'sse/minireset';
     @import 'sse/utilities';
+
+    margin: 1rem auto;
+    padding: 0;
+
     @import 'sse/errors';
     @import 'sse/twitter';
     @import 'sse/mastodon';

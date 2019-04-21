@@ -1,7 +1,4 @@
 &.sse-status {
-    margin: auto;
-    padding: 0;
-
     width: 66%;
     max-width: 800px;
 
@@ -182,6 +179,10 @@
                 &.is-hidden {
                     display: none;
                 }
+
+                &:hover {
+                    text-decoration: none;
+                }
             }
 
             .sse-status-image-badge {
@@ -231,6 +232,7 @@
             &:hover {
                 color: $twitter-blue;
                 background-image: linear-gradient(to left, rgba(lighten($twitter-blue, 42%), .4), transparent 100%);
+                text-decoration: none;
             }
         }
 
@@ -253,6 +255,17 @@
 
             &.is-active {
                 background-color: white;
+            }
+        }
+
+        &.is-playing {
+            .sse-status-image-handle-next, .sse-status-image-handle-prev {
+                height: calc(100% - 40px);
+                color: transparent;
+
+                &:hover {
+                    color: $twitter-blue;
+                }
             }
         }
     }

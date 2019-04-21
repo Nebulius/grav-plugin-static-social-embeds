@@ -32,9 +32,10 @@ document.addEventListener('DOMContentLoaded', function (e)
 
     function switchStatusImage(container, link, direction)
     {
+        container.dispatchEvent(new Event('sse-switch-media'));
+
         let activeElement = container.querySelector('.sse-status-image.is-active');
         let futureElement;
-
 
         if (direction === 'prev')
         {
@@ -69,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function (e)
         let badge = container.querySelector('.sse-status-image-badge');
         let dots  = container.querySelector('.sse-status-image-progress-dots');
         let play_handle = container.querySelector('.sse-status-image-handle-play');
+        let figure = container.parentElement;
 
         if (!container.dataset.videoActive || container.dataset.videoActive === 'false')
         {
@@ -77,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function (e)
             image.classList.add('is-hidden');
             badge.classList.add('is-hidden');
             play_handle.classList.add('is-hidden');
+            figure.classList.add('is-playing');
 
             if (dots) dots.classList.add('is-hidden');
 
@@ -92,17 +95,21 @@ document.addEventListener('DOMContentLoaded', function (e)
 
             video.play();
 
-            video.addEventListener('ended', function(e)
+            let end_video = function(e)
             {
                 video.classList.remove('is-active');
                 image.classList.remove('is-hidden');
                 badge.classList.remove('is-hidden');
                 play_handle.classList.remove('is-hidden');
+                figure.classList.remove('is-playing');
 
                 if (dots) dots.classList.remove('is-hidden');
 
                 container.dataset.videoActive = 'false';
-            });
+            }
+
+            video.addEventListener('ended', end_video);
+            figure.addEventListener('sse-switch-media', end_video);
         }
         else if (container.classList.contains('sse-status-image-animated-gif'))
         {
