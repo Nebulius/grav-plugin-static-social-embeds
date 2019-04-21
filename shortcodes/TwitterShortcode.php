@@ -47,7 +47,7 @@ class TwitterShortcode extends SSEShortcode
             $tweet_id = $match[2];
         }
 
-        if (!$tweet_id) return ['errors' => [['code' => 0, 'message' => 'Not a tweet']], 'url' => $url];
+        if (!$tweet_id) return ['errors' => [['code' => 0, 'message' => 'Not a tweet.']], 'url' => $url];
 
         $tweet_data = $this->callTwitter('https://api.twitter.com/1.1/statuses/show/' . $tweet_id . '.json?tweet_mode=extended&include_ext_alt_text=true');
 

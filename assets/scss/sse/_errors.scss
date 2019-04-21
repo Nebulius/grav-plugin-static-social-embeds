@@ -1,6 +1,6 @@
 &.sse-status {
     .sse-status-error {
-        padding: 1rem 0;
+        padding: 1rem;
 
         p, ul li {
             font-size: 1rem;
@@ -8,6 +8,9 @@
         }
         a {
             color: #831a18;
+        }
+        ul li {
+            font-size: .7rem;
         }
     }
 
