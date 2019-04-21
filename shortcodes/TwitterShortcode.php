@@ -73,9 +73,9 @@ class TwitterShortcode extends SSEShortcode
 
         $tweet_html = Tweet::make(
             $tweet_data['full_text'],
-            $tweet_data['entities']['urls'],
-            $tweet_data['entities']['user_mentions'],
-            $tweet_data['entities']['hashtags']
+            isset($tweet_data['entities']['urls']) && $tweet_data['entities']['urls'] != null ? $tweet_data['entities']['urls'] : [],
+            isset($tweet_data['entities']['user_mentions']) && $tweet_data['entities']['user_mentions'] != null ? $tweet_data['entities']['user_mentions'] : [],
+            isset($tweet_data['entities']['hashtags']) && $tweet_data['entities']['hashtags'] != null ? $tweet_data['entities']['hashtags'] : []
         )->linkify();
 
         // We want to be able to stylise the @ & #.
@@ -186,7 +186,7 @@ class TwitterShortcode extends SSEShortcode
         $r = [];
         ksort($params);
 
-        foreach($params as $key=>$value)
+        foreach($params as $key => $value)
         {
             $r[] = "$key=" . rawurlencode($value);
         }
@@ -264,6 +264,15 @@ class TwitterShortcode extends SSEShortcode
 
         curl_close($ch);
 
-        return json_decode($json, true);
+        $data = json_decode($json, true);
+
+        if (!$data)
+        {
+            return ['errors' => [['code' => 1, 'message' => 'Twitter returned an empty response.']]];
+        }
+        else
+        {
+            return $data;
+        }
     }
 }
