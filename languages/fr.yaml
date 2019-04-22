@@ -16,7 +16,7 @@ PLUGIN_SSE:
     REPLY: Répondre
     RETWEETS: $rts retweets
     LIKES: $likes mentions j'aime
-    SEND: Envoyer le tweet
+    SHARE: Partager le tweet
   MASTODON:
     CANNOT_RENDER: Impossible d'afficher le toot.
     VIEW_ON_MASTODON: (Cliquez pour le voir sur Mastodon.)

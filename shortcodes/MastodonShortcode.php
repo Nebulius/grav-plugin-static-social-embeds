@@ -174,6 +174,20 @@ class MastodonShortcode extends SSEShortcode
             }
         }
 
+        // Also emojis in the display name
+
+        if (isset($toot['account']['emojis']) && !empty($toot['account']['emojis']))
+        {
+            foreach ($toot['account']['emojis'] as $emoji)
+            {
+                $toot['account']['display_name'] = str_replace(
+                    ':' . $emoji['shortcode'] . ':',
+                    '<img src="' . $this->fetchImage($emoji['url']) . '" alt="' . $emoji['shortcode'] . '" class="sse-mastodon-custom-emoji" />',
+                    $toot['account']['display_name']
+                );
+            }
+        }
+
         return $toot;
     }
 }

@@ -41,7 +41,7 @@
                 </a>
             </div>
         </header>
-
+        
         {% if spoiler_text %}
             <p class="sse-status-content sse-spoiler-text">
                 {{ spoiler_text }} <button class="sse-spoiler-text-toggle-handle" data-show="{{ 'PLUGIN_SSE.MASTODON.SHOW_MORE'|t }}" data-hide="{{ 'PLUGIN_SSE.MASTODON.SHOW_LESS'|t }}" aria-haspopup="true">{{ 'PLUGIN_SSE.MASTODON.SHOW_MORE'|t }}</button>
@@ -114,13 +114,15 @@
                     } -%}
                     <span class="{{ visibility_icons[visibility] }}"></span>
                 </li>
-                <li class="sse-mastodon-stats-application">
-                    {%- if application.website -%}
-                        <a href="{{ application.website }}">{{ application.name }}</a>
-                    {%- else -%}
-                        {{- application.name -}}
-                    {%- endif -%}
-                </li>
+                {%- if application -%}
+                    <li class="sse-mastodon-stats-application">
+                        {%- if application.website -%}
+                            <a href="{{ application.website }}">{{ application.name }}</a>
+                        {%- else -%}
+                            {{- application.name -}}
+                        {%- endif -%}
+                    </li>
+                {%- endif -%}
                 <li title="{{ ('PLUGIN_SSE.' ~ federation_software|upper ~ '.REBLOGS')|t|replace({'$rbls': reblogs_count}) }}" class="sse-mastodon-stats-reblogs">
                     <span class="fas fa-retweet" aria-hidden="true"></span> {{ reblogs_count -}}
                 </li>

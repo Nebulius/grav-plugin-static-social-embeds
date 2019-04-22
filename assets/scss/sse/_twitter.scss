@@ -1,4 +1,7 @@
 &.sse-status {
+    margin: 1rem auto;
+    padding: 0;
+
     width: 66%;
     max-width: 800px;
 
@@ -433,7 +436,7 @@
 
                 li {
                     display: inline-block;
-                    width: 6rem;
+                    width: 4rem;
 
                     text-align: left;
                     font-size: $twitter-font-size-medium;
@@ -462,6 +465,15 @@
 
                     a {
                         color: lighten($twitter-light-text-gray, 16%);
+                        text-decoration: none;
+
+                        .icon {
+                            // Hack for themes including Line-Awesome (that's the case of the default theme, Quark).
+                            // These are using the same class names as Font-Awesome and mess with the icon font.
+                            .fas.fa-reply:before {
+                                content: "\f3e5" !important;
+                            }
+                        }
 
                         .stat {
                             position: relative;

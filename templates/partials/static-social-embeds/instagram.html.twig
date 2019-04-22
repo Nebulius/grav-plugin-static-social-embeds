@@ -91,13 +91,22 @@
         </aside>
 
         <aside class="sse-status-instagram-links">
-            <a href="{{ link }}" class="sse-status-instagram-links-like" aria-label="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.LIKES'|t|replace({'$likes': stats.likes}) }}">
+            <a href="{{ link }}"
+               class="sse-status-instagram-links-like"
+               aria-label="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.LIKES'|t|replace({'$likes': stats.likes}) }}"
+               title="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.LIKES'|t|replace({'$likes': stats.likes}) }}">
                 <span class="far fa-heart" aria-hidden="true"></span>
             </a>
-            <a href="{{ link }}" class="sse-status-instagram-links-comment" aria-label="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.COMMENTS'|t|replace({'$comments': stats.comments}) }}">
+            <a href="{{ link }}"
+               class="sse-status-instagram-links-comment"
+               aria-label="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.COMMENTS'|t|replace({'$comments': stats.comments}) }}"
+               title="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.COMMENTS'|t|replace({'$comments': stats.comments}) }}">
                 <span class="far fa-comment fa-flip-horizontal" aria-hidden="true"></span>
             </a>
-            <a href="{{ link }}" class="sse-status-instagram-links-bookmark" aria-label="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.BOOKMARK'|t }}">
+            <a href="{{ link }}"
+               class="sse-status-instagram-links-bookmark"
+               aria-label="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.BOOKMARK'|t }}"
+               title="{{ 'PLUGIN_SSE.INSTAGRAM.BUTTONS_ACCESSIBILITY.BOOKMARK'|t }}">
                 <span class="far fa-bookmark" aria-hidden="true"></span>
             </a>
         </aside>

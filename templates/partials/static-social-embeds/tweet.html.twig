@@ -134,29 +134,29 @@
             <aside class="sse-status-stats">
                 <ul>
                     <li class="link-reply">
-                        <a href="{{ tweet.link }}">
+                        <a href="{{ tweet.link }}" title="{{ 'PLUGIN_SSE.TWITTER.REPLY'|t }}">
                             <span class="icon" aria-hidden="true"><span class="fas fa-reply"></span></span>
                             <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.REPLY'|t }}</span>
                         </a>
                     </li>
                     <li class="link-retweet">
-                        <a href="{{ tweet.link }}">
+                        <a href="{{ tweet.link }}" title="{{ 'PLUGIN_SSE.TWITTER.RETWEETS'|t|replace({'$rts': tweet.stats.retweets}) }}">
                             <span class="icon" aria-hidden="true"><span class="fas fa-retweet"></span></span>
-                            <span class="stat" aria-hidden="true">{{ tweet.stats.retweets|number_format }}</span>
+                            {% if tweet.stats.retweets > 0 %}<span class="stat" aria-hidden="true">{{ tweet.stats.retweets|number_format }}</span>{% endif %}
                             <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.RETWEETS'|t|replace({'$rts': tweet.stats.retweets}) }}</span>
                         </a>
                     </li>
                     <li class="link-like">
-                        <a href="{{ tweet.link }}">
+                        <a href="{{ tweet.link }}" title="{{ 'PLUGIN_SSE.TWITTER.LIKES'|t|replace({'$likes': tweet.stats.likes}) }}">
                             <span class="icon" aria-hidden="true"><span class="far fa-heart"></span></span>
-                            <span class="stat" aria-hidden="true">{{ tweet.stats.likes|number_format }}</span>
+                            {% if tweet.stats.likes > 0 %}<span class="stat" aria-hidden="true">{{ tweet.stats.likes|number_format }}</span>{% endif %}
                             <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.LIKES'|t|replace({'$likes': tweet.stats.likes}) }}</span>
                         </a>
                     </li>
                     <li class="link-send">
-                        <a href="{{ tweet.link }}">
-                            <span class="icon" aria-hidden="true"><span class="far fa-envelope"></span></span>
-                            <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.SEND'|t }}</span>
+                        <a href="{{ tweet.link }}" title="{{ 'PLUGIN_SSE.TWITTER.SHARE'|t }}">
+                            <span class="icon" aria-hidden="true"><span class="fas fa-sign-out-alt fa-rotate-270"></span></span>
+                            <span class="sr-only">{{ 'PLUGIN_SSE.TWITTER.SHARE'|t }}</span>
                         </a>
                     </li>
                 </ul>

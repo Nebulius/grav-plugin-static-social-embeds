@@ -70,20 +70,13 @@
                 font-size: 0;
                 line-height: 0;
             }
-
-            .sse-mastodon-custom-emoji {
-                position: relative;
-                top: .1rem;
-
-                height: $mastodon-font-size-medium;
-            }
         }
 
         &.sse-spoiler-text {
             .sse-spoiler-text-toggle-handle {
                 display: inline-block;
                 margin-left: 1rem;
-                padding: 0 1rem;
+                padding: .2rem 1rem 0;
                 vertical-align: middle;
 
                 border: 0;
@@ -211,6 +204,13 @@
 
     figure + footer {
         padding-bottom: .3rem;
+    }
+
+    .sse-mastodon-custom-emoji {
+        position: relative;
+        top: .1rem;
+
+        height: $mastodon-font-size-medium;
     }
 
     &.sse-theme-dark {
