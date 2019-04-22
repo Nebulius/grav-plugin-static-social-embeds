@@ -155,6 +155,8 @@ class MastodonShortcode extends SSEShortcode
                         $media['preview_url'] = $media['url'];
                         break;
                 }
+
+                $toot['media_attachments'][$id] = $media;
             }
         }
 

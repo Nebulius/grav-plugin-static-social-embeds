@@ -172,6 +172,10 @@ abstract class SSEShortcode extends Shortcode
             }
         }
 
+        error_log("Downloading media: " . $url);
+        error_log("Format: " . $format);
+        error_log('plugins.static-social-embeds.' . $this->network_name . '.download_content.images = ' . $this->config->get('plugins.static-social-embeds.' . $this->network_name . '.download_content.images'));
+        error_log('plugins.static-social-embeds.' . $this->network_name . '.download_content.videos = ' . $this->config->get('plugins.static-social-embeds.' . $this->network_name . '.download_content.videos'));
 
         // Are we allowed to cache images?
         if ($format == 'image' && !$this->config->get('plugins.static-social-embeds.' . $this->network_name . '.download_content.images'))
@@ -184,6 +188,8 @@ abstract class SSEShortcode extends Shortcode
         {
             return $url;
         }
+
+        error_log("Downloading…");
 
         $ch = curl_init();
         $tmp_file_path = $this->tmp_dir . '/' . sha1($url) . '.' . $extension;
@@ -219,6 +225,9 @@ abstract class SSEShortcode extends Shortcode
         if (!is_dir($storage_file_dir)) mkdir($storage_file_dir, 0755, true);
 
         rename($tmp_file_path, $this->images_dir . $storage_file_path);
+
+        error_log("Downloaded to " . $this->grav['base_url'] . '/' . $this->images_path . $storage_file_path);
+        error_log("");
 
         return $this->grav['base_url'] . '/' . $this->images_path . $storage_file_path;
     }
