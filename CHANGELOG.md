@@ -1,4 +1,15 @@
-# v1.1.4.1
+# v1.1.5
+## 22-04-2019
+
+1. [](#bugfix)
+    * Fixed Matodon medias not correctly downloaded (they were downloaded, but the local copy was not used).
+    * Fixed Mastodon's custom emojis not correclty supported (they are now correctly displayed in spoiler texts and display names).
+1. [](#improved)
+    * Improved some embeds stylings to match their models.
+    * Improved compatibility with some themes.
+    * Improved embeds accessibility a little bit.
+
+# v1.1.4
 ## 21-04-2018
 
 1. [](#bugfix)
