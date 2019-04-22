@@ -171,6 +171,15 @@ class MastodonShortcode extends SSEShortcode
                     '<img src="' . $this->fetchImage($emoji['url']) . '" alt="' . $emoji['shortcode'] . '" class="sse-mastodon-custom-emoji" />',
                     $toot['content']
                 );
+
+                if (isset($toot['spoiler_text']))
+                {
+                    $toot['spoiler_text'] = str_replace(
+                        ':' . $emoji['shortcode'] . ':',
+                        '<img src="' . $this->fetchImage($emoji['url']) . '" alt="' . $emoji['shortcode'] . '" class="sse-mastodon-custom-emoji" />',
+                        $toot['spoiler_text']
+                    );
+                }
             }
         }
 
