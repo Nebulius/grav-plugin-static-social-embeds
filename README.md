@@ -149,9 +149,9 @@ The plugin is translated in English and French.
 
 ## Technical considerations regarding Instagram
 
-While Twitter and Mastodon/Pleroma data are retrieved using their respective API, there is no way to do that with Instagram (or there is, but deprecated and soon-to-be-removed in december 2018). We scrap an internal JSON embed in the post pages to retrieve data (thanks to [RSSBridge](https://github.com/RSS-Bridge/rss-bridge/blob/master/bridges/InstagramBridge.php) for the tip). As it isn't official, it may break anytime.
+While Twitter and Mastodon/Pleroma data are retrieved using their respective API, there is no way to do that with Instagram (the API was removed in december 2018). We scrap an internal JSON embed in the post pages to retrieve data (thanks to [RSSBridge](https://github.com/RSS-Bridge/rss-bridge/blob/master/bridges/InstagramBridge.php) for the tip). As it isn't official, it may break anytime.
 
-Data is cached without expiration, so as long as you don't delete the cache, existing embeds will never break. New ones will. Feel free to open an issue if such problem occurs (but this is pretty stable for a few years now and I hope it will remains as such).
+Data is cached without expiration, so as long as you don't fully delete the cache using the _all_ method, existing embeds will never break. New ones will. Feel free to open an issue if such problem occurs (but this is pretty stable for a few years now and I hope it will remains as such).
 
 ## Thanks
 
