@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Jedkirby\\TweetEntityLinker\\' => array($vendorDir . '/jedkirby/tweet-entity-linker/src'),
+    'Grav\\Plugin\\Shortcodes\\' => array($baseDir . '/shortcodes'),
 );

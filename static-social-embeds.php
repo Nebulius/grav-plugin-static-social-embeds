@@ -52,8 +52,6 @@ class StaticSocialEmbedsPlugin extends Plugin
             return;
         }
 
-        require_once __DIR__ . '/classes/plugin/SSEShortcode.php';
-
         // Enable the main event we are interested in
         $this->enable([
             'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
@@ -96,6 +94,6 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public function onShortcodeHandlers()
     {
-        $this->grav['shortcode']->registerAllShortcodes(__DIR__ . '/classes/shortcodes');
+        $this->grav['shortcode']->registerAllShortcodes(__DIR__ . '/shortcodes');
     }
 }

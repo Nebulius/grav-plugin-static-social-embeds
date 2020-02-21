@@ -1,16 +1,25 @@
 {
-    "name": "amaurycarrade/grav-plugin-static-social-embeds",
-    "description": "Embeds social status (like tweets, instagram posts, toots, etc.) in articles without using their embed iframe, but rather statically without any dependency to the service.",
-    "type": "project",
-    "require": {
-        "jedkirby/tweet-entity-linker": "^1.2"
+  "name": "amaurycarrade/grav-plugin-static-social-embeds",
+  "description": "Embeds social status (like tweets, instagram posts, toots, etc.) in articles without using their embed iframe, but rather statically without any dependency to the service.",
+  "type": "project",
+  "require": {
+    "jedkirby/tweet-entity-linker": "^1.2"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Amaury Carrade",
+      "email": "amaury@carrade.eu"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Grav\\Plugin\\Shortcodes\\": "shortcodes"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Amaury Carrade",
-            "email": "amaury@carrade.eu"
-        }
-    ],
-    "minimum-stability": "stable"
+    "classmap": [
+      "static-social-embeds.php",
+      "classes/SSEShortcode.php"
+    ]
+  }
 }
