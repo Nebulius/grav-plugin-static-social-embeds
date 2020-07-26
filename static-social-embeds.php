@@ -1,4 +1,5 @@
 <?php
+
 namespace Grav\Plugin;
 
 use Grav\Common\Assets;
@@ -23,12 +24,22 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public static function getSubscribedEvents()
     {
-        require_once __DIR__ . '/vendor/autoload.php';
-        require_once __DIR__ . '/classes/SSEShortcode.php';
-
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0]
+            'onPluginsInitialized' => [
+                ['autoload', 100001],
+                ['onPluginsInitialized', 0]
+            ],
         ];
+    }
+
+    /**
+     * [onPluginsInitialized:100000] Composer autoload.
+     *
+     * @return ClassLoader
+     */
+    public function autoload()
+    {
+        return require __DIR__ . '/vendor/autoload.php';
     }
 
     /**
@@ -36,8 +47,8 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public function onPluginsInitialized()
     {
-        // Don't proceed if we are in the admin plugin
         if ($this->isAdmin()) {
+            // Don't proceed if we are in the admin plugin
             return;
         }
 
@@ -65,18 +76,15 @@ class StaticSocialEmbedsPlugin extends Plugin
         /** @var $assets Assets */
         $assets = $this->grav['assets'];
 
-        if ($this->config->get('plugins.static-social-embeds.include_font_awesome_5', true))
-        {
+        if ($this->config->get('plugins.static-social-embeds.include_font_awesome_5', true)) {
             $assets->add('https://use.fontawesome.com/releases/v5.1.0/css/all.css');
         }
 
-        if ($this->config->get('plugins.static-social-embeds.built_in_css', true))
-        {
+        if ($this->config->get('plugins.static-social-embeds.built_in_css', true)) {
             $assets->add('plugin://static-social-embeds/assets/css-compiled/sse.min.css', 4);
         }
 
-        if ($this->config->get('plugins.static-social-embeds.built_in_js', true))
-        {
+        if ($this->config->get('plugins.static-social-embeds.built_in_js', true)) {
             $assets->addJs('plugin://static-social-embeds/assets/js/sse.js', 4, true, 'defer');
         }
     }
@@ -86,6 +94,6 @@ class StaticSocialEmbedsPlugin extends Plugin
      */
     public function onShortcodeHandlers()
     {
-        $this->grav['shortcode']->registerAllShortcodes(__DIR__.'/shortcodes');
+        $this->grav['shortcode']->registerAllShortcodes(__DIR__ . '/shortcodes');
     }
 }

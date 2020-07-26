@@ -11,6 +11,10 @@ class ComposerStaticInit1c781dd30cc1c5fc04980a1fc07fda14
         array (
             'Jedkirby\\TweetEntityLinker\\' => 27,
         ),
+        'G' => 
+        array (
+            'Grav\\Plugin\\Shortcodes\\' => 23,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -18,6 +22,15 @@ class ComposerStaticInit1c781dd30cc1c5fc04980a1fc07fda14
         array (
             0 => __DIR__ . '/..' . '/jedkirby/tweet-entity-linker/src',
         ),
+        'Grav\\Plugin\\Shortcodes\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/shortcodes',
+        ),
+    );
+
+    public static $classMap = array (
+        'Grav\\Plugin\\Shortcodes\\SSEShortcode' => __DIR__ . '/../..' . '/classes/SSEShortcode.php',
+        'Grav\\Plugin\\StaticSocialEmbedsPlugin' => __DIR__ . '/../..' . '/static-social-embeds.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +38,7 @@ class ComposerStaticInit1c781dd30cc1c5fc04980a1fc07fda14
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit1c781dd30cc1c5fc04980a1fc07fda14::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit1c781dd30cc1c5fc04980a1fc07fda14::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit1c781dd30cc1c5fc04980a1fc07fda14::$classMap;
 
         }, null, ClassLoader::class);
     }
