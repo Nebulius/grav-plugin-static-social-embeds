@@ -1,3 +1,9 @@
+# v1.1.6
+## 26-07-2020
+
+1. [](#bugfix)
+    * Fixed “ProblemChecker class not found” due to bad classes autoload ([#5](https://github.com/Nebulius/grav-plugin-static-social-embeds/pull/5), thanks to funilrys!).
+
 # v1.1.5
 ## 22-04-2019
 
@@ -10,7 +16,7 @@
     * Improved embeds accessibility a little bit.
 
 # v1.1.4
-## 21-04-2018
+## 21-04-2019
 
 1. [](#bugfix)
     * Fixed plugin admin rendering error in English, because the blueprint referred translation files with an inconsistent format (#1).
